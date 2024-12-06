@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "ipt.dam.powerpantry"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "ipt.dam.powerpantry"
