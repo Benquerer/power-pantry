@@ -1,3 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+    <!--  Default Strings for App interface (European Portuguese - Portugal)  -->
 <resources>
+<!--    Main App Strings-->
     <string name="app_name">Power Pantry</string>
+    <string name="open_menu">Abrir menu de navegação</string>
+    <string name="close_menu">Fechar menu de navegação</string>
+    <string name="hello_blank_fragment">FRAGMENTO VAZIO</string>
+
+<!--    Strings for navBar -->
+    <string name="navBar_Home">Menu Principal</string>
+    <string name="navBar_Gallery">Galeria de Produtos</string>
+    <string name="navBar_Favorites">Favoritos</string>
+    <string name="navBar_Login">Realizar Login</string>
+    <string name="navBar_About">Sobre a Aplicação</string>
 </resources>
