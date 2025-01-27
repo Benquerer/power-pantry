@@ -1,24 +1,51 @@
-# Compiled class file
-*.class
+# Gradle files
+.gradle/
+build/
+**/build/
 
-# Log file
+# Local configuration files
+local.properties
+
+# Android Studio specific files
+.idea/
+*.iml
+
+# Gradle Wrapper
+gradle/wrapper/gradle-wrapper.properties
+
+# Log files
 *.log
 
-# BlueJ files
-*.ctxt
+# Generated files
+.cxx/
+.externalNativeBuild/
+*.apk
+*.ap_
+*.aab
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
+# Compressed files
 *.zip
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Keystore files (security-sensitive, should not be tracked)
+*.keystore
+
+# MacOS specific files
+.DS_Store
+
+# Windows specific files
+Thumbs.db
+
+# IDE-specific files
+*.swp
+*.swo
+
+# Miscellaneous
+*.class
+*.jar
+*.war
+*.ear
+
+# ProGuard
+proguard/
