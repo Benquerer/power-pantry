@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+
 }
 
 android {
@@ -37,6 +38,12 @@ android {
 
 dependencies {
 
+    // Amplify core dependency
+    implementation ("com.amplifyframework:core:2.24.0")
+    // Support for Java 8 features
+    coreLibraryDesugaring ("com.android.tools:desugar_jdk_libs:1.1.5")
+    implementation ("com.amplifyframework:aws-auth-cognito:1.42.0")  // Auth library
+    implementation ("com.amplifyframework:core:1.42.0")            // Core library (if not already added)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
