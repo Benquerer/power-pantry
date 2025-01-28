@@ -1,16 +1,40 @@
-<?xml version="1.0" encoding="utf-8" ?>
-    <!--  Default Strings for App interface (European Portuguese - Portugal)  -->
+<?xml version="1.0" encoding="utf-8" ?><!--  Default Strings for App interface (European Portuguese - Portugal)  -->
 <resources>
-<!--    Main App Strings-->
+
+    <!--    Main App Strings-->
     <string name="app_name">Power Pantry</string>
-    <string name="open_menu">Abrir menu de navegação</string>
-    <string name="close_menu">Fechar menu de navegação</string>
+    <string name="app_logo_img">Power Pantry</string>
+    <string name="versio_number">0.0.2</string>
+    <string name="app_desc">Esta aplicação foi desenvolvida como projeto final da disciplina de "D.A.M" de 24/25 no IPT, pelos alunos André R. Benquerer e Diogo A. Cardeira. Todo o código desta aplicação destina-se a fins educativos e de aprendizagem.</string>
+    <string name="app_contact">Contate-nos através de: fakemail@powerpantry.com</string>
+
     <string name="hello_blank_fragment">FRAGMENTO VAZIO</string>
 
-<!--    Strings for navBar -->
+    <!--    Scanning-->
+    <string name="default_scan_text">Carregue no botao para fazer o scan de um barcode</string>
+    <string name="no_barcode_detected">Nao foi encontrado um codigo</string>
+
+    <!--    Strings for About Fragment -->
+    <string name="Abt_Title">Sobre a Aplicação</string>
+    <string name="instragram">Nosso Instagram</string>
+    <string name="github">Nosso Github</string>
+    <string name="youtube">Nosso Youtube</string>
+
+
+    <!--    Strings for navBar -->
+    <string name="open_menu">Abrir menu de navegação</string>
+    <string name="close_menu">Fechar menu de navegação</string>
+    <!--    nav_header-->
+    <string name="navBar_GuestTitle">Visitante</string>
+    <string name="navBar_GuestMsg">Autentica-te para acessar todas as funções da aplicação</string>
+    <!--    auth group-->
+    <string name="navBar_Login">Realizar Login</string>
+    <!--    utils group-->
     <string name="navBar_Home">Menu Principal</string>
     <string name="navBar_Gallery">Galeria de Produtos</string>
     <string name="navBar_Favorites">Favoritos</string>
-    <string name="navBar_Login">Realizar Login</string>
+    <string name="navBar_Submit">Sugerir novo produto</string>
+    <!--    about group-->
     <string name="navBar_About">Sobre a Aplicação</string>
+
 </resources>

@@ -1,18 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AboutFragment">
+    android:background="?android:attr/colorBackground"
+    android:padding="16dp">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="About Fragment"
-        android:textSize="30sp"
-        android:layout_centerInParent="true"
-        android:textColor="@color/my_dark_blue"/>
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
-</RelativeLayout>
+        <!-- App Logo -->
+        <ImageView
+            android:id="@+id/app_logo"
+            android:layout_width="218dp"
+            android:layout_height="156dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/Abt_Title"
+            android:elevation="4dp"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/power_pantry_img_foreground"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <!-- App Name -->
+        <TextView
+            android:id="@+id/app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginBottom="8dp" />
+
+        <!-- App Version -->
+        <TextView
+            android:id="@+id/app_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/versio_number"
+            android:textSize="14sp"
+            android:textColor="?android:attr/textColorSecondary"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/app_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_desc"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:lineSpacingExtra="4dp"
+            android:gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Social Links -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/instagram_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_instagram"
+                android:contentDescription="@string/instragram"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:elevation="2dp" />
+
+            <ImageView
+                android:id="@+id/github_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_github"
+                android:contentDescription="@string/github"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:elevation="2dp" />
+
+            <ImageView
+                android:id="@+id/youtube_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_youtube"
+                android:contentDescription="@string/youtube"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:elevation="2dp" />
+        </LinearLayout>
+
+
+        <!-- Contact Information -->
+        <TextView
+            android:id="@+id/contact_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_contact"
+            android:textSize="16sp"
+            android:textColor="?android:attr/textColorPrimary"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>

@@ -3,32 +3,32 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
+    android:layout_height="170dp"
     android:gravity="bottom"
     android:padding="16dp"
     android:background="@color/my_dark_blue"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
-    
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_launcher_foreground"/>
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/ic_guest" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ABUBLEE"
+        android:text="@string/navBar_GuestTitle"
         android:textColor="@color/white"
-        android:textStyle="bold"/>
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ABUBLEE22222"
+        android:text="@string/navBar_GuestMsg"
         android:textColor="@color/white"
-        android:textSize="12sp"/>
+        android:textSize="12sp" />
 
 
-
-    
 </LinearLayout>

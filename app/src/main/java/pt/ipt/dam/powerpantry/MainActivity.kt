@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
+            R.id.nav_login -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, LoginFragment())
+                    .commit()
+            }
             R.id.nav_home -> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, HomeFragment())
@@ -55,9 +60,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, FavoritesFragment())
                     .commit()
-            }R.id.nav_login -> {
+            }
+            R.id.nav_submit -> {
                 supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, LoginFragment())
+                    .replace(R.id.fragment_container, SubmitFragment())
                     .commit()
             }
             R.id.nav_about -> {
