@@ -4,7 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn = "navigation_view">
 
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/authmenu"   android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_login"
+            android:icon="@drawable/ic_login"
+            android:title="@string/navBar_Login"
+            />
+    </group>
+
+    <group android:id="@+id/utils" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
@@ -24,11 +32,13 @@
             />
 
         <item
-            android:id="@+id/nav_login"
-            android:icon="@drawable/ic_login"
-            android:title="@string/navBar_Login"
+            android:id="@+id/nav_submit"
+            android:icon="@drawable/ic_submit"
+            android:title="@string/navBar_Submit"
             />
+    </group>
 
+    <group android:id="@+id/about" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_about"
