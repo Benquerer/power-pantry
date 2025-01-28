@@ -10,6 +10,9 @@
 
     <string name="hello_blank_fragment">FRAGMENTO VAZIO</string>
 
+    <!--    Scanning-->
+    <string name="default_scan_text">Carregue no botao para fazer o scan de um barcode</string>
+    <string name="no_barcode_detected">Nao foi encontrado um codigo</string>
 
     <!--    Strings for About Fragment -->
     <string name="Abt_Title">Sobre a Aplicação</string>

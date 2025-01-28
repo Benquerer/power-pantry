@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <!-- Define the variable to bind the barcode result -->
+        <!-- Declare a ViewModel variable to bind -->
         <variable
-            name="barcodeResult"
-            type="String" />
+            name="viewModel"
+            type="pt.ipt.dam.powerpantry.GalleryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
             android:id="@+id/scan_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{barcodeResult}"
+            android:text="@{viewModel.barcodeResult}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/scan_button"
