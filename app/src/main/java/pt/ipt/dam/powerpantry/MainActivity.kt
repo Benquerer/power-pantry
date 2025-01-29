@@ -8,6 +8,12 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import pt.ipt.dam.powerpantry.ui.about.AboutFragment
+import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragment
+import pt.ipt.dam.powerpantry.ui.gallery.GalleryFragment
+import pt.ipt.dam.powerpantry.ui.home.HomeFragment
+import pt.ipt.dam.powerpantry.ui.login.LoginFragment
+import pt.ipt.dam.powerpantry.ui.submit.SubmitFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 

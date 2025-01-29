@@ -1,4 +1,4 @@
-package pt.ipt.dam.powerpantry
+package pt.ipt.dam.powerpantry.data
 
 //single row (user)
 data class User(

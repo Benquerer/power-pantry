@@ -1,9 +1,11 @@
-package pt.ipt.dam.powerpantry
+package pt.ipt.dam.powerpantry.utils
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import pt.ipt.dam.powerpantry.R
+import pt.ipt.dam.powerpantry.api.RetrofitClient
+import pt.ipt.dam.powerpantry.data.UsersResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,20 +28,15 @@ class TestActivity : AppCompatActivity() {
                     // Log the successful response data
                     val users = response.body()?.users ?: emptyList()
                     Log.d("API_RESPONSE", "Users fetched successfully: $users")
-
-                    // Show a Toast with the result
-                    Toast.makeText(this@TestActivity, "Fetched ${users.size} users", Toast.LENGTH_SHORT).show()
                 } else {
                     // Handle failure in case the response code is not 200
                     Log.e("API_ERROR", "Failed to fetch data. Response code: ${response.code()}")
-                    Toast.makeText(this@TestActivity, "Failed to load data", Toast.LENGTH_SHORT).show()
                 }
             }
 
             override fun onFailure(call: Call<UsersResponse>, t: Throwable) {
                 // This is the error case (e.g., no internet connection, wrong endpoint, etc.)
                 Log.e("API_ERROR", "Error fetching data: ${t.message}")
-                Toast.makeText(this@TestActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
     }

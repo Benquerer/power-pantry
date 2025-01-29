@@ -1,6 +1,7 @@
-package pt.ipt.dam.powerpantry
+package pt.ipt.dam.powerpantry.api
 
 import okhttp3.OkHttpClient
+import pt.ipt.dam.powerpantry.BuildConfig
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
