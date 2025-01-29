@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -16,8 +18,16 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        // Load the API key from local.properties
-        buildConfigField("String", "SHEETY_API_KEY", "\"${project.findProperty("SHEETY_API_KEY")}\"")
+        val localProperties = Properties().apply {
+            val file = rootProject.file("local.properties")
+            if (file.exists()) {
+                load(file.inputStream())
+            }
+        }
+
+        val sheetyApiKey = localProperties.getProperty("SHEETY_API_KEY") ?: "ERRER LOADING API KEY"
+
+        buildConfigField("String", "SHEETY_API_KEY", "\"$sheetyApiKey\"")
 
     }
 
@@ -39,8 +49,8 @@ android {
     }
 
     buildFeatures{
-        buildConfig = true
         dataBinding = true
+        buildConfig = true
     }
 
 }

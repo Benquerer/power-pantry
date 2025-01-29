@@ -27,8 +27,8 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Now that the view is created, call the API
-        fetchUsers()
+        //after finished creating
+        //temp comment to save requests - fetchUsers()
     }
 
     private fun fetchUsers() {
@@ -41,6 +41,7 @@ class HomeFragment : Fragment() {
                     Log.d("API_RESPONSE", "Users fetched successfully: $users")
                 } else {
                     // Log an error if the response is not successful
+                    Log.d("DEBUGANDO","CHEGUEI A LINHA 44")
                     Log.e("API_ERROR", "Failed to fetch data. Response code: ${response.code()}")
                 }
             }
