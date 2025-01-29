@@ -1,4 +1,4 @@
-package pt.ipt.dam.powerpantry
+package pt.ipt.dam.powerpantry.utils
 
 import com.journeyapps.barcodescanner.CaptureActivity
 

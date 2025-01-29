@@ -1,10 +1,11 @@
-package pt.ipt.dam.powerpantry
+package pt.ipt.dam.powerpantry.ui.submit
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import pt.ipt.dam.powerpantry.R
 
 class SubmitFragment : Fragment() {
 

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -15,6 +17,18 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val localProperties = Properties().apply {
+            val file = rootProject.file("local.properties")
+            if (file.exists()) {
+                load(file.inputStream())
+            }
+        }
+
+        val sheetyApiKey = localProperties.getProperty("SHEETY_API_KEY") ?: "ERRER LOADING API KEY"
+
+        buildConfigField("String", "SHEETY_API_KEY", "\"$sheetyApiKey\"")
+
     }
 
     buildTypes {
@@ -36,6 +50,7 @@ android {
 
     buildFeatures{
         dataBinding = true
+        buildConfig = true
     }
 
 }
@@ -43,7 +58,14 @@ android {
 
 dependencies {
 
+    // API
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.recyclerview:recyclerview:1.2.1")
+
+    // Barcode reading
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

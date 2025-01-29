@@ -1,10 +1,11 @@
-package pt.ipt.dam.powerpantry
+package pt.ipt.dam.powerpantry.ui.gallery
 
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.databinding.DataBindingUtil
 import pt.ipt.dam.powerpantry.databinding.FragmentGalleryBinding
 import com.journeyapps.barcodescanner.CaptureActivity
+import pt.ipt.dam.powerpantry.R
 
 class GalleryFragment : Fragment() {
 
@@ -30,7 +32,8 @@ class GalleryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Initialize ViewModel
-        galleryViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(GalleryViewModel::class.java)
+        galleryViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(
+            GalleryViewModel::class.java)
 
         // Initialize Data Binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_gallery, container, false)

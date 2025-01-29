@@ -7,13 +7,13 @@
         <!-- Declare a ViewModel variable to bind -->
         <variable
             name="viewModel"
-            type="pt.ipt.dam.powerpantry.GalleryViewModel" />
+            type="pt.ipt.dam.powerpantry.ui.gallery.GalleryViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".GalleryFragment">
+        tools:context=".ui.gallery.GalleryFragment">
 
         <Button
             android:id="@+id/scan_button"
