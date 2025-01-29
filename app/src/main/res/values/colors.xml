@@ -7,5 +7,6 @@
     <color name="my_light_blue">#4281C3</color>
     <color name="my_dark_grey">#AEADAE</color>
     <color name="my_light_grey">#ECEBEF</color>
+    <color name="red">#ff0000</color>
 
 </resources>

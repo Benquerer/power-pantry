@@ -9,12 +9,16 @@
     android:background="@color/my_dark_blue"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
+    <!-- Profile Image -->
     <ImageView
+        android:id="@+id/nav_profile_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/ic_guest" />
 
+    <!-- Username (Default: Guest) -->
     <TextView
+        android:id="@+id/nav_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/navBar_GuestTitle"
@@ -22,13 +26,23 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-
+    <!-- Email (Default: Guest Message) -->
     <TextView
+        android:id="@+id/nav_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/navBar_GuestMsg"
         android:textColor="@color/white"
         android:textSize="12sp" />
 
-
+    <!-- Logout Button (Hidden by Default) -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:visibility="gone"
+        android:backgroundTint="@color/red"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
