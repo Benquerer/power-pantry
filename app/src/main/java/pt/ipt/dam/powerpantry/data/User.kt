@@ -7,5 +7,6 @@ data class User(
     val email: String,
 )
 
-//wrapper for response
-data class UsersResponse(val users: List<User>)
+//wrappers
+data class AllUsersResponse(val users: List<User>)
+data class IdUserResponse(val user : User)
