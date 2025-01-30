@@ -13,31 +13,43 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
 
     // Initialize with a string resource
     val barcodeResult = MutableLiveData<String>(application.getString(R.string.default_scan_text))
+
     //val to hold search text
     val searchQuery = MutableLiveData<String>("")
-    //val to hold full product list
-    val allProducts = MutableLiveData<List<Product>>()
 
-    fun setProducts(products : List<Product>){
-        allProducts.value = products
-    }
+    //vals to hold full product list
+    private val _products = MutableLiveData<List<Product>>(emptyList()) //private
+    val products : LiveData<List<Product>> get() = _products //public
 
-    //filtered product list
-    val filteredProducts : LiveData<List<Product>> = MediatorLiveData<List<Product>>().apply {
-        addSource(allProducts) { products ->
-            value = filterProducts(products, searchQuery.value ?: "")
-        }
-        addSource(searchQuery) { query ->
-            value = filterProducts(allProducts.value ?: emptyList(), query)
+    //val for filtered list
+    val filteredProducts = MutableLiveData<List<Product>>()
+
+    //observer
+    init{
+        searchQuery.observeForever {
+            filterProducts()
         }
     }
 
-    private fun filterProducts(products: List<Product>, query: String): List<Product>{
-        return products.filter {
-            it.productName.contains(query,ignoreCase = true,) ||
-            it.productBrand.contains(query,ignoreCase = true) ||
-            it.productCode.toString().contains(query,ignoreCase = true)
+    fun setProducts(newProducts : List<Product>){
+        if(_products.value.isNullOrEmpty()){
+            _products.value = newProducts
+            filterProducts()
         }
+    }
+
+    private fun filterProducts(){
+        val query = searchQuery.value?.lowercase() ?:""
+        filteredProducts.value = _products.value?.filter { product ->
+            product.productName.lowercase().contains(query) ||
+                    product.productBrand.lowercase().contains(query) ||
+                    product.productCode.toString().lowercase().contains(query)
+        }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        searchQuery.removeObserver { filterProducts() }
     }
 
 }

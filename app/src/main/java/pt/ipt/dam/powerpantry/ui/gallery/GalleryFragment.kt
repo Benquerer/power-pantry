@@ -59,8 +59,8 @@ class GalleryFragment : Fragment() {
         productAdapter = GalleryRecyclerViewAdapter(emptyList()) {}
         recyclerView.adapter = productAdapter
 
-        galleryViewModel.filteredProducts.observe(viewLifecycleOwner) {products ->
-            productAdapter = GalleryRecyclerViewAdapter(products) { product ->
+        galleryViewModel.filteredProducts.observe(viewLifecycleOwner) {filteredList ->
+            productAdapter = GalleryRecyclerViewAdapter(filteredList) { product ->
                 Log.d("ANDRE_TEST", "CLICKED ${product.productName}")
             }
             recyclerView.adapter = productAdapter
@@ -76,7 +76,7 @@ class GalleryFragment : Fragment() {
         })
 
         //fetch initial data
-        refreshData()
+        fetchData()
 
         // Check if camera permission is granted
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -88,6 +88,31 @@ class GalleryFragment : Fragment() {
         return binding.root
     }
 
+    private fun fetchData(){
+        if(isAdded){
+            //only fetch if null
+            if(galleryViewModel.products.value.isNullOrEmpty()){
+                DataRepository.fetchAllProducts(
+                    onResult = { products ->
+                        if(isAdded){
+                            galleryViewModel.setProducts(products)
+                            swipeRefreshLayout.isRefreshing = false
+                            Log.d("ANDRE_TEST", "FETCHED DATA")
+                        }
+                    },
+                    onError = { errorMessage ->
+                        Log.e("ANDRE_TEST",errorMessage)
+                        swipeRefreshLayout.isRefreshing = false
+                    }
+                )
+            }else{
+                Log.d("ANDRE_TEST", "DID NOT FETCH ANYTHING")
+            }
+        }else{
+            Log.d("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
+        }
+
+    }
     private fun refreshData(){
         if(isAdded){
             DataRepository.fetchAllProducts(
