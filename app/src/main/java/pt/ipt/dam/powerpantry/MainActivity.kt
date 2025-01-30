@@ -15,9 +15,11 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import pt.ipt.dam.powerpantry.ui.about.AboutFragment
 import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragment
+import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragmentGuest
 import pt.ipt.dam.powerpantry.ui.gallery.GalleryFragment
 import pt.ipt.dam.powerpantry.ui.login.LoginFragment
 import pt.ipt.dam.powerpantry.ui.submit.SubmitFragment
+import pt.ipt.dam.powerpantry.ui.submit.SubmitFragmentGuest
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -38,6 +40,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
+        // ✅ Force logout every time app starts
+        sharedPreferences.edit().clear().apply()
+
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
             R.string.open_menu, R.string.close_menu
@@ -45,56 +50,47 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // ✅ Update UI based on login state
+        // ✅ Update UI
         updateNavHeader()
+        updateUserFragments()
 
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment())
-                .commit()
             navigationView.setCheckedItem(R.id.nav_home)
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_login -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, LoginFragment())
-                    .commit()
-            }
-            R.id.nav_home -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, HomeFragment())
-                    .commit()
-            }
-            R.id.nav_gallery -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, GalleryFragment())
-                    .commit()
-            }
+            R.id.nav_login -> replaceFragment(LoginFragment())
+            R.id.nav_home -> replaceFragment(HomeFragment())
+            R.id.nav_gallery -> replaceFragment(GalleryFragment())
             R.id.nav_favorites -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, FavoritesFragment())
-                    .commit()
+                val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+                replaceFragment(if (isLoggedIn) FavoritesFragment() else FavoritesFragmentGuest())
             }
             R.id.nav_submit -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SubmitFragment())
-                    .commit()
+                val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+                replaceFragment(if (isLoggedIn) SubmitFragment() else SubmitFragmentGuest())
             }
-            R.id.nav_about -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, AboutFragment())
-                    .commit()
-            }
+            R.id.nav_about -> replaceFragment(AboutFragment())
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
 
-    // ✅ Update UI based on login/logout
-    private fun updateNavHeader() {
+
+    private fun replaceFragment(fragment: androidx.fragment.app.Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+
+    // ✅ Consolidated method to update UI based on login state
+    fun updateNavHeader() {
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        val username = sharedPreferences.getString("username", "User")
+        val email = sharedPreferences.getString("email", "user@example.com")
+
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.nav_username)
         val userEmailTextView = headerView.findViewById<TextView>(R.id.nav_email)
@@ -103,40 +99,30 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val menu = navigationView.menu
         val loginMenuItem = menu.findItem(R.id.nav_login)
 
+        userNameTextView.text = if (isLoggedIn) username else getString(R.string.navBar_GuestTitle)
+        userEmailTextView.text = if (isLoggedIn) email else getString(R.string.navBar_GuestMsg)
+        loginMenuItem.isVisible = !isLoggedIn
+        btnLogout.visibility = if (isLoggedIn) View.VISIBLE else View.GONE
+
+        btnLogout.setOnClickListener { logoutUser() }
+    }
+
+    // ✅ Consolidated method to handle login/logout UI updates
+    fun updateUserFragments() {
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 
-        if (isLoggedIn) {
-            userNameTextView.text = sharedPreferences.getString("username", "User")
-            userEmailTextView.text = sharedPreferences.getString("email", "user@example.com")
-
-            // ✅ Hide login, show logout
-            loginMenuItem.isVisible = false
-            btnLogout.visibility = View.VISIBLE
-        } else {
-            userNameTextView.text = getString(R.string.navBar_GuestTitle)
-            userEmailTextView.text = getString(R.string.navBar_GuestMsg)
-
-            // ✅ Show login, hide logout
-            loginMenuItem.isVisible = true
-            btnLogout.visibility = View.GONE
-        }
-
-        // ✅ Logout Button Click Listener
-        btnLogout.setOnClickListener {
-            logoutUser()
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.favorites_container, if (isLoggedIn) FavoritesFragment() else FavoritesFragmentGuest())
+            replace(R.id.submit_container, if (isLoggedIn) SubmitFragment() else SubmitFragmentGuest())
+            replace(R.id.fragment_container, HomeFragment())
+            commit()
         }
     }
 
-    private fun logoutUser() {
-        val editor = sharedPreferences.edit()
-        editor.clear()
-        editor.apply()
-
-        // Refresh UI
+    fun logoutUser() {
+        sharedPreferences.edit().clear().apply()
         updateNavHeader()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, HomeFragment())
-            .commit()
+        updateUserFragments()
     }
 
     override fun onBackPressed() {
