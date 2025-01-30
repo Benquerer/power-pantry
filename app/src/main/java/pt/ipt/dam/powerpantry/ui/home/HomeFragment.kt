@@ -46,26 +46,33 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    // ✅ Auto-scroll with smoother transition
     private fun startAutoScroll() {
         autoScrollRunnable = Runnable {
-            val currentPosition = binding.imageSlider.currentItem
-            val nextPosition = (currentPosition + 1) % binding.imageSlider.adapter!!.itemCount
+            // ✅ Se o binding for null, sai da função para evitar crashes
+            val binding = _binding ?: return@Runnable
 
-            // ✅ Use smooth scrolling to prevent skipping
+            val currentPosition = binding.imageSlider.currentItem
+            val nextPosition = (currentPosition + 1) % (binding.imageSlider.adapter?.itemCount ?: 1)
+
             binding.imageSlider.setCurrentItem(nextPosition, true)
 
-            // ✅ Delay the next slide (5 seconds for slower animation)
             binding.imageSlider.postDelayed(autoScrollRunnable!!, 5000)
         }
 
-        // Start the first auto-scroll
-        binding.imageSlider.postDelayed(autoScrollRunnable!!, 5000)
+        // ✅ Antes de agendar a execução, verifica se a View ainda existe
+        _binding?.imageSlider?.postDelayed(autoScrollRunnable!!, 5000)
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
-        autoScrollRunnable?.let { binding.imageSlider.removeCallbacks(it) }
+
+        // ✅ Cancela o auto-scroll antes de limpar o binding
+        autoScrollRunnable?.let {
+            binding.imageSlider.removeCallbacks(it)
+        }
+
+        // ✅ Limpa o binding para evitar referências nulas
         _binding = null
     }
 }
