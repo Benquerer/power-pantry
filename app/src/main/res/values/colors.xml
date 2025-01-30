@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--    theme-->
+    <color name="primaryText">#EEEEEE</color>
+    <color name="secondaryText">#A3A8AD</color>
+    <color name="highlightText">#43A8ED</color>
+
+
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="my_dark_blue">#15103E</color>
+    <color name="my_price_color">#123456</color>
     <color name="my_light_blue">#4281C3</color>
     <color name="my_dark_grey">#AEADAE</color>
     <color name="my_light_grey">#ECEBEF</color>

@@ -1,8 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PowerPantry" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.PowerPantry" parent="Theme.Material3.Dark.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/my_dark_blue</item>
+        <item name="android:textColorPrimary">@color/primaryText</item>
+        <item name="android:textColorSecondary">@color/secondaryText</item>
+        <item name="android:textColorHighlight">@color/highlightText</item>
+
     </style>
 
     <style name="Theme.PowerPantry" parent="Base.Theme.PowerPantry" />

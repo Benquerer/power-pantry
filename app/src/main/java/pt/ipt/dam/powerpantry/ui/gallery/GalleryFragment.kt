@@ -5,20 +5,26 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import pt.ipt.dam.powerpantry.databinding.FragmentGalleryBinding
 import com.journeyapps.barcodescanner.CaptureActivity
 import pt.ipt.dam.powerpantry.R
+import pt.ipt.dam.powerpantry.api.DataRepository
 
 class GalleryFragment : Fragment() {
 
@@ -26,6 +32,9 @@ class GalleryFragment : Fragment() {
     private val CAMERA_PERMISSION_REQUEST_CODE = 100
     private lateinit var binding: FragmentGalleryBinding
     private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var productAdapter: GalleryRecyclerViewAdapter
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +49,35 @@ class GalleryFragment : Fragment() {
         binding.viewModel = galleryViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        //init swipe refresh
+        swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener { refreshData() }
+
+        //init recycler view
+        recyclerView = binding.rvGallery
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        productAdapter = GalleryRecyclerViewAdapter(emptyList()) {}
+        recyclerView.adapter = productAdapter
+
+        galleryViewModel.filteredProducts.observe(viewLifecycleOwner) {filteredList ->
+            productAdapter = GalleryRecyclerViewAdapter(filteredList) { product ->
+                Log.d("ANDRE_TEST", "CLICKED ${product.productName}")
+            }
+            recyclerView.adapter = productAdapter
+        }
+
+        binding.etSearchBar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                galleryViewModel.searchQuery.value = s.toString()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        //fetch initial data
+        fetchData()
+
         // Check if camera permission is granted
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_REQUEST_CODE)
@@ -50,8 +88,54 @@ class GalleryFragment : Fragment() {
         return binding.root
     }
 
+    private fun fetchData(){
+        if(isAdded){
+            //only fetch if null
+            if(galleryViewModel.products.value.isNullOrEmpty()){
+                DataRepository.fetchAllProducts(
+                    onResult = { products ->
+                        if(isAdded){
+                            galleryViewModel.setProducts(products)
+                            swipeRefreshLayout.isRefreshing = false
+                            Log.d("ANDRE_TEST", "FETCHED DATA")
+                        }
+                    },
+                    onError = { errorMessage ->
+                        Log.e("ANDRE_TEST",errorMessage)
+                        swipeRefreshLayout.isRefreshing = false
+                    }
+                )
+            }else{
+                Log.d("ANDRE_TEST", "DID NOT FETCH ANYTHING")
+            }
+        }else{
+            Log.d("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
+        }
+
+    }
+    private fun refreshData(){
+        if(isAdded){
+            DataRepository.fetchAllProducts(
+                onResult = { products ->
+                    if(isAdded){
+                        galleryViewModel.setProducts(products)
+                        swipeRefreshLayout.isRefreshing = false
+                        Log.d("ANDRE_TEST", "FETCHED DATA")
+                    }
+                },
+                onError = { errorMessage ->
+                    Log.e("ANDRE_TEST",errorMessage)
+                    swipeRefreshLayout.isRefreshing = false
+                }
+            )
+        }else{
+            Log.d("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
+        }
+
+    }
+
     private fun setupScanButton() {
-        val scanButton: Button = binding.scanButton
+        val scanButton: ImageButton = binding.ibSearchByScan
         scanButton.setOnClickListener {
             // Launch the BarcodeScannerActivity
             val intent = Intent(requireContext(), CaptureActivity::class.java)
@@ -61,17 +145,20 @@ class GalleryFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
-            val barcode = data?.getStringExtra("SCAN_RESULT") ?: getString(R.string.no_barcode_detected)
-            galleryViewModel.barcodeResult.value = barcode
+            if (isAdded) {
+                val barcode = data?.getStringExtra("SCAN_RESULT") ?: getString(R.string.no_barcode_detected)
+                galleryViewModel.barcodeResult.value = barcode
+            } else {
+                Log.w("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
+            }
         }
+
     }
 
     // Handle permission result
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 setupScanButton()

@@ -6,8 +6,7 @@
     android:layout_height="170dp"
     android:gravity="bottom"
     android:padding="16dp"
-    android:background="@color/my_dark_blue"
-    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+    android:background="@color/my_dark_blue">
 
     <ImageView
         android:layout_width="60dp"
@@ -18,17 +17,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/navBar_GuestTitle"
-        android:textColor="@color/white"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="?android:attr/textColorPrimary"/>
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/navBar_GuestMsg"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+        android:textSize="12sp"
+        android:textColor="?android:attr/textColorSecondary"/>
 
 
 </LinearLayout>
