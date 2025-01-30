@@ -51,7 +51,7 @@ class GalleryFragment : Fragment() {
         swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             // Trigger data refresh when swipe-to-refresh is pulled
-            refreshData()
+            //refreshData()
         }
 
         //init recycler view
@@ -60,6 +60,8 @@ class GalleryFragment : Fragment() {
         //adapter (empty list)
         productAdapter = GalleryRecyclerViewAdapter(emptyList()) {}
         recyclerView.adapter = productAdapter
+        //fetch data
+        //refreshData()
 
         // Check if camera permission is granted
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -67,7 +69,7 @@ class GalleryFragment : Fragment() {
         } else {
             setupScanButton()
         }
-        refreshData()
+
         return binding.root
     }
 
@@ -77,20 +79,20 @@ class GalleryFragment : Fragment() {
                 onResult = { products ->
                     if(isAdded){
                         productAdapter = GalleryRecyclerViewAdapter(products) {product ->
-                            Toast.makeText(requireContext(), "Clicked on: ${product.productName}", Toast.LENGTH_SHORT).show()
+                            Log.d("ANDRE_TEST", "CLICKED ${product.productName}")
                         }
                         recyclerView.adapter = productAdapter
                         swipeRefreshLayout.isRefreshing = false
-                        Toast.makeText(requireContext(), "FETCHED DATA", Toast.LENGTH_SHORT).show()
+                        Log.d("ANDRE_TEST", "FETCHED DATA")
                     }
                 },
                 onError = { errorMessage ->
-                    Log.e("GALLERY ERROR",errorMessage)
+                    Log.e("ANDRE_TEST",errorMessage)
                     swipeRefreshLayout.isRefreshing = false
                 }
             )
         }else{
-            Log.w("GalleryFragment", "Fragment is not attached, skipping barcode result update.")
+            Log.d("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
         }
 
     }
@@ -120,7 +122,6 @@ class GalleryFragment : Fragment() {
     // Handle permission result
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-
         if (requestCode == CAMERA_PERMISSION_REQUEST_CODE) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 setupScanButton()
