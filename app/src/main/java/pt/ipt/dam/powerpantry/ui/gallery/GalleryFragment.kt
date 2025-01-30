@@ -9,7 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -60,19 +60,6 @@ class GalleryFragment : Fragment() {
         //adapter (empty list)
         productAdapter = GalleryRecyclerViewAdapter(emptyList()) {}
         recyclerView.adapter = productAdapter
-        //fetch
-        DataRepository.fetchAllProducts(
-            onResult = { products ->
-                productAdapter = GalleryRecyclerViewAdapter(products) {product ->
-                    Toast.makeText(requireContext(), "Clicked on: ${product.productName}", Toast.LENGTH_SHORT).show()
-                }
-                recyclerView.adapter = productAdapter
-                Toast.makeText(requireContext(), "FETCHED DATA", Toast.LENGTH_SHORT).show()
-            },
-            onError = { errorMessage ->
-                Log.e("GALLERY ERROR",errorMessage)
-            }
-        )
 
         // Check if camera permission is granted
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -80,29 +67,36 @@ class GalleryFragment : Fragment() {
         } else {
             setupScanButton()
         }
-
+        refreshData()
         return binding.root
     }
 
     private fun refreshData(){
-        DataRepository.fetchAllProducts(
-            onResult = { products ->
-                productAdapter = GalleryRecyclerViewAdapter(products) {product ->
-                    Toast.makeText(requireContext(), "Clicked on: ${product.productName}", Toast.LENGTH_SHORT).show()
+        if(isAdded){
+            DataRepository.fetchAllProducts(
+                onResult = { products ->
+                    if(isAdded){
+                        productAdapter = GalleryRecyclerViewAdapter(products) {product ->
+                            Toast.makeText(requireContext(), "Clicked on: ${product.productName}", Toast.LENGTH_SHORT).show()
+                        }
+                        recyclerView.adapter = productAdapter
+                        swipeRefreshLayout.isRefreshing = false
+                        Toast.makeText(requireContext(), "FETCHED DATA", Toast.LENGTH_SHORT).show()
+                    }
+                },
+                onError = { errorMessage ->
+                    Log.e("GALLERY ERROR",errorMessage)
+                    swipeRefreshLayout.isRefreshing = false
                 }
-                recyclerView.adapter = productAdapter
-                swipeRefreshLayout.isRefreshing = false
-                Toast.makeText(requireContext(), "FETCHED DATA", Toast.LENGTH_SHORT).show()
-            },
-            onError = { errorMessage ->
-                Log.e("GALLERY ERROR",errorMessage)
-                swipeRefreshLayout.isRefreshing = false
-            }
-        )
+            )
+        }else{
+            Log.w("GalleryFragment", "Fragment is not attached, skipping barcode result update.")
+        }
+
     }
 
     private fun setupScanButton() {
-        val scanButton: Button = binding.scanButton
+        val scanButton: ImageButton = binding.ibSearchByScan
         scanButton.setOnClickListener {
             // Launch the BarcodeScannerActivity
             val intent = Intent(requireContext(), CaptureActivity::class.java)
@@ -112,11 +106,15 @@ class GalleryFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
-            val barcode = data?.getStringExtra("SCAN_RESULT") ?: getString(R.string.no_barcode_detected)
-            galleryViewModel.barcodeResult.value = barcode
+            if (isAdded) {
+                val barcode = data?.getStringExtra("SCAN_RESULT") ?: getString(R.string.no_barcode_detected)
+                galleryViewModel.barcodeResult.value = barcode
+            } else {
+                Log.w("GalleryFragment", "Fragment is not attached, skipping barcode result update.")
+            }
         }
+
     }
 
     // Handle permission result
