@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
+    android:layout_height="220dp"
     android:gravity="bottom"
     android:padding="16dp"
     android:background="@color/my_dark_blue"
@@ -39,10 +39,13 @@
     <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="45dp"
         android:text="Logout"
         android:visibility="gone"
         android:backgroundTint="@color/red"
         android:textColor="@android:color/white"
-        android:layout_marginTop="10dp"/>
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>
+

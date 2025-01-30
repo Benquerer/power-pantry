@@ -12,7 +12,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import pt.ipt.dam.powerpantry.HomeFragment
 import pt.ipt.dam.powerpantry.R
+import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragment
+import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragmentGuest
+import pt.ipt.dam.powerpantry.ui.submit.SubmitFragment
+import pt.ipt.dam.powerpantry.ui.submit.SubmitFragmentGuest
 
 class LoginFragment : Fragment() {
 
@@ -30,6 +35,14 @@ class LoginFragment : Fragment() {
 
         // Initialize SharedPreferences
         sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+
+        // Check if the user is logged in
+        if (sharedPreferences.getBoolean("isLoggedIn", false)) {
+            val username = sharedPreferences.getString("username", "") ?: ""
+            val email = sharedPreferences.getString("email", "") ?: ""
+            updateNavigationDrawer(username, email)
+            changePagesToLoggedIn()
+        }
 
         btnLogin.setOnClickListener {
             val username = etUsername.text.toString().trim()
@@ -49,6 +62,9 @@ class LoginFragment : Fragment() {
 
                 // Navigate back to home
                 parentFragmentManager.popBackStack()
+
+                // Change the pages to user-specific versions
+                changePagesToLoggedIn()
             }
         }
 
@@ -74,6 +90,11 @@ class LoginFragment : Fragment() {
         btnLogout.setOnClickListener {
             logout()
         }
+
+        // Hide Login Button from menu
+        val menu = navView.menu
+        val loginItem = menu.findItem(R.id.nav_login)
+        loginItem.isVisible = false // Hide login button when logged in
     }
 
     private fun logout() {
@@ -94,6 +115,55 @@ class LoginFragment : Fragment() {
         tvEmail.text = getString(R.string.navBar_GuestMsg)
 
         btnLogout.visibility = View.GONE // Hide logout button
-    }
-}
 
+        // Revert Pages to Guest Versions
+        changePagesToGuest()
+
+        // Show the login item in the menu
+        val menu = navView.menu
+        val loginItem = menu.findItem(R.id.nav_login)
+        loginItem.isVisible = true // Show login button when logged out
+    }
+
+    private fun changePagesToLoggedIn() {
+        // Replace fragments with user-specific versions
+        val transaction = parentFragmentManager.beginTransaction()
+
+        // Replacing FavoritesFragment with the logged-in version
+        transaction.replace(R.id.fragment_container, FavoritesFragment())
+
+        // Replacing SubmitFragment with the logged-in version
+        transaction.replace(R.id.fragment_container, SubmitFragment())
+
+        // Opens the HomeFragment after replacing the other fragments
+        //transaction.replace(R.id.fragment_container, HomeFragment())
+
+        transaction.addToBackStack(null) // Optional, if you want to keep the back stack
+        transaction.commit()
+        
+        val navView = requireActivity().findViewById<NavigationView>(R.id.nav_view)
+        navView.setCheckedItem(R.id.nav_home)  // Set Home item as selected
+    }
+
+    private fun changePagesToGuest() {
+        // Replace fragments with guest versions
+        val transaction = parentFragmentManager.beginTransaction()
+
+        // Replacing FavoritesFragment with the guest version
+        transaction.replace(R.id.fragment_container, FavoritesFragmentGuest())
+
+        // Replacing SubmitFragment with the guest version
+        transaction.replace(R.id.fragment_container, SubmitFragmentGuest())
+
+        // Opens the HomeFragment after replacing the other fragments
+        //transaction.replace(R.id.fragment_container, HomeFragment())
+
+        transaction.addToBackStack(null) // Optional, if you want to keep the back stack
+        transaction.commit()
+
+        // Update NavigationView to highlight the Home item
+        val navView = requireActivity().findViewById<NavigationView>(R.id.nav_view)
+        navView.setCheckedItem(R.id.nav_home)  // Ensure Home is selected
+    }
+
+}
