@@ -5,6 +5,8 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -49,19 +51,32 @@ class GalleryFragment : Fragment() {
 
         //init swipe refresh
         swipeRefreshLayout = binding.swipeRefreshLayout
-        swipeRefreshLayout.setOnRefreshListener {
-            // Trigger data refresh when swipe-to-refresh is pulled
-            //refreshData()
-        }
+        swipeRefreshLayout.setOnRefreshListener { refreshData() }
 
         //init recycler view
         recyclerView = binding.rvGallery
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        //adapter (empty list)
         productAdapter = GalleryRecyclerViewAdapter(emptyList()) {}
         recyclerView.adapter = productAdapter
-        //fetch data
-        //refreshData()
+
+        galleryViewModel.filteredProducts.observe(viewLifecycleOwner) {products ->
+            productAdapter = GalleryRecyclerViewAdapter(products) { product ->
+                Log.d("ANDRE_TEST", "CLICKED ${product.productName}")
+            }
+            recyclerView.adapter = productAdapter
+        }
+
+        binding.etSearchBar.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                galleryViewModel.searchQuery.value = s.toString()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        //fetch initial data
+        refreshData()
 
         // Check if camera permission is granted
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -78,10 +93,7 @@ class GalleryFragment : Fragment() {
             DataRepository.fetchAllProducts(
                 onResult = { products ->
                     if(isAdded){
-                        productAdapter = GalleryRecyclerViewAdapter(products) {product ->
-                            Log.d("ANDRE_TEST", "CLICKED ${product.productName}")
-                        }
-                        recyclerView.adapter = productAdapter
+                        galleryViewModel.setProducts(products)
                         swipeRefreshLayout.isRefreshing = false
                         Log.d("ANDRE_TEST", "FETCHED DATA")
                     }
@@ -113,7 +125,7 @@ class GalleryFragment : Fragment() {
                 val barcode = data?.getStringExtra("SCAN_RESULT") ?: getString(R.string.no_barcode_detected)
                 galleryViewModel.barcodeResult.value = barcode
             } else {
-                Log.w("GalleryFragment", "Fragment is not attached, skipping barcode result update.")
+                Log.w("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
             }
         }
 

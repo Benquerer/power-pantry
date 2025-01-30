@@ -40,7 +40,6 @@ class GalleryRecyclerViewAdapter(
 
     }
 
-
     class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val productCode: TextView = itemView.findViewById(R.id.tvProductCode)
         val productName: TextView = itemView.findViewById(R.id.tvProductName)
