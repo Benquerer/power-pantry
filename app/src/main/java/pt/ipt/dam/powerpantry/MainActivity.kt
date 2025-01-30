@@ -1,7 +1,12 @@
 package pt.ipt.dam.powerpantry
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -10,14 +15,18 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import pt.ipt.dam.powerpantry.ui.about.AboutFragment
 import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragment
+import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragmentGuest
 import pt.ipt.dam.powerpantry.ui.gallery.GalleryFragment
-import pt.ipt.dam.powerpantry.ui.home.HomeFragment
 import pt.ipt.dam.powerpantry.ui.login.LoginFragment
+import pt.ipt.dam.powerpantry.ui.register.RegisterFragment
 import pt.ipt.dam.powerpantry.ui.submit.SubmitFragment
+import pt.ipt.dam.powerpantry.ui.submit.SubmitFragmentGuest
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var navigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,8 +36,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setSupportActionBar(toolbar)
 
         drawerLayout = findViewById(R.id.drawer_layout)
-        val navigationView: NavigationView = findViewById(R.id.nav_view)
+        navigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
+
+        sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+
+        // ✅ Force logout every time app starts
+        sharedPreferences.edit().clear().apply()
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
@@ -37,50 +51,82 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
+        // ✅ Update UI
+        updateNavHeader()
+        updateUserFragments()
+
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, HomeFragment())
-                .commit()
             navigationView.setCheckedItem(R.id.nav_home)
         }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.nav_login -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, LoginFragment())
-                    .commit()
-            }
-            R.id.nav_home -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, HomeFragment())
-                    .commit()
-            }
-            R.id.nav_gallery -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, GalleryFragment())
-                    .commit()
-            }
+            R.id.nav_login -> replaceFragment(LoginFragment())
+            R.id.nav_register -> replaceFragment(RegisterFragment())
+            R.id.nav_home -> replaceFragment(HomeFragment())
+            R.id.nav_gallery -> replaceFragment(GalleryFragment())
             R.id.nav_favorites -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, FavoritesFragment())
-                    .commit()
+                val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+                replaceFragment(if (isLoggedIn) FavoritesFragment() else FavoritesFragmentGuest())
             }
             R.id.nav_submit -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, SubmitFragment())
-                    .commit()
+                val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+                replaceFragment(if (isLoggedIn) SubmitFragment() else SubmitFragmentGuest())
             }
-            R.id.nav_about -> {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, AboutFragment())
-                    .commit()
-            }
-
+            R.id.nav_about -> replaceFragment(AboutFragment())
         }
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+
+    private fun replaceFragment(fragment: androidx.fragment.app.Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+
+    // ✅ Consolidated method to update UI based on login state
+    fun updateNavHeader() {
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        val username = sharedPreferences.getString("username", "User")
+        val email = sharedPreferences.getString("email", "user@example.com")
+
+        val headerView = navigationView.getHeaderView(0)
+        val userNameTextView = headerView.findViewById<TextView>(R.id.nav_username)
+        val userEmailTextView = headerView.findViewById<TextView>(R.id.nav_email)
+        val btnLogout = headerView.findViewById<Button>(R.id.btnLogout)
+
+        val menu = navigationView.menu
+        val loginMenuItem = menu.findItem(R.id.nav_login)
+        val registerMenuItem = menu.findItem(R.id.nav_register) //
+
+        userNameTextView.text = if (isLoggedIn) username else getString(R.string.navBar_GuestTitle)
+        userEmailTextView.text = if (isLoggedIn) email else getString(R.string.navBar_GuestMsg)
+        loginMenuItem.isVisible = !isLoggedIn
+        registerMenuItem.isVisible = !isLoggedIn
+        btnLogout.visibility = if (isLoggedIn) View.VISIBLE else View.GONE
+
+        btnLogout.setOnClickListener { logoutUser() }
+    }
+
+    // ✅ Consolidated method to handle login/logout UI updates
+    fun updateUserFragments() {
+        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+
+        supportFragmentManager.beginTransaction().apply {
+            replace(R.id.favorites_container, if (isLoggedIn) FavoritesFragment() else FavoritesFragmentGuest())
+            replace(R.id.submit_container, if (isLoggedIn) SubmitFragment() else SubmitFragmentGuest())
+            replace(R.id.fragment_container, HomeFragment())
+            commit()
+        }
+    }
+
+    fun logoutUser() {
+        sharedPreferences.edit().clear().apply()
+        updateNavHeader()
+        updateUserFragments()
     }
 
     override fun onBackPressed() {

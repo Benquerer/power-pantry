@@ -1,27 +1,24 @@
 package pt.ipt.dam.powerpantry.ui.submit
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import pt.ipt.dam.powerpantry.R
 
-class SubmitFragment : Fragment() {
-
-    private lateinit var sharedPreferences: SharedPreferences
+class SubmitFragmentGuest : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_submit_logged_in, container, false)
+        val view = inflater.inflate(R.layout.fragment_submit_guest, container, false)
 
-        // Placeholder content for submission
+        // Placeholder content for guest users
         val tvSubmission = view.findViewById<TextView>(R.id.tvSubmission)
-        tvSubmission.text = "Welcome to your Submission Page!"
+        tvSubmission.text = "Please log in to submit your items!"
 
         return view
     }

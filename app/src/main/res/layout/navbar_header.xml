@@ -3,17 +3,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
+    android:layout_height="220dp"
     android:gravity="bottom"
     android:padding="16dp"
     android:background="@color/my_dark_blue">
 
+    <!-- Profile Image -->
     <ImageView
+        android:id="@+id/nav_profile_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:src="@drawable/ic_guest" />
 
+    <!-- Username (Default: Guest) -->
     <TextView
+        android:id="@+id/nav_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/navBar_GuestTitle"
@@ -21,13 +25,26 @@
         android:textStyle="bold"
         android:textColor="?android:attr/textColorPrimary"/>
 
-
+    <!-- Email (Default: Guest Message) -->
     <TextView
+        android:id="@+id/nav_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/navBar_GuestMsg"
         android:textSize="12sp"
         android:textColor="?android:attr/textColorSecondary"/>
 
-
+    <!-- Logout Button (Hidden by Default) -->
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:text="Logout"
+        android:visibility="gone"
+        android:backgroundTint="@color/red"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"/>
 </LinearLayout>
+

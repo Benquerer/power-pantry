@@ -2,48 +2,47 @@
 <menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn = "navigation_view">
+    tools:showIn="navigation_view">
 
-    <group android:id="@+id/authmenu"   android:checkableBehavior="single">
+    <group android:id="@+id/authmenu" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_login"
             android:icon="@drawable/ic_login"
-            android:title="@string/navBar_Login"
-            />
+            android:title="@string/navBar_Login" />
+
+        <item
+            android:id="@+id/nav_register"
+            android:icon="@drawable/ic_login"
+            android:title="Registar Conta" />
     </group>
 
     <group android:id="@+id/utils" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_home"
-            android:title="@string/navBar_Home"
-            />
+            android:title="@string/navBar_Home" />
 
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_gallery"
-            android:title="@string/navBar_Gallery"
-            />
+            android:title="@string/navBar_Gallery" />
 
         <item
             android:id="@+id/nav_favorites"
             android:icon="@drawable/ic_favorite_full"
-            android:title="@string/navBar_Favorites"
-            />
+            android:title="@string/navBar_Favorites" />
 
         <item
             android:id="@+id/nav_submit"
             android:icon="@drawable/ic_submit"
-            android:title="@string/navBar_Submit"
-            />
+            android:title="@string/navBar_Submit" />
     </group>
 
     <group android:id="@+id/about" android:checkableBehavior="single">
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_about"
-            android:title="@string/navBar_About"
-            />
+            android:title="@string/navBar_About" />
     </group>
 
 </menu>
