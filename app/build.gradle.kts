@@ -69,7 +69,10 @@ dependencies {
 
     // Image Slider
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
-    
+
+    // Swipe refresh
+    implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import pt.ipt.dam.powerpantry.databinding.FragmentGalleryBinding
 import com.journeyapps.barcodescanner.CaptureActivity
 import pt.ipt.dam.powerpantry.R
@@ -31,6 +32,7 @@ class GalleryFragment : Fragment() {
     private lateinit var galleryViewModel: GalleryViewModel
     private lateinit var recyclerView: RecyclerView
     private lateinit var productAdapter: GalleryRecyclerViewAdapter
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +47,13 @@ class GalleryFragment : Fragment() {
         binding.viewModel = galleryViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        //init swipe refresh
+        swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener {
+            // Trigger data refresh when swipe-to-refresh is pulled
+            refreshData()
+        }
+
         //init recycler view
         recyclerView = binding.rvGallery
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -53,16 +62,14 @@ class GalleryFragment : Fragment() {
         recyclerView.adapter = productAdapter
         //fetch
         DataRepository.fetchAllProducts(
-            onResult = {
-                products ->
+            onResult = { products ->
                 productAdapter = GalleryRecyclerViewAdapter(products) {product ->
                     Toast.makeText(requireContext(), "Clicked on: ${product.productName}", Toast.LENGTH_SHORT).show()
                 }
                 recyclerView.adapter = productAdapter
                 Toast.makeText(requireContext(), "FETCHED DATA", Toast.LENGTH_SHORT).show()
             },
-            onError = {
-                errorMessage ->
+            onError = { errorMessage ->
                 Log.e("GALLERY ERROR",errorMessage)
             }
         )
@@ -75,6 +82,23 @@ class GalleryFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    private fun refreshData(){
+        DataRepository.fetchAllProducts(
+            onResult = { products ->
+                productAdapter = GalleryRecyclerViewAdapter(products) {product ->
+                    Toast.makeText(requireContext(), "Clicked on: ${product.productName}", Toast.LENGTH_SHORT).show()
+                }
+                recyclerView.adapter = productAdapter
+                swipeRefreshLayout.isRefreshing = false
+                Toast.makeText(requireContext(), "FETCHED DATA", Toast.LENGTH_SHORT).show()
+            },
+            onError = { errorMessage ->
+                Log.e("GALLERY ERROR",errorMessage)
+                swipeRefreshLayout.isRefreshing = false
+            }
+        )
     }
 
     private fun setupScanButton() {
