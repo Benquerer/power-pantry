@@ -38,15 +38,19 @@
 
         <EditText
             android:id="@+id/etSearchBar"
-            android:layout_width="218dp"
+            android:layout_width="280dp"
             android:layout_height="47dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
             android:ems="10"
             android:inputType="text"
-            android:text="Name"
+            android:hint="Search products"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvGalleryTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/tvGalleryTitle"
+            android:background="@color/my_dark_grey"
+            android:textColorHint="@color/white"
+            android:paddingLeft="8sp"
+            />
 
         <ImageButton
             android:id="@+id/ibSearchByScan"
@@ -56,7 +60,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/etSearchBar"
             app:layout_constraintStart_toEndOf="@+id/etSearchBar"
             app:layout_constraintTop_toTopOf="@+id/etSearchBar"
-            app:srcCompat="@drawable/ic_scan" />
+            app:srcCompat="@drawable/ic_scan"
+            android:backgroundTint="@color/zxing_transparent"
+            app:tint="@color/my_light_blue" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"

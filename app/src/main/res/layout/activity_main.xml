@@ -39,8 +39,8 @@
         android:layout_gravity="start"
         app:headerLayout="@layout/navbar_header"
         app:menu="@menu/navbar_menu"
-        app:itemIconTint="@color/my_dark_blue"
-        app:itemTextColor="@color/my_dark_blue"
+        app:itemIconTint="@color/my_light_blue"
+        app:itemTextColor="?android:attr/textColorPrimary"
         />
 
 

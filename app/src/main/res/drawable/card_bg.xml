@@ -5,7 +5,7 @@
         <gradient
         android:angle="45"
         android:startColor="#123456"
-        android:endColor="#93C9F2"/>
+        android:endColor="@color/zxing_transparent"/>
         <corners android:radius="25dp"/>
     </shape>
 </item>

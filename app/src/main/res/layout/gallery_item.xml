@@ -47,7 +47,7 @@
                     android:layout_marginTop="4dp"
                     android:text="brand"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/my_light_grey"
+                    android:textColor="?android:attr/textColorSecondary"
                     app:layout_constraintStart_toStartOf="@+id/tvProductName"
                     app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
@@ -59,7 +59,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="PRICE"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@color/my_price_color"
+                    android:textColor="?android:attr/textColorHighlight"
                     android:textSize="26sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -72,7 +72,7 @@
                     android:layout_marginBottom="4dp"
                     android:text="barcode"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                    android:textColor="@color/my_light_grey"
+                    android:textColor="?android:attr/textColorSecondary"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tvProductName" />
@@ -85,7 +85,7 @@
                     android:layout_marginTop="8dp"
                     android:text="Product Name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    android:textColor="@color/my_light_grey"
+                    android:textColor="?android:attr/textColorPrimary"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/ivProductImg"
