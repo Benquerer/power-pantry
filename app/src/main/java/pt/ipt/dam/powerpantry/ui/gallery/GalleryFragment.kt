@@ -16,9 +16,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import pt.ipt.dam.powerpantry.databinding.FragmentGalleryBinding
 import com.journeyapps.barcodescanner.CaptureActivity
 import pt.ipt.dam.powerpantry.R
+import pt.ipt.dam.powerpantry.api.DataRepository
 
 class GalleryFragment : Fragment() {
 
@@ -26,6 +29,8 @@ class GalleryFragment : Fragment() {
     private val CAMERA_PERMISSION_REQUEST_CODE = 100
     private lateinit var binding: FragmentGalleryBinding
     private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var productAdapter: GalleryRecyclerViewAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,6 +44,28 @@ class GalleryFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_gallery, container, false)
         binding.viewModel = galleryViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        //init recycler view
+        recyclerView = binding.rvGallery
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        //adapter (empty list)
+        productAdapter = GalleryRecyclerViewAdapter(emptyList()) {}
+        recyclerView.adapter = productAdapter
+        //fetch
+        DataRepository.fetchAllProducts(
+            onResult = {
+                products ->
+                productAdapter = GalleryRecyclerViewAdapter(products) {product ->
+                    Toast.makeText(requireContext(), "Clicked on: ${product.productName}", Toast.LENGTH_SHORT).show()
+                }
+                recyclerView.adapter = productAdapter
+                Toast.makeText(requireContext(), "FETCHED DATA", Toast.LENGTH_SHORT).show()
+            },
+            onError = {
+                errorMessage ->
+                Log.e("GALLERY ERROR",errorMessage)
+            }
+        )
 
         // Check if camera permission is granted
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
