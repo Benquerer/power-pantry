@@ -3,8 +3,8 @@ package pt.ipt.dam.powerpantry.data
 //single row (user)
 data class User(
     val userName: String,
-    val email: String,
-    val password: String,
+    val eMail: String,
+    val passWord: String,
 )
 
 //wrappers

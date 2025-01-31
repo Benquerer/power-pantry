@@ -38,10 +38,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView = findViewById(R.id.nav_view)
         navigationView.setNavigationItemSelectedListener(this)
 
+        //get user preferences
         sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
-
-        sharedPreferences.edit().clear().apply()
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
@@ -50,7 +49,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-
+        //user correct UI based on sharedPreferences
         updateNavHeader()
         updateUserFragments()
 
@@ -89,18 +88,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fun updateNavHeader() {
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
         val username = sharedPreferences.getString("username", "User")
-        val email = sharedPreferences.getString("email", "user@example.com")
 
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.nav_username)
-        val userEmailTextView = headerView.findViewById<TextView>(R.id.nav_email)
+        val headerMessageView = headerView.findViewById<TextView>(R.id.nav_headerMessage)
         val btnLogout = headerView.findViewById<Button>(R.id.btnLogout)
 
         val menu = navigationView.menu
         val loginMenuItem = menu.findItem(R.id.nav_login)
 
         userNameTextView.text = if (isLoggedIn) username else getString(R.string.navBar_GuestTitle)
-        userEmailTextView.text = if (isLoggedIn) email else getString(R.string.navBar_GuestMsg)
+        headerMessageView.text = getString(R.string.navBar_WelcomeMsg,username)
         loginMenuItem.isVisible = !isLoggedIn
         btnLogout.visibility = if (isLoggedIn) View.VISIBLE else View.GONE
 

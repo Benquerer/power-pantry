@@ -3,7 +3,6 @@ package pt.ipt.dam.powerpantry.ui.login
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.provider.ContactsContract.CommonDataKinds.Email
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +12,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import kotlinx.coroutines.delay
 import org.mindrot.jbcrypt.BCrypt
 import pt.ipt.dam.powerpantry.MainActivity
 import pt.ipt.dam.powerpantry.R
 import pt.ipt.dam.powerpantry.api.DataRepository
 import pt.ipt.dam.powerpantry.data.User
-import retrofit2.Callback
 
 class LoginFragment : Fragment() {
 
@@ -38,24 +35,42 @@ class LoginFragment : Fragment() {
 
         sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
+        //login logic
         btnLogin.setOnClickListener {
+            //get info on inputs
             val username = etUsername.text.toString().trim()
-            val email = "$username@powerpantry.com"
+            val passwd = etPassword.text.toString()
+            if (!username.isNullOrEmpty() && !passwd.isNullOrEmpty()) {
+                loginUser(username,
+                    passwd, onResult = {result ->
+                        if(result){
+                            //set shared preferences
+                            sharedPreferences.edit().apply {
+                                putString("username", username)
+                                putBoolean("isLoggedIn", true)
+                                apply()
+                            }
+                            //update app UI
+                            (activity as? MainActivity)?.apply {
+                                updateNavHeader()
+                                updateUserFragments()
+                            }
 
-            if (username.isNotEmpty() && etPassword.text.isNotEmpty()) {
-                sharedPreferences.edit().apply {
-                    putString("username", username)
-                    putString("email", email)
-                    putBoolean("isLoggedIn", true)
-                    apply()
-                }
+                            parentFragmentManager.popBackStack()
 
-                (activity as? MainActivity)?.apply {
-                    updateNavHeader()
-                    updateUserFragments()
-                }
-
-                parentFragmentManager.popBackStack()
+                            //login done
+                            Toast.makeText(requireContext(), "LOGIN DONE", Toast.LENGTH_SHORT).show()
+                        }else{
+                            //wrong password
+                            Toast.makeText(requireContext(), "Wrong password", Toast.LENGTH_SHORT).show()
+                        }
+                    },
+                    onError = {errorMessage ->
+                        Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
+                    }
+                )
+            }else{
+                Toast.makeText(requireContext(), "Make sure all fields are filled", Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -68,6 +83,7 @@ class LoginFragment : Fragment() {
             //get register button
             val btnRegister = sheetView.findViewById<Button>(R.id.btnRegister)
 
+            //registration logic
             btnRegister.setOnClickListener{
                 val username = sheetView.findViewById<EditText>(R.id.etRegisterUsername)?.text.toString()
                 val email = sheetView.findViewById<EditText>(R.id.etRegisterEmail)?.text.toString()
@@ -108,14 +124,13 @@ class LoginFragment : Fragment() {
                     }
                 }
             }
-
             //show sheet
             registerSheet.show()
         }
         return view
     }
 
-    fun checkUsernameAvailable(username: String, onResult: (Boolean) -> Unit) {
+    fun checkUsernameAvailable(username: String, onResult: (Boolean) -> Unit){
         DataRepository.checkUserExists(
             username,
             onResult = { exists ->
@@ -134,8 +149,26 @@ class LoginFragment : Fragment() {
         //hash password
         val hashedPasswd = BCrypt.hashpw(password,BCrypt.gensalt(5))
         //create user
-        val newUser = User(userName = username, email = email, password = hashedPasswd)
+        val newUser = User(userName = username, eMail = email, passWord = hashedPasswd)
         //post user
+    }
+
+    fun loginUser(username : String, password : String, onResult: (Boolean) -> Unit, onError:(String) -> Unit){
+        //get user
+        DataRepository.getUser(username,
+            //if user exists
+            onResult = {user->
+                //check passwd match
+                if(password.matches(user.passWord.toRegex())){
+                    onResult(true)
+                }else{
+                    onResult(false)
+                }
+            }, onError = {errorMessage ->
+                //error getting user or user dont exist
+                onError(errorMessage)
+            }
+        )
 
     }
 
