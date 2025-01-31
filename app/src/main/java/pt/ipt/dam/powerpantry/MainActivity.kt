@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
 
-        // ✅ Force logout every time app starts
+
         sharedPreferences.edit().clear().apply()
 
         val toggle = ActionBarDrawerToggle(
@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
 
-        // ✅ Update UI
+
         updateNavHeader()
         updateUserFragments()
 
@@ -87,7 +87,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             .commit()
     }
 
-    // ✅ Consolidated method to update UI based on login state
+
     fun updateNavHeader() {
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
         val username = sharedPreferences.getString("username", "User")
@@ -111,7 +111,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         btnLogout.setOnClickListener { logoutUser() }
     }
 
-    // ✅ Consolidated method to handle login/logout UI updates
+
     fun updateUserFragments() {
         val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
 

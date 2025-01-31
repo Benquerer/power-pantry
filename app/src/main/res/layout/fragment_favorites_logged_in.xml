@@ -9,7 +9,7 @@
         android:id="@+id/tvFavorites"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to your Favorite Items Page!"
+        android:text="@string/favorites_login_title"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:layout_marginTop="20dp"/>
@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Here you can manage your favorite items and see what you've added!"
+        android:text="@string/favorites_login_subtitle"
         android:textSize="14sp"
         android:textColor="@android:color/black"
         android:layout_marginTop="10dp"/>

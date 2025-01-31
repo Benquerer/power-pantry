@@ -9,7 +9,7 @@
         android:id="@+id/tvSubmission"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Please log in to submit your items!"
+        android:text="@string/submit_title"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:layout_marginTop="20dp"/>
@@ -17,7 +17,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in to start submitting new items and manage your submissions."
+        android:text="@string/submit_subtitle"
         android:textSize="14sp"
         android:textColor="@android:color/black"
         android:layout_marginTop="10dp"/>

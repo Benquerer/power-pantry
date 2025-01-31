@@ -21,7 +21,7 @@
             android:layout_marginBottom="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:contentDescription="Logo"
+            android:contentDescription="@string/home_logo"
             android:scaleType="centerCrop"
             android:src="@mipmap/power_pantry_img_foreground" />
 
@@ -30,7 +30,7 @@
             android:id="@+id/marqueeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome to Power Pantry! Find the best gym supplements and foods!"
+            android:text="@string/home_slidingtext"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -48,7 +48,7 @@
             android:id="@+id/tvSlogan"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your go-to gallery for gym products!"
+            android:text="@string/home_subtitle"
             android:textColor="?android:attr/textColorSecondary"
             android:textSize="16sp"
             android:paddingBottom="16dp"/>

@@ -26,15 +26,57 @@
     <string name="close_menu">Fechar menu de navegação</string>
     <!--    nav_header-->
     <string name="navBar_GuestTitle">Visitante</string>
-    <string name="navBar_GuestMsg">Autentica-te para acessar todas as funções da aplicação</string>
+    <string name="navBar_GuestMsg">Autentica-te para acessar todas as funções da aplicação.</string>
+
     <!--    auth group-->
     <string name="navBar_Login">Realizar Login</string>
     <!--    utils group-->
     <string name="navBar_Home">Menu Principal</string>
     <string name="navBar_Gallery">Galeria de Produtos</string>
     <string name="navBar_Favorites">Favoritos</string>
-    <string name="navBar_Submit">Sugerir novo produto</string>
+    <string name="navBar_Submit">Sugerir novos produtos</string>
     <!--    about group-->
     <string name="navBar_About">Sobre a Aplicação</string>
+
+    <!--    favorites_guest -->
+    <string name="favorites_title">Para veres os teus items favoritos, tens que fazer login.</string>
+    <string name="favorites_subtitle">Para acessar a tua lista de favoritos, faz login.</string>
+    <!--    favorites_logged_in -->
+    <string name="favorites_login_title">Bem-vindo à tua página de favoritos!</string>
+    <string name="favorites_login_subtitle">Aqui podes ver os produtos aos quais deste favorito. </string>
+
+    <!--    gallery -->
+    <string name="gallery_title">Galeria de Produtos</string>
+    <string name="gallery_searchbar_text">Procurar Produtos</string>
+    <!--    gallery_item -->
+    <string name="gallery_item_brand">Marca</string>
+    <string name="gallery_item_price">Preço</string>
+    <string name="gallery_item_productcode">Código de Barras</string>
+    <string name="gallery_item_productname">Nome do Produto</string>
+    <!--    home -->
+    <string name="home_logo">Logo na Home</string>
+    <string name="home_slidingtext">Bem-vindo ao Power Pantry! Aqui podes encontrar os melhores suplementos de ginásio.</string>
+    <string name="home_subtitle">A tua galeria de produtos para o ginásio.</string>
+
+    <!--    login -->
+    <string name="login_button_text">Login</string>
+    <string name="login_input_password">Password</string>
+    <string name="login_input_username">Nome do Utilizador</string>
+    <string name="login_image">Login Imagem</string>
+
+    <!--    register -->
+    <string name="register_input_username">Nome do Utilizador</string>
+    <string name="register_input_email">E-Mail</string>
+    <string name="register_input_password">Password</string>
+    <string name="register_button">Registar</string>
+
+    <!--    submit_guest -->
+    <string name="submit_title">Para submeteres novos produtos, tens que dar login.</string>
+    <string name="submit_subtitle">Faz Login para poderes submeter novos produtos na Galeria.</string>
+
+    <!--    submit_logged_in -->
+    <string name="submit_logged_in_title">Bem-Vindo à página de submissões!</string>
+    <string name="submit_logged_in_subtitle">Aqui podes submeter novos produtos para serem inseridos na Galeria.</string>
+
 
 </resources>
