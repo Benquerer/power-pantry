@@ -89,7 +89,7 @@ object DataRepository {
         })
     }
     //function to fetch product by barcode
-    fun fetchProductByCode(code: Long, onResult: (Product) -> Unit, onError: (String) -> Unit) {
+    fun fetchProductByCode(code: Long, onResult: (Product) -> Unit, onNotFound: (String) -> Unit, onError: (String) -> Unit) {
         RetrofitClient.instance.getProductByCode(code).enqueue(object : Callback<CodeProductsResponse> {
             override fun onResponse(call: Call<CodeProductsResponse>, response: Response<CodeProductsResponse>) {
                 if (response.isSuccessful) {
@@ -101,7 +101,7 @@ object DataRepository {
                     if (product != null) {
                         onResult(product)  // Return the specific product
                     } else {
-                        onError("Product with code $code not found.")
+                        onNotFound("No product was found associated with code ${code}")
                     }
                 } else {
                     onError("Failed to fetch product. Response code: ${response.code()}")

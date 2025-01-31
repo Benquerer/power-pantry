@@ -2,6 +2,7 @@ package pt.ipt.dam.powerpantry.ui.gallery
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -12,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -21,10 +24,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import pt.ipt.dam.powerpantry.databinding.FragmentGalleryBinding
 import com.journeyapps.barcodescanner.CaptureActivity
 import pt.ipt.dam.powerpantry.R
 import pt.ipt.dam.powerpantry.api.DataRepository
+import pt.ipt.dam.powerpantry.data.Product
 
 class GalleryFragment : Fragment() {
 
@@ -61,7 +66,7 @@ class GalleryFragment : Fragment() {
 
         galleryViewModel.filteredProducts.observe(viewLifecycleOwner) {filteredList ->
             productAdapter = GalleryRecyclerViewAdapter(filteredList) { product ->
-                Log.d("ANDRE_TEST", "CLICKED ${product.productName}")
+                showProductDetails(product)
             }
             recyclerView.adapter = productAdapter
         }
@@ -118,9 +123,9 @@ class GalleryFragment : Fragment() {
             DataRepository.fetchAllProducts(
                 onResult = { products ->
                     if(isAdded){
-                        galleryViewModel.setProducts(products)
+                        galleryViewModel.forceSetProducts(products)
                         swipeRefreshLayout.isRefreshing = false
-                        Log.d("ANDRE_TEST", "FETCHED DATA")
+                        Log.d("ANDRE_TEST", "FETCHED DATA via refresh")
                     }
                 },
                 onError = { errorMessage ->
@@ -147,8 +152,17 @@ class GalleryFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
             if (isAdded) {
+                //get code
                 val barcode = data?.getStringExtra("SCAN_RESULT") ?: getString(R.string.no_barcode_detected)
+                //save barcode (might need)
                 galleryViewModel.barcodeResult.value = barcode
+
+                DataRepository.fetchProductByCode(barcode.toLong(),
+                    onResult = {product -> showProductDetails(product)  },
+                    onNotFound = { message -> productNotFound(message)},
+                    onError = {errorMessage -> Log.d("ANDRE_TEST", errorMessage)},
+                )
+
             } else {
                 Log.w("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
             }
@@ -167,4 +181,46 @@ class GalleryFragment : Fragment() {
             }
         }
     }
+
+    //showing dialog with details
+    private fun showProductDetails(product: Product){
+        //sheet dialog
+        val sheetDialog = BottomSheetDialog(requireContext())
+        val view = layoutInflater.inflate(R.layout.product_sheet,null)
+
+        //view references
+        val productImage = view.findViewById<ImageView>(R.id.ivDetailedImage)
+        val productName = view.findViewById<TextView>(R.id.tvDetailedName)
+        val productBrand = view.findViewById<TextView>(R.id.tvDetailedBrand)
+        val productDescription = view.findViewById<TextView>(R.id.tvDetailedDescription)
+        val productPrice = view.findViewById<TextView>(R.id.tvDetailedPrice)
+        val productCategory = view.findViewById<TextView>(R.id.tvDetailedCategory)
+        val productCode = view.findViewById<TextView>(R.id.tvDetailedCode)
+
+        //set values in sheet
+        productName.text = product.productName
+        productBrand.text = product.productBrand
+        productDescription.text = product.productDescription
+        productPrice.text = "$${product.productPrice}"
+        productCategory.text = product.productCategory
+        productCode.text = "${product.productCode}"
+
+        //display
+        sheetDialog.setContentView(view)
+        sheetDialog.show()
+
+    }
+
+    //alert for product not found
+    private fun productNotFound( message:String ){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Product Not Found")
+        builder.setMessage(message)
+        builder.setPositiveButton("Okay") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
+    }
+
 }
