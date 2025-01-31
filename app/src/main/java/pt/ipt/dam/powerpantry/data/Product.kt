@@ -5,6 +5,8 @@ data class Product(
     val productCode: Long,
     val productName: String,
     val productBrand: String,
+    val productCategory: String,
+    val productDescription : String,
     val productPrice: Double,
     val productImage: Int
 )

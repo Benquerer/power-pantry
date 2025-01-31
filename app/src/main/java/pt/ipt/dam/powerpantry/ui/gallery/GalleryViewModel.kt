@@ -38,6 +38,11 @@ class GalleryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun forceSetProducts(newProducts : List<Product>){
+        _products.value = newProducts
+        filterProducts()
+    }
+
     private fun filterProducts(){
         val query = searchQuery.value?.lowercase() ?:""
         filteredProducts.value = _products.value?.filter { product ->
