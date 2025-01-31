@@ -121,12 +121,18 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             replace(R.id.fragment_container, HomeFragment())
             commit()
         }
+
+        // ✅ Ensure Home is highlighted in the menu
+        navigationView.setCheckedItem(R.id.nav_home)
     }
 
     fun logoutUser() {
         sharedPreferences.edit().clear().apply()
         updateNavHeader()
         updateUserFragments()
+
+        
+        navigationView.setCheckedItem(R.id.nav_home)
     }
 
     override fun onBackPressed() {

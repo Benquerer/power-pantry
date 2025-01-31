@@ -21,16 +21,20 @@
         <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <!-- BarcodeScannerActivity (Custom activity if needed) -->
         <activity
             android:name=".utils.BarcodeScannerActivity"
             android:screenOrientation="fullSensor" />
+
+
     </application>
 </manifest>

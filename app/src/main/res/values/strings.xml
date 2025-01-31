@@ -34,7 +34,7 @@
     <string name="navBar_Home">Menu Principal</string>
     <string name="navBar_Gallery">Galeria de Produtos</string>
     <string name="navBar_Favorites">Favoritos</string>
-    <string name="navBar_Submit">Sugerir novo produto</string>
+    <string name="navBar_Submit">Sugerir novos produtos</string>
     <!--    about group-->
     <string name="navBar_About">Sobre a Aplicação</string>
 
