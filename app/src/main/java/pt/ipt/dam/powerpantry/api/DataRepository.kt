@@ -27,10 +27,34 @@ object DataRepository {
         })
     }
 
+    //get user by username
+    fun getUser(username: String, onResult: (User) -> Unit, onError: (String) -> Unit) {
+        RetrofitClient.instance.getUserByUsername(username).enqueue(object : Callback<AllUsersResponse> {
+            override fun onResponse(call: Call<AllUsersResponse>, response: Response<AllUsersResponse>) {
+                if (response.isSuccessful) {
+                    val users = response.body()?.users
+                    val user = users?.find { it.userName == username }
+
+                    if (user != null) {
+                        onResult(user)
+                    }else{
+                        onError("User not found. Maybe wrong credentials?")
+                    }
+                } else {
+                    onError("ERROR RESPONSE")
+                }
+            }
+
+            override fun onFailure(call: Call<AllUsersResponse>, t: Throwable) {
+                onError("API ERROR")
+            }
+        })
+    }
+
     //check a userName
     //function to fetch a user by id
     fun checkUserExists(username: String, onResult: (Boolean) -> Unit, onError: (String) -> Unit) {
-        RetrofitClient.instance.getUserById(username).enqueue(object : Callback<AllUsersResponse> {
+        RetrofitClient.instance.getUserByUsername(username).enqueue(object : Callback<AllUsersResponse> {
             override fun onResponse(call: Call<AllUsersResponse>, response: Response<AllUsersResponse>) {
                 if (response.isSuccessful) {
                     val users = response.body()?.users
@@ -47,6 +71,23 @@ object DataRepository {
 
             override fun onFailure(call: Call<AllUsersResponse>, t: Throwable) {
                 onError("A problem ocurred, please try again later")
+            }
+        })
+    }
+
+    //create user
+    fun createUser(user: User, onResult: (Boolean) -> Unit) {
+        val userJson = UserRequest(user)
+        RetrofitClient.instance.createUser(userJson).enqueue(object : Callback<UserResponse> {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                if (response.isSuccessful) {
+                    onResult(true)
+                } else {
+                    onResult(false)
+                }
+            }
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                onResult(false)
             }
         })
     }

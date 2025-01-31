@@ -73,6 +73,9 @@ dependencies {
     // Swipe refresh
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
+    //pass hashing
+    implementation ("org.mindrot:jbcrypt:0.4")
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

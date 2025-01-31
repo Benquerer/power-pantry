@@ -13,7 +13,6 @@ data class Product(
 
 //wrapper
 data class AllProductsResponse(val products : List<Product>)
-data class IdProductResponse(val product : Product)
 data class CodeProductsResponse(val products : List<Product>)
 
 
