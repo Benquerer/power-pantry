@@ -121,12 +121,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             replace(R.id.fragment_container, HomeFragment())
             commit()
         }
+        navigationView.setCheckedItem(R.id.nav_home)
     }
 
     fun logoutUser() {
         sharedPreferences.edit().clear().apply()
         updateNavHeader()
         updateUserFragments()
+        navigationView.setCheckedItem(R.id.nav_home)
     }
 
     override fun onBackPressed() {

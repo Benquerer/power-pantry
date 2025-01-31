@@ -2,6 +2,7 @@ package pt.ipt.dam.powerpantry.ui.gallery
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -151,8 +152,17 @@ class GalleryFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CODE_SCAN && resultCode == Activity.RESULT_OK) {
             if (isAdded) {
+                //get code
                 val barcode = data?.getStringExtra("SCAN_RESULT") ?: getString(R.string.no_barcode_detected)
+                //save barcode (might need)
                 galleryViewModel.barcodeResult.value = barcode
+
+                DataRepository.fetchProductByCode(barcode.toLong(),
+                    onResult = {product -> showProductDetails(product)  },
+                    onNotFound = { message -> productNotFound(message)},
+                    onError = {errorMessage -> Log.d("ANDRE_TEST", errorMessage)},
+                )
+
             } else {
                 Log.w("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
             }
@@ -173,7 +183,7 @@ class GalleryFragment : Fragment() {
     }
 
     //showing dialog with details
-    fun showProductDetails(product: Product){
+    private fun showProductDetails(product: Product){
         //sheet dialog
         val sheetDialog = BottomSheetDialog(requireContext())
         val view = layoutInflater.inflate(R.layout.product_sheet,null)
@@ -199,6 +209,18 @@ class GalleryFragment : Fragment() {
         sheetDialog.setContentView(view)
         sheetDialog.show()
 
+    }
+
+    //alert for product not found
+    private fun productNotFound( message:String ){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setTitle("Product Not Found")
+        builder.setMessage(message)
+        builder.setPositiveButton("Okay") { dialog, _ ->
+            dialog.dismiss()
+        }
+        val dialog = builder.create()
+        dialog.show()
     }
 
 }
