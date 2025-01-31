@@ -19,9 +19,7 @@ class SubmitFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_submit_logged_in, container, false)
 
-        // Placeholder content for submission
-        val tvSubmission = view.findViewById<TextView>(R.id.tvSubmission)
-        tvSubmission.text = "Welcome to your Submission Page!"
+
 
         return view
     }

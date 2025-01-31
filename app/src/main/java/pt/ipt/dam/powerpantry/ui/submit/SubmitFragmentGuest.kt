@@ -16,10 +16,6 @@ class SubmitFragmentGuest : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_submit_guest, container, false)
 
-        // Placeholder content for guest users
-        val tvSubmission = view.findViewById<TextView>(R.id.tvSubmission)
-        tvSubmission.text = "Please log in to submit your items!"
-
         return view
     }
 }
