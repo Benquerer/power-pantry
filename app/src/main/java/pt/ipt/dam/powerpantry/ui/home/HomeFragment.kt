@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         val adapter = ImageSliderAdapter(images)
         binding.imageSlider.adapter = adapter
 
-        // ✅ Disable User Interaction Correctly
+
         binding.imageSlider.isUserInputEnabled = false
 
         // Start Auto-Scroll
@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
 
     private fun startAutoScroll() {
         autoScrollRunnable = Runnable {
-            // ✅ Se o binding for null, sai da função para evitar crashes
+
             val binding = _binding ?: return@Runnable
 
             val currentPosition = binding.imageSlider.currentItem
@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
             binding.imageSlider.postDelayed(autoScrollRunnable!!, 5000)
         }
 
-        // ✅ Antes de agendar a execução, verifica se a View ainda existe
+
         _binding?.imageSlider?.postDelayed(autoScrollRunnable!!, 5000)
     }
 
@@ -67,12 +67,12 @@ class HomeFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
 
-        // ✅ Cancela o auto-scroll antes de limpar o binding
+
         autoScrollRunnable?.let {
             binding.imageSlider.removeCallbacks(it)
         }
 
-        // ✅ Limpa o binding para evitar referências nulas
+
         _binding = null
     }
 }
