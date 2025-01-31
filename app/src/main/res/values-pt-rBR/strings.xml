@@ -4,7 +4,7 @@
         <!--    Main App Strings-->
         <string name="app_name">Power Pantry</string>
         <string name="app_logo_img">Power Pantry</string>
-        <string name="versio_number" translatable="false">0.0.2</string>
+        <string name="version_number">0.0.2</string>
         <string name="app_desc">This app was developed as a final project for the "D.A.M" class and it was made by the students André R. Benquerer and Diogo A. Cardeira. All of the code present in this app was made purely for learning and education purposes.</string>
         <string name="app_contact">Contact us through our e-mail: fakemail@powerpantry.com</string>
 
@@ -61,12 +61,11 @@
 
         <!--    login -->
         <string name="login_button_text">Login</string>
-        <string name="login_input_password">Password</string>
+        <string name="login_input_password">Palavra-Passe</string>
         <string name="login_input_username">Username</string>
         <string name="login_image">Login Image</string>
         <!--    register -->
-        <string name="register_text">First time on the app?</string>
-        <string name="register_link">Register here!</string>
+
 
         <!--    submit_guest -->
         <string name="submit_title">To submit a new product, you need to be logged in.</string>
@@ -77,19 +76,26 @@
         <string name="submit_logged_in_subtitle">In here, you can submit new products to be inserted in your gallery.</string>
 
         <!--    product_sheet -->
-        <string name="product_name">Product Name</string>
-        <string name="product_brand">Brand</string>
-        <string name="product_description">This is a template description.</string>
-        <string name="product_barcode" translatable="false">4567787964</string>
-        <string name="product_category">Category</string>
-        <string name="product_price" translatable="false">299.99</string>
+
 
         <!--    register_sheet -->
-        <string name="register_confirmpassword_text">Confirm your Password</string>
-        <string name="register_button">Register Now</string>
-        <string name="register_email_text">E-Mail</string>
-        <string name="register_popup_text">Register as a new user:</string>
 
-        <!--    activity_test -->
-        <string name="activty_test_check">Fetching users…</string>
+        <string name="register_button">Register</string>
+    <string name="activity_test_check">Fetching...</string>
+    <string name="product_name">Nome do Produto</string>
+    <string name="product_brand">Marca</string>
+    <string name="product_description">Descrição</string>
+    <string name="product_barcode">Código de Barras</string>
+    <string name="product_category">Categoria</string>
+    <string name="product_price">Preço</string>
+    <string name="register_text">Primeira vez na app?</string>
+    <string name="register_link">Regista-te aqui.</string>
+    <string name="register_confirmpassword_text">Confirma a Palavra-Passe</string>
+    <string name="register_email_text">E-Mail</string>
+    <string name="register_popup_text">Registar Utilizador</string>
+    <string name="navBar_WelcomeMsg">Bem-vindo %s,</string>
+
+
+    <!--    activity_test -->
+
     </resources>

@@ -4,7 +4,7 @@
     <!--    Main App Strings-->
     <string name="app_name">Power Pantry</string>
     <string name="app_logo_img">Power Pantry</string>
-    <string name="versio_number" translatable="false">0.0.2</string>
+    <string name="version_number">0.0.2</string>
     <string name="app_desc">This app was developed as a final project for the "D.A.M" class and it was made by the students André R. Benquerer and Diogo A. Cardeira. All of the code present in this app was made purely for learning and education purposes.</string>
     <string name="app_contact">Contact us through our e-mail: fakemail@powerpantry.com</string>
 
@@ -65,8 +65,6 @@
     <string name="login_input_username">Username</string>
     <string name="login_image">Login Image</string>
     <!--    register -->
-    <string name="register_text">First time on the app?</string>
-    <string name="register_link">Register here!</string>
 
     <!--    submit_guest -->
     <string name="submit_title">To submit a new product, you need to be logged in.</string>
@@ -76,20 +74,25 @@
     <string name="submit_logged_in_title">Bem-Vindo à página de submissões! Welcome to your submissions page!</string>
     <string name="submit_logged_in_subtitle">In here, you can submit new products to be inserted in your gallery.</string>
 
-    <!--    product_sheet -->
+
+
+
+
+
+    <string name="register_button">Register</string>
+    <string name="activity_test_check">Fetching...</string>
     <string name="product_name">Product Name</string>
     <string name="product_brand">Brand</string>
-    <string name="product_description">This is a template description.</string>
-    <string name="product_barcode" translatable="false">4567787964</string>
+    <string name="product_description">Description</string>
+    <string name="product_barcode">Barcode</string>
     <string name="product_category">Category</string>
-    <string name="product_price" translatable="false">299.99</string>
-
-    <!--    register_sheet -->
-    <string name="register_confirmpassword_text">Confirm your Password</string>
-    <string name="register_button">Register Now</string>
+    <string name="product_price">Price</string>
+    <string name="register_text">First time on the app?</string>
+    <string name="register_link">Register here.</string>
+    <string name="register_confirmpassword_text">Confirm Password</string>
     <string name="register_email_text">E-Mail</string>
-    <string name="register_popup_text">Register as a new user:</string>
+    <string name="register_popup_text">Register User</string>
+    <string name="navBar_WelcomeMsg">Welcome %s</string>
 
-    <!--    activity_test -->
-    <string name="activty_test_check">Fetching users…</string>
+
 </resources>

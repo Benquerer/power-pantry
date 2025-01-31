@@ -43,7 +43,7 @@ class LoginFragment : Fragment() {
             val passwd = etPassword.text.toString()
             if (!username.isNullOrEmpty() && !passwd.isNullOrEmpty()) {
                 btnLogin.isEnabled = false
-                btnLogin.setText("Loggin in...")
+                btnLogin.setText("Login in...")
                 loginUser(username,
                     passwd, onResult = {result ->
                         if(result){

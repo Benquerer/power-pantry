@@ -4,7 +4,7 @@
     <!--    Main App Strings-->
     <string name="app_name">Power Pantry</string>
     <string name="app_logo_img">Power Pantry</string>
-    <string name="versio_number">0.0.2</string>
+    <string name="version_number">0.0.2</string>
     <string name="app_desc">Esta aplicação foi desenvolvida como projeto final da disciplina de "D.A.M" de 24/25 no IPT, pelos alunos André R. Benquerer e Diogo A. Cardeira. Todo o código desta aplicação destina-se a fins educativos e de aprendizagem.</string>
     <string name="app_contact">Contate-nos através de: fakemail@powerpantry.com</string>
 
@@ -16,7 +16,7 @@
 
     <!--    Strings for About Fragment -->
     <string name="Abt_Title">Sobre a Aplicação</string>
-    <string name="instragram">Nosso Instagram</string>
+    <string name="instagram">Nosso Instagram</string>
     <string name="github">Nosso Github</string>
     <string name="youtube">Nosso Youtube</string>
 
@@ -27,7 +27,7 @@
     <!--    nav_header-->
     <string name="navBar_GuestTitle">Visitante</string>
     <string name="navBar_GuestMsg">Autentica-te para acessar todas as funções da aplicação.</string>
-    <string name="navBar_WelcomeMsg">Bem-vindo de volta %s</string>
+
     <string name="navBar_logout_button">Logout</string>
 
     <!--    auth group-->
@@ -62,14 +62,11 @@
 
     <!--    login -->
     <string name="login_button_text">Login</string>
-    <string name="login_input_password">Password</string>
+    <string name="login_input_password">Palavra-Passe</string>
     <string name="login_input_username">Nome do Utilizador</string>
     <string name="login_image">Login Imagem</string>
 
     <!--    register -->
-    <string name="register_input_username">Nome do Utilizador</string>
-    <string name="register_input_email">E-Mail</string>
-    <string name="register_input_password">Password</string>
     <string name="register_button">Registar</string>
 
     <!--    submit_guest -->
@@ -80,5 +77,18 @@
     <string name="submit_logged_in_title">Bem-Vindo à página de submissões!</string>
     <string name="submit_logged_in_subtitle">Aqui podes submeter novos produtos para serem inseridos na Galeria.</string>
 
-
+    <!--    activity_test_check -->
+    <string name="activity_test_check">Fetching...</string>
+    <string name="product_name">Nome do Produto</string>
+    <string name="product_brand">Marca</string>
+    <string name="product_description">"Descrição "</string>
+    <string name="product_barcode">Código de Barras</string>
+    <string name="product_category">Categoria</string>
+    <string name="product_price">Preço</string>
+    <string name="register_text">Primeira vez na app?</string>
+    <string name="register_link">Regista-te aqui.</string>
+    <string name="register_confirmpassword_text">Confirma a Palavra-Passe</string>
+    <string name="register_email_text">E-Mail</string>
+    <string name="register_popup_text">Registar Utilizador</string>
+    <string name="navBar_WelcomeMsg">Bem-Vindo %s,</string>
 </resources>
