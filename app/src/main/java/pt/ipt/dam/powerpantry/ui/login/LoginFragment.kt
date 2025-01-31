@@ -3,6 +3,7 @@ package pt.ipt.dam.powerpantry.ui.login
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -41,9 +42,13 @@ class LoginFragment : Fragment() {
             val username = etUsername.text.toString().trim()
             val passwd = etPassword.text.toString()
             if (!username.isNullOrEmpty() && !passwd.isNullOrEmpty()) {
+                btnLogin.isEnabled = false
+                btnLogin.setText("Loggin in...")
                 loginUser(username,
                     passwd, onResult = {result ->
                         if(result){
+                            btnLogin.isEnabled = true
+                            btnLogin.setText("Logged in!")
                             //set shared preferences
                             sharedPreferences.edit().apply {
                                 putString("username", username)
@@ -61,6 +66,8 @@ class LoginFragment : Fragment() {
                             //login done
                             Toast.makeText(requireContext(), "LOGIN DONE", Toast.LENGTH_SHORT).show()
                         }else{
+                            btnLogin.isEnabled = true
+                            btnLogin.setText("Login")
                             //wrong password
                             Toast.makeText(requireContext(), "Wrong password", Toast.LENGTH_SHORT).show()
                         }
@@ -112,7 +119,6 @@ class LoginFragment : Fragment() {
                                     }else{
                                         Toast.makeText(requireContext(), "ERROR IN CREATION API SIDE", Toast.LENGTH_LONG).show()
                                     }
-
                                 }
                             } else {
                                 Toast.makeText(requireContext(), "Username is already taken! Please pick another one", Toast.LENGTH_SHORT).show()
@@ -144,13 +150,15 @@ class LoginFragment : Fragment() {
     }
 
 
-    fun registerUser(username : String, password : String, email: String, onResult: (Boolean) -> Unit){
-        onResult(true)
+    fun registerUser(username : String, email : String, password: String, onResult: (Boolean) -> Unit){
         //hash password
-        val hashedPasswd = BCrypt.hashpw(password,BCrypt.gensalt(5))
+        val hashedPasswd = BCrypt.hashpw(password,BCrypt.gensalt(8))
         //create user
         val newUser = User(userName = username, eMail = email, passWord = hashedPasswd)
         //post user
+        DataRepository.createUser(newUser) { result ->
+            onResult(result)
+        }
     }
 
     fun loginUser(username : String, password : String, onResult: (Boolean) -> Unit, onError:(String) -> Unit){
@@ -159,11 +167,7 @@ class LoginFragment : Fragment() {
             //if user exists
             onResult = {user->
                 //check passwd match
-                if(password.matches(user.passWord.toRegex())){
-                    onResult(true)
-                }else{
-                    onResult(false)
-                }
+                onResult(BCrypt.checkpw(password,user.passWord))
             }, onError = {errorMessage ->
                 //error getting user or user dont exist
                 onError(errorMessage)

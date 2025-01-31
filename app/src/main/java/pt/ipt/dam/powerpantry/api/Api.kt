@@ -9,8 +9,12 @@ interface Api {
     //get all users
     @GET("users/")
     fun getAllUsers(): Call<AllUsersResponse>
+    //get user by username
     @GET("users/")
     fun getUserByUsername(@Query("filter[userName]") username:String) : Call<AllUsersResponse>
+    //create user
+    @POST("users/")
+    fun createUser(@Body userJson: UserRequest) : Call<UserResponse>
 
     //Products
     //get all products

@@ -9,3 +9,5 @@ data class User(
 
 //wrappers
 data class AllUsersResponse(val users: List<User>)
+data class UserResponse(val user: User)
+data class UserRequest(val user: User)

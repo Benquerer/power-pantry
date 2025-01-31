@@ -75,6 +75,23 @@ object DataRepository {
         })
     }
 
+    //create user
+    fun createUser(user: User, onResult: (Boolean) -> Unit) {
+        val userJson = UserRequest(user)
+        RetrofitClient.instance.createUser(userJson).enqueue(object : Callback<UserResponse> {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                if (response.isSuccessful) {
+                    onResult(true)
+                } else {
+                    onResult(false)
+                }
+            }
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                onResult(false)
+            }
+        })
+    }
+
 
     //function to fetch all products
     fun fetchAllProducts(onResult:(List<Product>) -> Unit, onError: (String) -> Unit) {
