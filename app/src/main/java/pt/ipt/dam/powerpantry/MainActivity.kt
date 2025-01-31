@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val loginMenuItem = menu.findItem(R.id.nav_login)
 
         userNameTextView.text = if (isLoggedIn) username else getString(R.string.navBar_GuestTitle)
-        headerMessageView.text = getString(R.string.navBar_WelcomeMsg,username)
+        headerMessageView.text = if (isLoggedIn) getString(R.string.navBar_WelcomeMsg,username) else getString(R.string.navBar_GuestMsg)
         loginMenuItem.isVisible = !isLoggedIn
         btnLogout.visibility = if (isLoggedIn) View.VISIBLE else View.GONE
 
