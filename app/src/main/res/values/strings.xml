@@ -2,23 +2,23 @@
 <resources>
 
     <!--    Main App Strings-->
-    <string name="app_name">Power Pantry</string>
-    <string name="app_logo_img">Power Pantry</string>
-    <string name="versio_number">0.0.2</string>
+    <string name="app_name" translatable="false">Power Pantry</string>
+    <string name="app_logo_img" translatable="false">Power Pantry</string>
+    <string name="versio_number" translatable="false">0.0.2</string>
     <string name="app_desc">Esta aplicação foi desenvolvida como projeto final da disciplina de "D.A.M" de 24/25 no IPT, pelos alunos André R. Benquerer e Diogo A. Cardeira. Todo o código desta aplicação destina-se a fins educativos e de aprendizagem.</string>
-    <string name="app_contact">Contate-nos através de: fakemail@powerpantry.com</string>
+    <string name="app_contact">Contacte-nos através de: fakemail@powerpantry.com</string>
 
     <string name="hello_blank_fragment">FRAGMENTO VAZIO</string>
 
     <!--    Scanning-->
-    <string name="default_scan_text">Carregue no botao para fazer o scan de um barcode</string>
-    <string name="no_barcode_detected">Nao foi encontrado um codigo</string>
+    <string name="default_scan_text">Carregue no botão para fazer o scan de um código de barras.</string>
+    <string name="no_barcode_detected">Nao foi encontrado um código correspondente.</string>
 
     <!--    Strings for About Fragment -->
     <string name="Abt_Title">Sobre a Aplicação</string>
-    <string name="instragram">Nosso Instagram</string>
-    <string name="github">Nosso Github</string>
-    <string name="youtube">Nosso Youtube</string>
+    <string name="instagram">Instagram da app</string>
+    <string name="github">Github da app</string>
+    <string name="youtube">Youtube da app</string>
 
 
     <!--    Strings for navBar -->
@@ -27,6 +27,7 @@
     <!--    nav_header-->
     <string name="navBar_GuestTitle">Visitante</string>
     <string name="navBar_GuestMsg">Autentica-te para acessar todas as funções da aplicação.</string>
+    <string name="navBar_logout_button">Logout</string>
 
     <!--    auth group-->
     <string name="navBar_Login">Realizar Login</string>
@@ -39,7 +40,7 @@
     <string name="navBar_About">Sobre a Aplicação</string>
 
     <!--    favorites_guest -->
-    <string name="favorites_title">Para veres os teus items favoritos, tens que fazer login.</string>
+    <string name="favorites_title">Para veres os teus produtos favoritos, tens que fazer login.</string>
     <string name="favorites_subtitle">Para acessar a tua lista de favoritos, faz login.</string>
     <!--    favorites_logged_in -->
     <string name="favorites_login_title">Bem-vindo à tua página de favoritos!</string>
@@ -63,12 +64,9 @@
     <string name="login_input_password">Password</string>
     <string name="login_input_username">Nome do Utilizador</string>
     <string name="login_image">Login Imagem</string>
-
     <!--    register -->
-    <string name="register_input_username">Nome do Utilizador</string>
-    <string name="register_input_email">E-Mail</string>
-    <string name="register_input_password">Password</string>
-    <string name="register_button">Registar</string>
+    <string name="register_text">Primeira vez na app?</string>
+    <string name="register_link">Regista-te aqui!</string>
 
     <!--    submit_guest -->
     <string name="submit_title">Para submeteres novos produtos, tens que dar login.</string>
@@ -78,5 +76,20 @@
     <string name="submit_logged_in_title">Bem-Vindo à página de submissões!</string>
     <string name="submit_logged_in_subtitle">Aqui podes submeter novos produtos para serem inseridos na Galeria.</string>
 
+    <!--    product_sheet -->
+    <string name="product_name">Nome do Produto</string>
+    <string name="product_brand">Marca</string>
+    <string name="product_description">Isto é uma descrição de template.</string>
+    <string name="product_barcode" translatable="false">4567787964</string>
+    <string name="product_category">Categoria</string>
+    <string name="product_price" translatable="false">299.99</string>
 
+    <!--    register_sheet -->
+    <string name="register_confirmpassword_text">Confirma a Palavra-Passe</string>
+    <string name="register_button">Regista-te Agora</string>
+    <string name="register_email_text">E-Mail</string>
+    <string name="register_popup_text">Regista-te como novo utilizador:</string>
+
+    <!--    activity_test -->
+    <string name="activty_test_check">A obter utilizadores…</string>
 </resources>

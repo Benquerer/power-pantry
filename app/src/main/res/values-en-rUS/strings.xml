@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--    Main App Strings-->
+    <string name="app_name">Power Pantry</string>
+    <string name="app_logo_img">Power Pantry</string>
+    <string name="versio_number" translatable="false">0.0.2</string>
+    <string name="app_desc">This app was developed as a final project for the "D.A.M" class and it was made by the students André R. Benquerer and Diogo A. Cardeira. All of the code present in this app was made purely for learning and education purposes.</string>
+    <string name="app_contact">Contact us through our e-mail: fakemail@powerpantry.com</string>
+
+    <string name="hello_blank_fragment">BLANK FRAGMENT</string>
+
+    <!--    Scanning-->
+    <string name="default_scan_text">Click on the button to scan a barcode.</string>
+    <string name="no_barcode_detected">No corresponding code was found.</string>
+
+    <!--    Strings for About Fragment -->
+    <string name="Abt_Title">About the app</string>
+    <string name="instagram">App\'s Instagram</string>
+    <string name="github">App\'s Github</string>
+    <string name="youtube">App\'s Youtube</string>
+
+
+    <!--    Strings for navBar -->
+    <string name="open_menu">Open Navigation Menu</string>
+    <string name="close_menu">Close Navigation Menu</string>
+    <!--    nav_header-->
+    <string name="navBar_GuestTitle">Guest</string>
+    <string name="navBar_GuestMsg">Login to access all of the app\'s functions.</string>
+    <string name="navBar_logout_button">Logout</string>
+
+    <!--    auth group-->
+    <string name="navBar_Login">Login</string>
+    <!--    utils group-->
+    <string name="navBar_Home">Main Menu</string>
+    <string name="navBar_Gallery">Product Gallery</string>
+    <string name="navBar_Favorites">Favorites</string>
+    <string name="navBar_Submit">Suggest New Products</string>
+    <!--    about group-->
+    <string name="navBar_About">About the App</string>
+
+    <!--    favorites_guest -->
+    <string name="favorites_title">To see your favorite products, you must be logged in.</string>
+    <string name="favorites_subtitle">To access your favorites list, you must login.</string>
+    <!--    favorites_logged_in -->
+    <string name="favorites_login_title">Welcome to your favorites page!</string>
+    <string name="favorites_login_subtitle">In here, you can see all the products you have selected as favorites.</string>
+
+    <!--    gallery -->
+    <string name="gallery_title">Product Gallery</string>
+    <string name="gallery_searchbar_text">Search Products</string>
+    <!--    gallery_item -->
+    <string name="gallery_item_brand">Brand</string>
+    <string name="gallery_item_price">Price</string>
+    <string name="gallery_item_productcode">Barcode</string>
+    <string name="gallery_item_productname">Product Name</string>
+    <!--    home -->
+    <string name="home_logo">Home Logo</string>
+    <string name="home_slidingtext">Welcome to Power Pantry! Where you can find the best gym supplements.</string>
+    <string name="home_subtitle">Your gym product gallery.</string>
+
+    <!--    login -->
+    <string name="login_button_text">Login</string>
+    <string name="login_input_password">Password</string>
+    <string name="login_input_username">Username</string>
+    <string name="login_image">Login Image</string>
+    <!--    register -->
+    <string name="register_text">First time on the app?</string>
+    <string name="register_link">Register here!</string>
+
+    <!--    submit_guest -->
+    <string name="submit_title">To submit a new product, you need to be logged in.</string>
+    <string name="submit_subtitle">Login to submit new products to the gallery.</string>
+
+    <!--    submit_logged_in -->
+    <string name="submit_logged_in_title">Bem-Vindo à página de submissões! Welcome to your submissions page!</string>
+    <string name="submit_logged_in_subtitle">In here, you can submit new products to be inserted in your gallery.</string>
+
+    <!--    product_sheet -->
+    <string name="product_name">Product Name</string>
+    <string name="product_brand">Brand</string>
+    <string name="product_description">This is a template description.</string>
+    <string name="product_barcode" translatable="false">4567787964</string>
+    <string name="product_category">Category</string>
+    <string name="product_price" translatable="false">299.99</string>
+
+    <!--    register_sheet -->
+    <string name="register_confirmpassword_text">Confirm your Password</string>
+    <string name="register_button">Register Now</string>
+    <string name="register_email_text">E-Mail</string>
+    <string name="register_popup_text">Register as a new user:</string>
+
+    <!--    activity_test -->
+    <string name="activty_test_check">Fetching users…</string>
+</resources>
