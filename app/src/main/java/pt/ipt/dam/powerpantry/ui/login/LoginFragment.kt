@@ -43,12 +43,12 @@ class LoginFragment : Fragment() {
             val passwd = etPassword.text.toString()
             if (!username.isNullOrEmpty() && !passwd.isNullOrEmpty()) {
                 btnLogin.isEnabled = false
-                btnLogin.setText("Login in...")
+                btnLogin.setText(R.string.logging_in_text)
                 loginUser(username,
                     passwd, onResult = {result ->
                         if(result){
                             btnLogin.isEnabled = true
-                            btnLogin.setText("Logged in!")
+                            btnLogin.setText(R.string.logged_in_sucess)
                             //set shared preferences
                             sharedPreferences.edit().apply {
                                 putString("username", username)
@@ -67,7 +67,7 @@ class LoginFragment : Fragment() {
                             Toast.makeText(requireContext(), "LOGIN DONE", Toast.LENGTH_SHORT).show()
                         }else{
                             btnLogin.isEnabled = true
-                            btnLogin.setText("Login")
+                            btnLogin.setText(R.string.login_button_text)
                             //wrong password
                             Toast.makeText(requireContext(), "Wrong password", Toast.LENGTH_SHORT).show()
                         }
@@ -107,7 +107,7 @@ class LoginFragment : Fragment() {
                     }else{
                         //disable button
                         btnRegister.isEnabled = false
-                        btnRegister.text = "Registering..."
+                        btnRegister.setText(R.string.registering_text)
                         //check if user already exists
                         checkUsernameAvailable(username) { isAvailable ->
                             if (isAvailable) {
@@ -124,7 +124,7 @@ class LoginFragment : Fragment() {
                                 Toast.makeText(requireContext(), "Username is already taken! Please pick another one", Toast.LENGTH_SHORT).show()
                                 //restore button
                                 btnRegister.isEnabled = true
-                                btnRegister.text = "Register Now"
+                                btnRegister.setText(R.string.register_button)
                             }
                         }
                     }

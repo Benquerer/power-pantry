@@ -30,7 +30,7 @@ class GalleryRecyclerViewAdapter(
         val product = productList[position]
         holder.productCode.text = "${product.productCode}"
         holder.productName.text = product.productName
-        holder.productPrice.text = "$${product.productPrice}"
+        holder.productPrice.text = "${product.productPrice}"
         holder.productBrand.text = product.productBrand
         holder.productImg.setImageResource(R.drawable.ic_about)
         //onclick event

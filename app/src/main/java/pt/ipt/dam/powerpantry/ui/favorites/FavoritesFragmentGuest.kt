@@ -16,9 +16,7 @@ class FavoritesFragmentGuest : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_favorites_guest, container, false)
 
-        // Placeholder content for guest users
-        val tvFavorites = view.findViewById<TextView>(R.id.tvFavorites)
-        tvFavorites.text = "Please log in to view your favorite items!"
+
 
         return view
     }

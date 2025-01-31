@@ -28,7 +28,7 @@
                     android:background="@android:drawable/editbox_background"
                     android:drawableStart="@drawable/ic_lock"
                     android:drawableTint="@color/my_dark_grey"
-                    android:hint="@string/register_confirmpassword_text"
+                    android:hint="@string/register_confirm_password_text"
                     android:inputType="textPassword"
                     android:padding="10dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
