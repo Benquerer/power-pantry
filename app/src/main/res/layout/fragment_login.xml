@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etPassword"
@@ -34,13 +34,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@android:drawable/editbox_background"
-        android:drawableStart="@android:drawable/ic_lock_lock"
+        android:drawableStart="@drawable/ic_lock"
         android:drawableTint="@color/my_dark_grey"
         android:hint="@string/login_input_password"
         android:inputType="textPassword"
         android:padding="10dp"
-        android:textColor="@color/black"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -51,12 +51,12 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:background="@android:drawable/editbox_background"
-        android:drawableStart="@drawable/ic_login_person"
+        android:drawableStart="@drawable/ic_user_icon"
         android:drawableTint="@color/my_dark_grey"
         android:hint="@string/login_input_username"
-        android:textColor="@color/black"
         android:padding="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/etPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -71,5 +71,25 @@
         app:layout_constraintBottom_toTopOf="@+id/etUsername"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="New Here?"
+        app:layout_constraintStart_toStartOf="@+id/btnLogin"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
+
+    <TextView
+        android:id="@+id/tvOpenRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:clickable="true"
+        android:text="Register Now!"
+        android:textColor="@color/highlightText"
+        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

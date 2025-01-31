@@ -27,27 +27,30 @@ object DataRepository {
         })
     }
 
+    //check a userName
     //function to fetch a user by id
-    fun fetchUserById(userId: Int, onResult: (User) -> Unit, onError: (String) -> Unit) {
-        RetrofitClient.instance.getUserById(userId).enqueue(object : Callback<IdUserResponse> {
-            override fun onResponse(call: Call<IdUserResponse>, response: Response<IdUserResponse>) {
+    fun checkUserExists(username: String, onResult: (Boolean) -> Unit, onError: (String) -> Unit) {
+        RetrofitClient.instance.getUserById(username).enqueue(object : Callback<AllUsersResponse> {
+            override fun onResponse(call: Call<AllUsersResponse>, response: Response<AllUsersResponse>) {
                 if (response.isSuccessful) {
-                    val user = response.body()?.user
+                    val users = response.body()?.users
+                    val user = users?.find { it.userName == username }
                     if (user != null) {
-                        onResult(user)  // Return the user
+                        onResult(true)
                     } else {
-                        onError("User not found.")
+                        onResult(false)
                     }
                 } else {
-                    onError("Failed to fetch user. Response code: ${response.code()}")
+                    onError("A problem ocurred, please try again later")
                 }
             }
 
-            override fun onFailure(call: Call<IdUserResponse>, t: Throwable) {
-                onError("Error fetching user: ${t.message}")
+            override fun onFailure(call: Call<AllUsersResponse>, t: Throwable) {
+                onError("A problem ocurred, please try again later")
             }
         })
     }
+
 
     //function to fetch all products
     fun fetchAllProducts(onResult:(List<Product>) -> Unit, onError: (String) -> Unit) {
@@ -64,27 +67,6 @@ object DataRepository {
 
             override fun onFailure(call: Call<AllProductsResponse>, t: Throwable) {
                 onError("ERROR FETCHING API FOR ALL PRODUCTS")
-            }
-        })
-    }
-    //function to fetch product by id
-    fun fetchProductByID(id: Int, onResult: (Product) -> Unit, onError: (String) -> Unit) {
-        RetrofitClient.instance.getProductByID(id).enqueue(object : Callback<IdProductResponse> {
-            override fun onResponse(call: Call<IdProductResponse>, response: Response<IdProductResponse>) {
-                if (response.isSuccessful) {
-                    val product = response.body()?.product
-                    if (product != null) {
-                        onResult(product)  // Return the user
-                    } else {
-                        onError("Product not found.")
-                    }
-                } else {
-                    onError("Failed to fetch product. Response code: ${response.code()}")
-                }
-            }
-
-            override fun onFailure(call: Call<IdProductResponse>, t: Throwable) {
-                onError("Error fetching product: ${t.message}")
             }
         })
     }

@@ -18,7 +18,6 @@ import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragment
 import pt.ipt.dam.powerpantry.ui.favorites.FavoritesFragmentGuest
 import pt.ipt.dam.powerpantry.ui.gallery.GalleryFragment
 import pt.ipt.dam.powerpantry.ui.login.LoginFragment
-import pt.ipt.dam.powerpantry.ui.register.RegisterFragment
 import pt.ipt.dam.powerpantry.ui.submit.SubmitFragment
 import pt.ipt.dam.powerpantry.ui.submit.SubmitFragmentGuest
 
@@ -63,7 +62,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_login -> replaceFragment(LoginFragment())
-            R.id.nav_register -> replaceFragment(RegisterFragment())
             R.id.nav_home -> replaceFragment(HomeFragment())
             R.id.nav_gallery -> replaceFragment(GalleryFragment())
             R.id.nav_favorites -> {
@@ -100,12 +98,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val menu = navigationView.menu
         val loginMenuItem = menu.findItem(R.id.nav_login)
-        val registerMenuItem = menu.findItem(R.id.nav_register) //
 
         userNameTextView.text = if (isLoggedIn) username else getString(R.string.navBar_GuestTitle)
         userEmailTextView.text = if (isLoggedIn) email else getString(R.string.navBar_GuestMsg)
         loginMenuItem.isVisible = !isLoggedIn
-        registerMenuItem.isVisible = !isLoggedIn
         btnLogout.visibility = if (isLoggedIn) View.VISIBLE else View.GONE
 
         btnLogout.setOnClickListener { logoutUser() }

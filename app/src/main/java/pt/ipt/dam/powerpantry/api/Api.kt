@@ -9,19 +9,19 @@ interface Api {
     //get all users
     @GET("users/")
     fun getAllUsers(): Call<AllUsersResponse>
-    //get user by id
-    @GET("users/{id}")
-    fun getUserById(@Path("id") id:Int) : Call<IdUserResponse>
+    @GET("users")
+    fun getUserById(@Query("filter[userName]") username:String) : Call<AllUsersResponse>
 
     //Products
     //get all products
     @GET("products/")
     fun getAllProducts() : Call<AllProductsResponse>
     //get product by id
-    @GET("products/{id}")
-    fun getProductByID(@Path("id") id: Int) : Call<IdProductResponse>
     //get product by barcode (filter)
     @GET("products")
     fun getProductByCode(@Query("filter[productCode]") code: Long) : Call<CodeProductsResponse>
+
+
+
 
 }
