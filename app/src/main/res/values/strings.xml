@@ -28,6 +28,7 @@
     <string name="navBar_GuestTitle">Visitante</string>
     <string name="navBar_GuestMsg">Autentica-te para acessar todas as funções da aplicação.</string>
     <string name="navBar_WelcomeMsg">Bem-vindo de volta %s</string>
+    <string name="navBar_logout_button">Logout</string>
 
     <!--    auth group-->
     <string name="navBar_Login">Realizar Login</string>
