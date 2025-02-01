@@ -1,9 +1,12 @@
 package pt.ipt.dam.powerpantry
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import pt.ipt.dam.powerpantry.databinding.FragmentHomeBinding
@@ -22,15 +25,24 @@ class HomeFragment : Fragment() {
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        // Inflate the layout for this fragment
+        val view = binding.root
+
+        // Clickable Icons - Open URLs
+        binding.sheetyLogo.setOnClickListener { openUrl("https://sheety.co/") }
+        binding.iptLogo.setOnClickListener { openUrl("https://www.ipt.pt/") }
+        binding.informaticaLogo.setOnClickListener { openUrl("https://portal2.ipt.pt/pt/cursos/Licenciaturas/L_-_EI/") }
+
+
         // Activate Marquee Text
         binding.marqueeText.isSelected = true
 
         // List of Images for Slider
         val images = listOf(
-            R.drawable.ic_github,
-            R.drawable.ic_youtube,
-            R.drawable.ic_instagram,
-            R.drawable.ic_about
+            R.drawable.image1,
+            R.drawable.image2,
+            R.drawable.image3,
+            R.drawable.image4
         )
 
         // Set up Image Slider
@@ -43,7 +55,8 @@ class HomeFragment : Fragment() {
         // Start Auto-Scroll
         startAutoScroll()
 
-        return binding.root
+        return view
+
     }
 
     private fun startAutoScroll() {
@@ -62,6 +75,13 @@ class HomeFragment : Fragment() {
 
         _binding?.imageSlider?.postDelayed(autoScrollRunnable!!, 5000)
     }
+
+    // Function to open a URL in the browser
+    private fun openUrl(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        startActivity(intent)
+    }
+
 
 
     override fun onDestroyView() {

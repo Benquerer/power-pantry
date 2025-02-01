@@ -1,64 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <data>
-        <!-- ViewModel can be used later -->
-    </data>
-
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:padding="20dp">
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
 
-        <!-- App Logo (Moved Upwards) -->
-        <ImageView
-            android:id="@+id/app_logo"
-            android:layout_width="218dp"
-            android:layout_height="156dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/home_logo"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/power_pantry_img_foreground" />
-
-        <!-- Marquee Text -->
-        <TextView
-            android:id="@+id/marqueeText"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/home_slidingtext"
-            android:textColor="?android:attr/textColorPrimary"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scrollHorizontally="true"
-            android:layout_marginBottom="12dp"/>
+            android:layout_height="match_parent">
 
-        <!-- Slogan -->
-        <TextView
-            android:id="@+id/tvSlogan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_subtitle"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="16sp"
-            android:paddingBottom="16dp"/>
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="294dp"
+                android:layout_height="232dp"
+                android:layout_marginTop="4dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/powe2r" />
 
-        <!-- Sliding Image Carousel -->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/imageSlider"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="16dp"/>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="A sua dispensa de ginásio!"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/primaryText"
+                android:textSize="25sp"
+                app:layout_constraintEnd_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toStartOf="@+id/imageView3"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    </LinearLayout>
-</layout>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="48dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView2"
+                app:layout_constraintStart_toStartOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/marqueeText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:ellipsize="marquee"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:gravity="center"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:paddingStart="15sp"
+                android:paddingEnd="15sp"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="@string/home_slidingtext"
+                android:textColor="@color/secondaryText"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/imageSlider"
+                app:layout_constraintStart_toStartOf="@+id/imageSlider"
+                app:layout_constraintTop_toBottomOf="@+id/imageSlider" />
+
+            <ImageView
+                android:id="@+id/iptLogo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginBottom="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:elevation="2dp"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/marqueeText"
+                app:srcCompat="@drawable/iptlogo" />
+
+            <ImageView
+                android:id="@+id/sheetyLogo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Sheety Website"
+                android:clickable="true"
+                android:elevation="2dp"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/iptLogo"
+                app:layout_constraintStart_toEndOf="@+id/iptLogo"
+                app:srcCompat="@drawable/sheetylogo" />
+
+            <ImageView
+                android:id="@+id/informaticaLogo"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Informática Website"
+                android:clickable="true"
+                android:elevation="2dp"
+                android:focusable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/iptLogo"
+                app:layout_constraintEnd_toStartOf="@+id/iptLogo"
+                app:srcCompat="@drawable/logoinformatica"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

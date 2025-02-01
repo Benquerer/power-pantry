@@ -67,7 +67,7 @@
     <string name="submit_subtitle">Login to submit new products to the gallery.</string>
 
     <!--    submit_logged_in -->
-    <string name="submit_logged_in_title">Bem-Vindo à página de submissões! Welcome to your submissions page!</string>
+    <string name="submit_logged_in_title">Welcome to your submissions page!</string>
     <string name="submit_logged_in_subtitle">In here, you can submit new products to be inserted in your gallery.</string>
 
     <!--    activity_test_check -->
