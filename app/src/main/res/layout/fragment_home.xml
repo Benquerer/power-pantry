@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <!-- ViewModel can be used later -->
@@ -8,57 +9,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:layout_marginBottom="30sp"
         android:gravity="center_horizontal"
+        android:orientation="vertical"
         android:padding="20dp">
 
-        <!-- App Logo (Moved Upwards) -->
-        <ImageView
-            android:id="@+id/app_logo"
-            android:layout_width="218dp"
-            android:layout_height="156dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:contentDescription="@string/home_logo"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/power_pantry_img_foreground" />
 
         <!-- Marquee Text -->
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="282dp"
+            android:layout_height="228dp"
+            android:layout_marginBottom="30sp"
+            app:srcCompat="@drawable/logosemfundo" />
+
         <TextView
             android:id="@+id/marqueeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:singleLine="true"
             android:text="@string/home_slidingtext"
             android:textColor="?android:attr/textColorPrimary"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
-            android:scrollHorizontally="true"
-            android:layout_marginBottom="12dp"/>
+            android:textStyle="bold" />
 
-        <!-- Slogan -->
-        <TextView
-            android:id="@+id/tvSlogan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/home_subtitle"
-            android:textColor="?android:attr/textColorSecondary"
-            android:textSize="16sp"
-            android:paddingBottom="16dp"/>
 
         <!-- Sliding Image Carousel -->
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="65dp" />
 
     </LinearLayout>
 </layout>

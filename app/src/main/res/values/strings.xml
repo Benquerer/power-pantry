@@ -54,8 +54,8 @@
 
     <!--    home -->
     <string name="home_logo">Logo na Home</string>
-    <string name="home_slidingtext">Bem-vindo ao Power Pantry! Aqui podes encontrar os melhores suplementos de ginásio.</string>
-    <string name="home_subtitle">A tua galeria de produtos para o ginásio.</string>
+    <string name="home_slidingtext">A sua galeria de todo o tipo de produtos de ginásio. Aqui podes encontrar os melhores suplementos de ginásio.</string>
+    <string name="home_subtitle">Regista-te para acessares as diversas funcionalidades da aplicação.</string>
 
     <!--    login -->
     <string name="login_button_text">Entrar</string>

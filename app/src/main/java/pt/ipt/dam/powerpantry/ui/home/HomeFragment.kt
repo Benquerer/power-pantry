@@ -27,10 +27,10 @@ class HomeFragment : Fragment() {
 
         // List of Images for Slider
         val images = listOf(
-            R.drawable.ic_github,
-            R.drawable.ic_youtube,
-            R.drawable.ic_instagram,
-            R.drawable.ic_about
+            R.drawable.image1,
+            R.drawable.image2,
+            R.drawable.image3,
+            R.drawable.image4
         )
 
         // Set up Image Slider
