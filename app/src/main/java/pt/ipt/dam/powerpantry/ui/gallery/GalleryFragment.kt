@@ -59,6 +59,8 @@ class GalleryFragment : Fragment() {
         galleryViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(
             GalleryViewModel::class.java)
 
+
+
         // Initialize Data Binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_gallery, container, false)
         binding.viewModel = galleryViewModel

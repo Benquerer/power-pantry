@@ -2,68 +2,77 @@ package pt.ipt.dam.powerpantry.ui.favorites
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.util.Log
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class FavPrefHelper(context: Context) {
 
-    private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE)
+    private val sharedPreferences: SharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
     private val gson: Gson = Gson()
 
-    companion object{
+    companion object {
         private const val PREF_NAME = "FavPreferences"
         private const val MAP_KEY = "fav_map"
+        private const val TAG = "FAVORITE_DEBUG"
     }
 
-    //save the list of a user
-    fun saveUserList(username: String, list: List<Long>) {
-        //get map
+    fun clearAllPreferences() {
+        sharedPreferences.edit().clear().apply()
+        Log.d(TAG, "All preferences cleared.")
+    }
+
+    fun saveUserSet(username: String, set: Set<Long>) {
         val currentMap = getMap()
         val updatedMap = currentMap.toMutableMap()
-        // put username as key and list as value in map
-        updatedMap[username] = list
-
-        //save updated map on preferences
+        updatedMap[username] = set
         val json = gson.toJson(updatedMap)
         sharedPreferences.edit().putString(MAP_KEY, json).apply()
+        Log.d(TAG, "Saved favorites for $username: $set")
     }
 
-    //get list of a user
-    fun getUserList(username: String): List<Long> {
-        //get map of favorites
+    fun getUserSet(username: String): Set<Long> {
         val currentMap = getMap()
-        //return full list of a user //empty if not found
-        return currentMap[username] ?: emptyList()
+        val userFavorites = currentMap[username] ?: emptyList()
+        return userFavorites.toSet()
     }
 
-    //get the entire map of favorites
-    private fun getMap(): Map<String, List<Long>> {
+    private fun getMap(): Map<String, Set<Long>> {
         val json = sharedPreferences.getString(MAP_KEY, null)
         return if (json != null) {
-            gson.fromJson(json, HashMap::class.java) as Map<String, List<Long>>
+            val type = object : TypeToken<Map<String, Set<Long>>>() {}.type
+            gson.fromJson(json, type)
         } else {
-            emptyMap() //empty if not found
+            emptyMap() // Return empty map if not found
         }
     }
 
-    //append barcode to a users list
     fun appendUserFavorite(username: String, value: Long) {
-        val currentList = getUserList(username).toMutableList()
-        if (!currentList.contains(value)) {
-            currentList.add(value)
-            saveUserList(username, currentList)
+        val currentSet = getUserSet(username).toMutableSet()
+        if (currentSet.add(value)) {
+            saveUserSet(username, currentSet)
+            Log.d(TAG, "Added $value to $username favorites.")
+        } else {
+            Log.d(TAG, "$value is already in $username favorites. Skipping.")
         }
     }
 
     fun removeUserFavorite(username: String, value: Long) {
-        val currentList = getUserList(username).toMutableList()
-        if (currentList.contains(value)) {
-            currentList.remove(value)
-            saveUserList(username, currentList)
+        val currentSet = getUserSet(username).toMutableSet()
+        if (currentSet.remove(value)) {
+            saveUserSet(username, currentSet)
+            Log.d(TAG, "Removed $value from $username favorites.")
+        } else {
+            Log.d(TAG, "$value not found in $username favorites.")
         }
     }
 
-    fun isCodeInFavorites(username: String, value: Long): Boolean{
-        val currentList = getUserList(username)
-        return currentList.contains(value)
+    fun isCodeInFavorites(username: String, value: Long): Boolean {
+        val currentSet = getUserSet(username)
+        val contains = currentSet.contains(value)
+        Log.d(TAG, "Checking if $value is in $username favorites: $contains")
+        return contains
     }
 }
+
+
