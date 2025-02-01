@@ -107,7 +107,7 @@
                     android:layout_height="41dp"
                     app:layout_constraintBottom_toBottomOf="@+id/tvDetailedPrice"
                     app:layout_constraintStart_toStartOf="@+id/tvDetailedCode"
-                    android:contentDescription="@string/favorites_icon_id"
+                    android:contentDescription="@string/favorites_icon"
                     app:tint="@color/favStarColor"
                     app:srcCompat="@drawable/ic_favorite_border" />
 

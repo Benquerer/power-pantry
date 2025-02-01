@@ -15,7 +15,7 @@
         android:layout_height="100dp"
         android:src="@drawable/ic_halfstar"
         android:tint="@color/favStarColor"
-        android:contentDescription="@string/favorites_icon_id"
+        android:contentDescription="@string/favorites_icon"
         android:layout_gravity="center_horizontal"
         tools:ignore="UseAppTint" />
 
