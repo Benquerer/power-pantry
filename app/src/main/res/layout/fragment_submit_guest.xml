@@ -12,7 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
-        android:contentDescription="Submit Icon"
+        android:contentDescription="@string/submit_icon"
         android:src="@android:drawable/ic_menu_add" />
 
 
@@ -20,7 +20,7 @@
         android:id="@+id/tvFavoritesTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit New Items"
+        android:text="@string/submit_title"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@android:color/white"
@@ -32,7 +32,7 @@
         android:id="@+id/tvFavoritesDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Autentique-se para poder contribuir com novos produtos e aumentar a galeria da aplicação para si e para todos os utilizadores."
+        android:text="@string/submit_subtitle"
         android:textSize="16sp"
         android:textColor="@android:color/darker_gray"
         android:layout_marginTop="10dp"
@@ -45,7 +45,7 @@
         android:id="@+id/btnLoginSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Go to Login"
+        android:text="@string/submit_button"
         android:textSize="16sp"
         android:padding="10dp"
         android:layout_marginTop="20dp"
