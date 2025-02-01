@@ -230,7 +230,6 @@
                 android:background="@android:drawable/editbox_background"
                 android:ems="10"
                 android:hint="@string/submit_logged_productImage"
-                android:inputType="number"
                 android:textColor="@color/black"
                 android:textColorHint="@color/secondaryText"
                 app:layout_constraintEnd_toEndOf="@+id/tvLoggedImage"
