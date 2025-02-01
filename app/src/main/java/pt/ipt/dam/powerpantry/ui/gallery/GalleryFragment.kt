@@ -24,6 +24,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import pt.ipt.dam.powerpantry.databinding.FragmentGalleryBinding
 import com.journeyapps.barcodescanner.CaptureActivity
@@ -204,6 +205,12 @@ class GalleryFragment : Fragment() {
         productPrice.text = "$${product.productPrice}"
         productCategory.text = product.productCategory
         productCode.text = "${product.productCode}"
+        //set image from url
+        Glide.with(view.context)
+            .load(product.productImage)
+            .placeholder(R.drawable.ic_placeholder_img)
+            .error(R.drawable.ic_image_error)
+            .into(productImage)
 
         //display
         sheetDialog.setContentView(view)
