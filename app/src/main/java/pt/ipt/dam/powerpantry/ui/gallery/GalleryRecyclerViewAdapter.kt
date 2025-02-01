@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import pt.ipt.dam.powerpantry.R
 import pt.ipt.dam.powerpantry.data.Product
 
@@ -32,7 +33,13 @@ class GalleryRecyclerViewAdapter(
         holder.productName.text = product.productName
         holder.productPrice.text = "${product.productPrice}"
         holder.productBrand.text = product.productBrand
-        holder.productImg.setImageResource(R.drawable.ic_about)
+
+        //set image from url
+        Glide.with(holder.itemView.context).load(product.productImage)
+            .placeholder(R.drawable.ic_placeholder_img)
+            .error(R.drawable.ic_image_error)
+            .into(holder.productImg)
+
         //onclick event
         holder.itemView.setOnClickListener{
             onItemClick(product)

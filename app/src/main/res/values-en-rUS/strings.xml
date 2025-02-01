@@ -67,8 +67,16 @@
     <string name="submit_subtitle">Login to submit new products to the gallery.</string>
 
     <!--    submit_logged_in -->
-    <string name="submit_logged_in_title">Welcome to your submissions page!</string>
-    <string name="submit_logged_in_subtitle">In here, you can submit new products to be inserted in your gallery.</string>
+    <string name="submit_logged_title">submit new item</string>
+    <string name="submit_logged_thanksMsg">Thanks for contributing with our project! Here you will be able to submit new items to our gallery</string>
+    <string name="submit_logged_productName">Product Name</string>
+    <string name="submit_logged_productBrand">Brand</string>
+    <string name="submit_logged_productCategory">Category</string>
+    <string name="submit_logged_productDescription">Description</string>
+    <string name="submit_logged_productBarcode">Barcode</string>
+    <string name="submit_logged_productPrice">Price</string>
+    <string name="submit_logged_productImage">Image URL</string>
+    <string name="submit_logged_submit">submit</string>
 
     <!--    activity_test_check -->
     <string name="activity_test_check">Fetching...</string>

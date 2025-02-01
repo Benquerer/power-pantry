@@ -34,11 +34,16 @@
                     android:layout_width="107dp"
                     android:layout_height="106dp"
                     android:layout_marginStart="8dp"
-                    android:scaleType="centerCrop"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="4sp"
+                    android:layout_marginBottom="4sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/ic_favorite_full" />
+                    android:background="@drawable/rounded_image10sp"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_placeholder_img" />
 
                 <TextView
                     android:id="@+id/tvProductBrand"

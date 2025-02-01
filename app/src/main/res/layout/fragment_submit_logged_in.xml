@@ -1,25 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvSubmission"
-        android:layout_width="wrap_content"
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/submit_logged_in_title"
-        android:textSize="18sp"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="20dp"/>
+        android:fillViewport="true">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit_logged_in_subtitle"
-        android:textSize="14sp"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="10dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/etLoggedDescription"
+                android:layout_width="280sp"
+                android:layout_height="150sp"
+                android:layout_marginTop="4dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:gravity="start|top"
+                android:hint="@string/submit_logged_productDescription"
+                android:inputType="textMultiLine"
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondaryText"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedDescription"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedDescription"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedDescription" />
+
+            <TextView
+                android:id="@+id/tvLoggedSubmitTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/submit_logged_title"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColorHint="@color/primaryText"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvLoggedThxMsg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingHorizontal="30sp"
+                android:paddingVertical="10sp"
+                android:text="@string/submit_logged_thanksMsg"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/secondaryText"
+                android:textColorHint="@color/secondaryText"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedSubmitTitle"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedSubmitTitle"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedSubmitTitle" />
+
+            <TextView
+                android:id="@+id/tvLoggedName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/submit_logged_productName"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/primaryText"
+                android:textColorHint="@color/primaryText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedThxMsg" />
+
+            <TextView
+                android:id="@+id/tvLoggedBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/submit_logged_productBrand"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/primaryText"
+                android:textColorHint="@color/secondaryText"
+                app:layout_constraintEnd_toEndOf="@+id/etLoggedName"
+                app:layout_constraintStart_toStartOf="@+id/etLoggedName"
+                app:layout_constraintTop_toBottomOf="@+id/etLoggedName" />
+
+            <TextView
+                android:id="@+id/tvLoggedPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/submit_logged_productPrice"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/etLoggedBarcode"
+                app:layout_constraintStart_toStartOf="@+id/etLoggedBarcode"
+                app:layout_constraintTop_toBottomOf="@+id/etLoggedBarcode" />
+
+            <TextView
+                android:id="@+id/tvLoggedCategory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/submit_logged_productCategory"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/etLoggedBrand"
+                app:layout_constraintStart_toStartOf="@+id/etLoggedBrand"
+                app:layout_constraintTop_toBottomOf="@+id/etLoggedBrand" />
+
+            <TextView
+                android:id="@+id/tvLoggedBarcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/submit_logged_productBarcode"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/spLoggedCategory"
+                app:layout_constraintStart_toStartOf="@+id/spLoggedCategory"
+                app:layout_constraintTop_toBottomOf="@+id/spLoggedCategory" />
+
+            <TextView
+                android:id="@+id/tvLoggedDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/submit_logged_productDescription"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/primaryText"
+                android:textColorHint="@color/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/etLoggedPrice"
+                app:layout_constraintStart_toStartOf="@+id/etLoggedPrice"
+                app:layout_constraintTop_toBottomOf="@+id/etLoggedPrice" />
+
+            <EditText
+                android:id="@+id/etLoggedName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="@string/submit_logged_productName"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondaryText"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedName"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedName"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedName" />
+
+            <EditText
+                android:id="@+id/etLoggedBrand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="@string/submit_logged_productBrand"
+                android:inputType="text"
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondaryText"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedBrand"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedBrand"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedBrand" />
+
+            <EditText
+                android:id="@+id/etLoggedBarcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="@string/submit_logged_productBarcode"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondaryText"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedBarcode"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedBarcode"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedBarcode" />
+
+            <EditText
+                android:id="@+id/etLoggedPrice"
+                android:layout_width="115sp"
+                android:layout_height="50sp"
+                android:layout_marginTop="4dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="@string/submit_logged_productPrice"
+                android:inputType="numberDecimal"
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondaryText"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedPrice"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedPrice"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedPrice" />
+
+            <Spinner
+                android:id="@+id/spLoggedCategory"
+                android:layout_width="200sp"
+                android:layout_height="35sp"
+                android:layout_marginTop="4dp"
+                android:background="@android:drawable/editbox_background"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedCategory"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedCategory"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedCategory" />
+
+
+            <TextView
+                android:id="@+id/tvLoggedImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/submit_logged_productImage"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/primaryText"
+                app:layout_constraintEnd_toEndOf="@+id/etLoggedDescription"
+                app:layout_constraintStart_toStartOf="@+id/etLoggedDescription"
+                app:layout_constraintTop_toBottomOf="@+id/etLoggedDescription" />
+
+            <EditText
+                android:id="@+id/etLoggedImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@android:drawable/editbox_background"
+                android:ems="10"
+                android:hint="@string/submit_logged_productImage"
+                android:textColor="@color/black"
+                android:textColorHint="@color/secondaryText"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedImage"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedImage"
+                app:layout_constraintTop_toBottomOf="@+id/tvLoggedImage" />
+
+            <Button
+                android:id="@+id/btnSubmitProduct"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:backgroundTint="@color/my_light_blue"
+                android:text="@string/submit_logged_submit"
+                android:textAllCaps="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="@+id/tvLoggedImage"
+                app:layout_constraintStart_toStartOf="@+id/tvLoggedImage"
+                app:layout_constraintTop_toBottomOf="@+id/etLoggedImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>

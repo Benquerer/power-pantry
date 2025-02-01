@@ -3,7 +3,6 @@ package pt.ipt.dam.powerpantry.ui.login
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +20,7 @@ import pt.ipt.dam.powerpantry.data.User
 
 class LoginFragment : Fragment() {
 
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var userPreferences: SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +33,7 @@ class LoginFragment : Fragment() {
         val btnLogin = view.findViewById<Button>(R.id.btnLogin)
         val btnOpenRegister = view.findViewById<TextView>(R.id.tvOpenRegister)
 
-        sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        userPreferences = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
         //login logic
         btnLogin.setOnClickListener {
@@ -50,7 +49,7 @@ class LoginFragment : Fragment() {
                             btnLogin.isEnabled = true
                             btnLogin.setText(R.string.logged_in_sucess)
                             //set shared preferences
-                            sharedPreferences.edit().apply {
+                            userPreferences.edit().apply {
                                 putString("username", username)
                                 putBoolean("isLoggedIn", true)
                                 apply()

@@ -24,8 +24,8 @@ import pt.ipt.dam.powerpantry.ui.submit.SubmitFragmentGuest
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var drawerLayout: DrawerLayout
-    private lateinit var sharedPreferences: SharedPreferences
-    lateinit var navigationView: NavigationView
+    private lateinit var userPreferences: SharedPreferences
+    private lateinit var navigationView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +39,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         navigationView.setNavigationItemSelectedListener(this)
 
         //get user preferences
-        sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
-
+        userPreferences = getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
 
         val toggle = ActionBarDrawerToggle(
             this, drawerLayout, toolbar,
@@ -64,11 +63,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_home -> replaceFragment(HomeFragment())
             R.id.nav_gallery -> replaceFragment(GalleryFragment())
             R.id.nav_favorites -> {
-                val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+                val isLoggedIn = userPreferences.getBoolean("isLoggedIn", false)
                 replaceFragment(if (isLoggedIn) FavoritesFragment() else FavoritesFragmentGuest())
             }
             R.id.nav_submit -> {
-                val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+                val isLoggedIn = userPreferences.getBoolean("isLoggedIn", false)
                 replaceFragment(if (isLoggedIn) SubmitFragment() else SubmitFragmentGuest())
             }
             R.id.nav_about -> replaceFragment(AboutFragment())
@@ -86,8 +85,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     fun updateNavHeader() {
-        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
-        val username = sharedPreferences.getString("username", "User")
+        val isLoggedIn = userPreferences.getBoolean("isLoggedIn", false)
+        val username = userPreferences.getString("username", "User")
 
         val headerView = navigationView.getHeaderView(0)
         val userNameTextView = headerView.findViewById<TextView>(R.id.nav_username)
@@ -107,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
     fun updateUserFragments() {
-        val isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false)
+        val isLoggedIn = userPreferences.getBoolean("isLoggedIn", false)
 
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.favorites_container, if (isLoggedIn) FavoritesFragment() else FavoritesFragmentGuest())
@@ -119,7 +118,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     fun logoutUser() {
-        sharedPreferences.edit().clear().apply()
+        userPreferences.edit().clear().apply()
         updateNavHeader()
         updateUserFragments()
         navigationView.setCheckedItem(R.id.nav_home)

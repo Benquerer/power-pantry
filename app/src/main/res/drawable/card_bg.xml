@@ -6,7 +6,7 @@
         android:angle="45"
         android:startColor="#123456"
         android:endColor="@color/zxing_transparent"/>
-        <corners android:radius="25dp"/>
+        <corners android:radius="15sp"/>
     </shape>
 </item>
 </selector>

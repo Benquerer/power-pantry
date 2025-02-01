@@ -137,4 +137,21 @@ object DataRepository {
         })
     }
 
+    //post product
+    fun createProduct(newProduct: Product, onResult: (Boolean) -> Unit) {
+        val productJson = ProductRequest(newProduct)
+        RetrofitClient.instance.createProduct(productJson).enqueue(object : Callback<ProductRequest> {
+            override fun onResponse(call: Call<ProductRequest>, response: Response<ProductRequest>) {
+                if (response.isSuccessful) {
+                    onResult(true)
+                } else {
+                    onResult(false)
+                }
+            }
+            override fun onFailure(call: Call<ProductRequest>, t: Throwable) {
+                onResult(false)
+            }
+        })
+    }
+
 }

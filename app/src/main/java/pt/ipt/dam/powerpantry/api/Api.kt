@@ -24,6 +24,9 @@ interface Api {
     //get product by barcode (filter)
     @GET("products")
     fun getProductByCode(@Query("filter[productCode]") code: Long) : Call<CodeProductsResponse>
+    //post a product
+    @POST("products/")
+    fun createProduct(@Body productJason: ProductRequest) : Call<ProductRequest>
 
 
 

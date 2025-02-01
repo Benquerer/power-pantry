@@ -3,8 +3,12 @@ package pt.ipt.dam.powerpantry.ui.gallery
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -24,12 +28,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.bumptech.glide.Glide
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import pt.ipt.dam.powerpantry.databinding.FragmentGalleryBinding
 import com.journeyapps.barcodescanner.CaptureActivity
 import pt.ipt.dam.powerpantry.R
 import pt.ipt.dam.powerpantry.api.DataRepository
 import pt.ipt.dam.powerpantry.data.Product
+import pt.ipt.dam.powerpantry.ui.favorites.FavPrefHelper
 
 class GalleryFragment : Fragment() {
 
@@ -41,6 +47,10 @@ class GalleryFragment : Fragment() {
     private lateinit var productAdapter: GalleryRecyclerViewAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
+    //preferences
+    private lateinit var favoritesPreference :SharedPreferences
+    private lateinit var userPreferences: SharedPreferences
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,6 +58,8 @@ class GalleryFragment : Fragment() {
         // Initialize ViewModel
         galleryViewModel = ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)).get(
             GalleryViewModel::class.java)
+
+
 
         // Initialize Data Binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_gallery, container, false)
@@ -184,6 +196,7 @@ class GalleryFragment : Fragment() {
 
     //showing dialog with details
     private fun showProductDetails(product: Product){
+
         //sheet dialog
         val sheetDialog = BottomSheetDialog(requireContext())
         val view = layoutInflater.inflate(R.layout.product_sheet,null)
@@ -204,7 +217,56 @@ class GalleryFragment : Fragment() {
         productPrice.text = "$${product.productPrice}"
         productCategory.text = product.productCategory
         productCode.text = "${product.productCode}"
+        //set image from url
+        Glide.with(view.context)
+            .load(product.productImage)
+            .placeholder(R.drawable.ic_placeholder_img)
+            .error(R.drawable.ic_image_error)
+            .into(productImage)
 
+        //handle favorite
+        val favIcon = view.findViewById<ImageView>(R.id.ivFavorited)
+        //check user login
+        userPreferences = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
+        val isLogged = userPreferences.getBoolean("isLoggedIn", false)
+        if(isLogged){
+            //get user favorites list
+            val prefHelper = FavPrefHelper(requireContext())
+            //check if product is favorited
+            val username = userPreferences.getString("username", "guest") ?: "guest"
+            var isFavorited = prefHelper.isCodeInFavorites(username,product.productCode)
+            //favorite state when opening
+            if (isFavorited) {
+                favIcon.setImageResource(R.drawable.ic_favorite_full)
+            } else {
+                favIcon.setImageResource(R.drawable.ic_favorite_border)
+            }
+            //handle clicks
+            favIcon.setOnClickListener{
+                //change favorite state
+                isFavorited = !isFavorited
+                if(isFavorited){
+                    //add to favorites
+                    prefHelper.appendUserFavorite(username, product.productCode)
+                    favIcon.setImageResource(R.drawable.ic_favorite_full)
+                }else{
+                    //remove
+                    prefHelper.removeUserFavorite(username, product.productCode)
+                    favIcon.setImageResource(R.drawable.ic_favorite_border)
+                }
+            }
+        }else{
+            favIcon.setImageResource(R.drawable.ic_halfstar)
+            favIcon.setOnClickListener{
+                val builder = AlertDialog.Builder(requireContext())
+                builder.setTitle("Member's only action")
+                builder.setMessage("The \"Favorites\" is a member-only feature, please login or register to save your favorite products")
+                builder.setPositiveButton("Okay"){dialog,_ ->
+                    dialog.dismiss()
+                }
+                builder.create().show()
+            }
+        }
         //display
         sheetDialog.setContentView(view)
         sheetDialog.show()

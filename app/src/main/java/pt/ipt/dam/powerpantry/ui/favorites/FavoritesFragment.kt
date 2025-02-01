@@ -11,8 +11,6 @@ import pt.ipt.dam.powerpantry.R
 
 class FavoritesFragment : Fragment() {
 
-    private lateinit var sharedPreferences: SharedPreferences
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

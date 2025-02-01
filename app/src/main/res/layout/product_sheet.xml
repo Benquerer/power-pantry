@@ -17,87 +17,101 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true">
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvDetailedName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/product_name"
-                android:textAllCaps="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivDetailedImage" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/ivDetailedImage"
-                android:layout_width="212dp"
-                android:layout_height="157dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_about" />
+                <TextView
+                    android:id="@+id/tvDetailedName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/product_name"
+                    android:textAllCaps="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivDetailedImage" />
 
-            <TextView
-                android:id="@+id/tvDetailedBrand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/product_brand"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailedName" />
+                <ImageView
+                    android:id="@+id/ivDetailedImage"
+                    android:layout_width="361dp"
+                    android:layout_height="223dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:background="@drawable/rounded_image25sp"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/ic_placeholder_img" />
 
-            <TextView
-                android:id="@+id/tvDetailedDescription"
-                android:layout_width="350sp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/product_description"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textIsSelectable="false"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailedBrand" />
+                <TextView
+                    android:id="@+id/tvDetailedBrand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/product_brand"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailedName" />
 
-            <TextView
-                android:id="@+id/tvDetailedCode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
-                android:text="@string/product_barcode"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/tvDetailedDescription"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailedPrice" />
+                <TextView
+                    android:id="@+id/tvDetailedDescription"
+                    android:layout_width="350sp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/product_description"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                    android:textIsSelectable="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailedBrand" />
 
-            <TextView
-                android:id="@+id/tvDetailedCategory"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/product_category"
-                app:layout_constraintEnd_toEndOf="@+id/tvDetailedDescription"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailedDescription" />
+                <TextView
+                    android:id="@+id/tvDetailedCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/product_barcode"
+                    app:layout_constraintStart_toStartOf="@+id/tvDetailedCategory"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailedCategory" />
 
-            <TextView
-                android:id="@+id/tvDetailedPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/product_price"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvDetailedCategory" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tvDetailedCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/product_category"
+                    app:layout_constraintStart_toStartOf="@+id/tvDetailedDescription"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailedDescription" />
+
+                <TextView
+                    android:id="@+id/tvDetailedPrice"
+                    android:layout_width="75dp"
+                    android:layout_height="36dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="@string/product_price"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDetailedDescription"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDetailedCode" />
+
+                <ImageView
+                    android:id="@+id/ivFavorited"
+                    android:layout_width="45dp"
+                    android:layout_height="41dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvDetailedPrice"
+                    app:layout_constraintStart_toStartOf="@+id/tvDetailedCode"
+                    android:tint="@color/favStarColor"
+                    app:srcCompat="@drawable/ic_favorite_border" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

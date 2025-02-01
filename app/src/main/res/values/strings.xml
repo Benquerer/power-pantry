@@ -70,8 +70,16 @@
     <string name="submit_subtitle">Autentica-te para poderes submeter novos produtos na Galeria.</string>
 
     <!--    submit_logged_in -->
-    <string name="submit_logged_in_title">Bem-Vindo à página de submissões!</string>
-    <string name="submit_logged_in_subtitle">Aqui podes submeter novos produtos para serem inseridos na Galeria.</string>
+    <string name="submit_logged_title">submeter novo item</string>
+    <string name="submit_logged_thanksMsg">Obrigado por contribuir com nosso projeto! Aqui poderás submeter novos itens à nossa galeria.</string>
+    <string name="submit_logged_productName">Nome do Produto</string>
+    <string name="submit_logged_productBrand">Marca</string>
+    <string name="submit_logged_productCategory">Categoria</string>
+    <string name="submit_logged_productDescription">Descrição</string>
+    <string name="submit_logged_productBarcode">Código de Barras</string>
+    <string name="submit_logged_productPrice">Preço</string>
+    <string name="submit_logged_productImage">URL para imagem</string>
+    <string name="submit_logged_submit">submeter</string>
 
     <!--    activity_test_check -->
     <string name="activity_test_check">Fetching...</string>

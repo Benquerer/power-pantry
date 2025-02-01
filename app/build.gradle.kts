@@ -3,6 +3,8 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    //glide
+    id("kotlin-kapt")
 }
 
 android {
@@ -75,6 +77,10 @@ dependencies {
 
     //pass hashing
     implementation ("org.mindrot:jbcrypt:0.4")
+
+    //Glide (image from url handling)
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

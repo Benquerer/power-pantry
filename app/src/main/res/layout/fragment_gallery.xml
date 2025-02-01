@@ -17,22 +17,14 @@
         tools:context=".ui.gallery.GalleryFragment">
 
         <TextView
-            android:id="@+id/scan_result"
-            android:layout_width="26dp"
-            android:layout_height="31dp"
-            android:text="@{viewModel.barcodeResult}"
-            app:layout_constraintBottom_toTopOf="@+id/swipeRefreshLayout"
-            app:layout_constraintEnd_toEndOf="@+id/ibSearchByScan"
-            app:layout_constraintStart_toStartOf="@+id/etSearchBar" />
-
-        <TextView
             android:id="@+id/tvGalleryTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:text=""
+            android:text="@string/gallery_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@color/primaryText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,15 +34,17 @@
             android:layout_height="47dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
+            android:background="@android:drawable/editbox_background"
+            android:drawableStart="@drawable/ic_user_icon"
+            android:drawableTint="@color/my_dark_grey"
             android:ems="10"
-            android:inputType="text"
             android:hint="@string/gallery_searchbar_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvGalleryTitle"
-            android:background="@color/my_dark_grey"
-            android:textColorHint="@color/white"
+            android:inputType="text"
             android:paddingLeft="8sp"
-            />
+            android:textColor="@color/black"
+            android:textColorHint="@color/secondaryText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGalleryTitle" />
 
         <ImageButton
             android:id="@+id/ibSearchByScan"
@@ -68,7 +62,7 @@
             android:id="@+id/swipeRefreshLayout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
