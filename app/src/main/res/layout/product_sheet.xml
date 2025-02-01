@@ -92,8 +92,8 @@
 
                 <TextView
                     android:id="@+id/tvDetailedPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="75dp"
+                    android:layout_height="36dp"
                     android:layout_marginTop="24dp"
                     android:layout_marginBottom="32dp"
                     android:text="@string/product_price"
@@ -101,6 +101,16 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="@+id/tvDetailedDescription"
                     app:layout_constraintTop_toBottomOf="@+id/tvDetailedCode" />
+
+                <ImageView
+                    android:id="@+id/ivFavorited"
+                    android:layout_width="45dp"
+                    android:layout_height="41dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvDetailedPrice"
+                    app:layout_constraintStart_toStartOf="@+id/tvDetailedCode"
+                    android:tint="@color/favStarColor"
+                    app:srcCompat="@drawable/ic_favorite_border" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </FrameLayout>

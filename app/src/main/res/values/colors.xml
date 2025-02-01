@@ -15,5 +15,7 @@
     <color name="my_dark_grey">#666565</color>
     <color name="my_light_grey">#ECEBEF</color>
     <color name="logoutRed">#950C0C</color>
+    <color name="favStarColor">#F0AC16</color>
+
 
 </resources>
