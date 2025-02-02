@@ -120,7 +120,7 @@ class SubmitFragment : Fragment() {
                 btnSubmit.setText(R.string.submit_logged_submit)
                 return@setOnClickListener
             }
-            //check name (limit at 50 chars)
+            //check name (limit at 20 chars)
             if (productName.length > 20) {
                 Toast.makeText(
                     requireContext(),
@@ -131,7 +131,7 @@ class SubmitFragment : Fragment() {
                 btnSubmit.setText(R.string.submit_logged_submit)
                 return@setOnClickListener
             }
-            //check brand (limit at 50 chars)
+            //check brand (limit at 20 chars)
             if (productBrand.length > 20) {
                 Toast.makeText(
                     requireContext(),
