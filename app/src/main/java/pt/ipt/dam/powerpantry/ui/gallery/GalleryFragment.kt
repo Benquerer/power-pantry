@@ -214,7 +214,7 @@ class GalleryFragment : Fragment() {
         productName.text = product.productName
         productBrand.text = product.productBrand
         productDescription.text = product.productDescription
-        productPrice.text = "${product.productPrice}"
+        productPrice.text = String.format("%.2f",product.productPrice) + "€"
         productCategory.text = product.productCategory
         productCode.text = "${product.productCode}"
         //set image from url

@@ -31,7 +31,7 @@ class GalleryRecyclerViewAdapter(
         val product = productList[position]
         holder.productCode.text = "${product.productCode}"
         holder.productName.text = product.productName
-        holder.productPrice.text = "${product.productPrice}"
+        holder.productPrice.text = String.format("%.2f",product.productPrice) + "€"
         holder.productBrand.text = product.productBrand
 
         //set image from url

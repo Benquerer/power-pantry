@@ -61,24 +61,24 @@ android {
 
 dependencies {
 
-    // API
+    //API
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("androidx.recyclerview:recyclerview:1.2.1")
 
-    // Barcode reading
+    //barcode reading
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
-    // Image Slider
+    //image Slider
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
 
-    // Swipe refresh
+    //swipe refresh
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
 
     //pass hashing
     implementation ("org.mindrot:jbcrypt:0.4")
 
-    //Glide (image from url handling)
+    //glide (image from url handling)
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
