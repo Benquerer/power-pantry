@@ -43,7 +43,8 @@ class FavoritesViewModel(application: Application) : AndroidViewModel(applicatio
         filteredProducts.value = _products.value?.filter { product ->
             product.productName.lowercase().contains(query) ||
                     product.productBrand.lowercase().contains(query) ||
-                    product.productCode.toString().lowercase().contains(query)
+                    product.productCode.toString().lowercase().contains(query)||
+                    product.productCategory.lowercase().contains(query)
         }
     }
 
