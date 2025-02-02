@@ -121,7 +121,7 @@ class SubmitFragment : Fragment() {
                 return@setOnClickListener
             }
             //check name (limit at 50 chars)
-            if (productName.length > 50) {
+            if (productName.length > 20) {
                 Toast.makeText(
                     requireContext(),
                     R.string.wrong_product_name,
@@ -132,7 +132,7 @@ class SubmitFragment : Fragment() {
                 return@setOnClickListener
             }
             //check brand (limit at 50 chars)
-            if (productBrand.length > 50) {
+            if (productBrand.length > 20) {
                 Toast.makeText(
                     requireContext(),
                     R.string.wrong_product_brand,

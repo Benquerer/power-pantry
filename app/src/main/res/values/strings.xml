@@ -111,8 +111,8 @@
     <string name="wrong_image">URL da imagem inválido!</string>
     <string name="submit_sucess_message">Sucesso!! Obrigado por contribuires para o nosso projeto!</string>
     <string name="submit_error">Ocorreu um Erro! Tente mais tarde por favor!</string>
-    <string name="wrong_product_brand"> A marca não pode ter mais de 50 caracteres!</string>
-    <string name="wrong_product_name">O nome do produto não pode ter mais de 50 caracteres!</string>
+    <string name="wrong_product_brand"> A marca não pode ter mais de 20 caracteres!</string>
+    <string name="wrong_product_name">O nome do produto não pode ter mais de 20 caracteres!</string>
 
     <!--   product_sheet -->
     <string name="product_name">Nome do Produto</string>

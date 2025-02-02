@@ -106,8 +106,8 @@
     <string name="wrong_image">Image URL invalid!</string>
     <string name="submit_sucess_message">Success!! Thank you for submitting new products on our project!</string>
     <string name="submit_error">An error occurred! Please, try again later!</string>
-    <string name="wrong_product_brand"> The brand name can not have more than 50 characters!</string>
-    <string name="wrong_product_name">The product name can not have more than 50 characters!</string>
+    <string name="wrong_product_brand"> The brand name can not have more than 20 characters!</string>
+    <string name="wrong_product_name">The product name can not have more than 20 characters!</string>
 
     <!--   product_sheet -->
     <string name="product_name">Product Name</string>
