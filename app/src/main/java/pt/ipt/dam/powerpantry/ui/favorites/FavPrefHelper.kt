@@ -17,11 +17,6 @@ class FavPrefHelper(context: Context) {
         private const val TAG = "FAVORITE_DEBUG"
     }
 
-    fun clearAllPreferences() {
-        sharedPreferences.edit().clear().apply()
-        Log.d(TAG, "All preferences cleared.")
-    }
-
     fun saveUserSet(username: String, set: Set<Long>) {
         val currentMap = getMap()
         val updatedMap = currentMap.toMutableMap()
@@ -72,6 +67,10 @@ class FavPrefHelper(context: Context) {
         val contains = currentSet.contains(value)
         Log.d(TAG, "Checking if $value is in $username favorites: $contains")
         return contains
+    }
+
+    fun getAllUserFavorites(username: String): List<Long> {
+        return getUserSet(username).toList()
     }
 }
 

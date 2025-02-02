@@ -128,8 +128,8 @@ class GalleryFragment : Fragment() {
         }else{
             Log.d("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
         }
-
     }
+
     private fun refreshData(){
         if(isAdded){
             DataRepository.fetchAllProducts(
