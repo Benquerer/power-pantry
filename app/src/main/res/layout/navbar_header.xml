@@ -11,8 +11,8 @@
     <!-- Profile Image -->
     <ImageView
         android:id="@+id/nav_profile_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="75dp"
+        android:layout_height="68dp"
         android:src="@drawable/ic_guest" />
 
     <!-- Username (Default: Guest) -->

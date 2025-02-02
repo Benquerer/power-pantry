@@ -5,7 +5,7 @@
     <string name="app_name" translatable="false">Power Pantry</string>
     <string name="app_logo_img" translatable="false">Power Pantry</string>
     <string name="version_number" translatable="false">0.0.2</string>
-    <string name="app_desc">Esta aplicação foi desenvolvida como projeto final\n da disciplina de D.A.M de 24/25 do curso de \nEngenharia Informática no IPT, pelos alunos \nAndré R. Benquerer com o número 24633 e \nDiogo A. Cardeira com o número 24877. \n Foram usados para este trabalho as seguintes bilbliotecas e API, API do Sheety, RetroFit, Zxing, JBCrypt, Glide, estas bibliotecas foram obtidas através dos respetivos websites ou \n github de cada uma. \n Todo o código desta aplicação destina-se a fins educativos e de aprendizagem.</string>
+    <string name="app_desc">Esta aplicação foi desenvolvida como projeto final da disciplina de D.A.M de 24/25 do curso de Engenharia Informática no IPT, pelos alunos André R. Benquerer com o número 24633 e Diogo A. Cardeira com o número 24877. Foram usados para este trabalho as seguintes bilbliotecas e API, API do Sheety, RetroFit, Zxing, JBCrypt, Glide, estas bibliotecas foram obtidas através dos respetivos websites ou github de cada uma. Todo o código desta aplicação destina-se a fins educativos e de aprendizagem.</string>
     <string name="app_contact">Contacte-nos através de: \n fakemail@powerpantry.com</string>
     <string name="Abt_Title">Sobre a Aplicação</string>
     <string name="instagram">Instagram da App</string>
@@ -90,7 +90,7 @@
     <string name="submit_logged_productDescription">Descrição</string>
     <string name="submit_logged_productBarcode">Código de Barras</string>
     <string name="submit_logged_productPrice">Preço</string>
-    <string name="submit_logged_productImage">URL da Imagem</string>
+    <string name="submit_logged_productImage">URL da Imagem (Opcional)</string>
     <string name="submit_logged_submit">Submeter</string>
 
     <!--    activity_test_check -->

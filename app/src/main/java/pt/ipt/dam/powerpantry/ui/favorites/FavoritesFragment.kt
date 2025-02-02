@@ -26,56 +26,86 @@ import pt.ipt.dam.powerpantry.data.Product
 import pt.ipt.dam.powerpantry.databinding.FragmentFavoritesLoggedInBinding
 import pt.ipt.dam.powerpantry.ui.gallery.GalleryRecyclerViewAdapter
 
+
+/**
+ * Fragment for the logged in version of the  "Favorites" page
+ */
 class FavoritesFragment : Fragment() {
 
+    /**
+     * View binding
+     */
     private lateinit var binding: FragmentFavoritesLoggedInBinding
+
+    /**
+     * View model for data handling
+     */
     private lateinit var favoritesViewModel: FavoritesViewModel
+
+    /**
+     * Recycler view for display
+     */
     private lateinit var recyclerView: RecyclerView
+
+    /**
+     * Adapter for recycler view
+     */
     private lateinit var favoritesAdapter: GalleryRecyclerViewAdapter
+
+    /**
+     * Swipe refresh layout to handle refreshing in recycler view
+     */
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
+    /**
+     * Shared preferences of user preferences
+     */
     private lateinit var userPreferences: SharedPreferences
+
+    /**
+     * Favorites helper
+     */
     private lateinit var favPrefHelper: FavPrefHelper
 
+    /**
+     * Method for creating the view
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Initialize ViewModel
+        //init viewmodel
         favoritesViewModel = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(requireActivity().application)
         ).get(FavoritesViewModel::class.java)
 
-        // Initialize Data Binding
+        //initialize view binding
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favorites_logged_in, container, false)
         binding.favViewModel = favoritesViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
-        // Init SharedPreferences and Fav Helper
+        //get shared preferences and start favhelper
         userPreferences = requireActivity().getSharedPreferences("UserPreferences", Context.MODE_PRIVATE)
         favPrefHelper = FavPrefHelper(requireContext())
-
-        // Init Swipe Refresh
+        //init swipe refresh
         swipeRefreshLayout = binding.LoggedSwipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             refreshFavorites()
         }
-
-        // Init RecyclerView
+        //init recycler view
         recyclerView = binding.rvLoggedFav
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         favoritesAdapter = GalleryRecyclerViewAdapter(emptyList()) { product -> showProductDetails(product) }
         recyclerView.adapter = favoritesAdapter
-
-        // Observe favorites
+        //observe changes in favorites list
         favoritesViewModel.filteredProducts.observe(viewLifecycleOwner) { favoriteList ->
             favoritesAdapter = GalleryRecyclerViewAdapter(favoriteList) { product -> showProductDetails(product) }
             recyclerView.adapter = favoritesAdapter
         }
 
-        // Search functionality
+        //search functionality on searchbar
         binding.etLoggedFavSearchBar.addTextChangedListener(object : TextWatcher {
+            //change value of query in viewmodel when the searchbar text changes
             override fun afterTextChanged(s: Editable?) {
                 favoritesViewModel.searchQuery.value = s.toString()
             }
@@ -83,64 +113,90 @@ class FavoritesFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
 
-        // Load initial data
+        //initial fetch in api for favorites
         loadFavorites()
 
         return binding.root
     }
 
+    /**
+     * Method for fetching the user's favorites from api
+     */
     private fun loadFavorites(){
         if(isAdded){
-            //only fetch if null
+            //only fetch with this if list is null
             if(favoritesViewModel.products.value.isNullOrEmpty()){
                 DataRepository.fetchAllProducts(
+                    //handle onresult callback
                     onResult = { products ->
                         if(isAdded){
+                            //get username of logged user
                             val username = userPreferences.getString("username", "guest") ?: "guest"
+                            //get favorites list (barcodes of favorited products)
                             val favoritesList = favPrefHelper.getAllUserFavorites(username)
+                            //get favorites products by filtering products with barcodes in favorites list
                             val favoriteProducts = products.filter { it.productCode in favoritesList }
+                            //set in view model
                             favoritesViewModel.setFavorites(favoriteProducts)
+                            //set refreshing false (just to be sure)
                             swipeRefreshLayout.isRefreshing = false
-                            Log.d("ANDRE_TEST", "FETCHED DATA")
+                            //log api action
+                            Log.d("PowerPantry_API", "FETCHED DATA via loadFavorites")
                         }
                     },
+                    //handle onerror callback
                     onError = { errorMessage ->
-                        Log.e("ANDRE_TEST",errorMessage)
+                        //set refreshing false (just to be sure)
                         swipeRefreshLayout.isRefreshing = false
                     }
                 )
             }else{
-                Log.d("ANDRE_TEST", "DID NOT FETCH ANYTHING")
+                Log.d("PowerPantry_API", "No fetch done - list not null")
             }
         }else{
-            Log.d("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
+            Log.d("PowerPantry_API", "Fragment is not attached")
         }
     }
 
+    /**
+     * Method for refreshing the favorites list (forces change)
+     */
     private fun refreshFavorites(){
         if(isAdded){
             DataRepository.fetchAllProducts(
+                //handle onresult callback
                 onResult = { products ->
                     if(isAdded){
+                        //get username of logged user
                         val username = userPreferences.getString("username", "guest") ?: "guest"
+                        //get favorites list (barcodes of favorited products)
                         val favoritesList = favPrefHelper.getAllUserFavorites(username)
+                        //get favorites products by filtering products with barcodes in favorites list
                         val favoriteProducts = products.filter { it.productCode in favoritesList }
+                        //set in view model
                         favoritesViewModel.forceSetFavorites(favoriteProducts)
+                        //stop refreshing
                         swipeRefreshLayout.isRefreshing = false
-                        Log.d("ANDRE_TEST", "FETCHED DATA via refresh")
+                        Log.d("PowerPantry_API", "FETCHED DATA via refreshFavorites")
                     }
                 },
+                //handle onerror callback
                 onError = { errorMessage ->
-                    Log.e("ANDRE_TEST",errorMessage)
+                    Log.e("PowerPantry_API",errorMessage)
+                    //stop refreshing
                     swipeRefreshLayout.isRefreshing = false
                 }
             )
         }else{
-            Log.d("ANDRE_TEST", "Fragment is not attached, skipping barcode result update.")
+            Log.d("PowerPantry_API", "Fragment is not attached.")
         }
     }
 
-    //showing dialog with details
+    /**
+     * Method for showing the product details in a bottom sheet
+     *
+     * @param product Product - The product to show details for
+     */
     private fun showProductDetails(product: Product){
 
         //sheet dialog
@@ -160,7 +216,7 @@ class FavoritesFragment : Fragment() {
         productName.text = product.productName
         productBrand.text = product.productBrand
         productDescription.text = product.productDescription
-        productPrice.text = "$${product.productPrice}"
+        productPrice.text = String.format("%.2f",product.productPrice) + "€" //make sure the price is formated
         productCategory.text = product.productCategory
         productCode.text = "${product.productCode}"
         //set image from url
@@ -204,6 +260,7 @@ class FavoritesFragment : Fragment() {
         }else{
             favIcon.setImageResource(R.drawable.ic_halfstar)
             favIcon.setOnClickListener{
+                //create alert dialog to inform user of member-only action
                 val builder = AlertDialog.Builder(requireContext())
                 builder.setTitle("Member's only action")
                 builder.setMessage("The \"Favorites\" is a member-only feature, please login or register to save your favorite products")
@@ -213,10 +270,11 @@ class FavoritesFragment : Fragment() {
                 builder.create().show()
             }
         }
+        //listener for onClick - refresh favorites when closing detailed view
         sheetDialog.setOnDismissListener{
             refreshFavorites()
         }
-        //display
+        //display sheet
         sheetDialog.setContentView(view)
         sheetDialog.show()
 

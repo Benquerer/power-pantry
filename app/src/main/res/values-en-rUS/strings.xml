@@ -2,7 +2,7 @@
 <resources>
 
     <!--    fragment_about-->
-    <string name="app_desc">This app was developed as a final project\n for the D.A.M class present in the bachelor\'s degree of \ncomputer engineering in IPT, it was made by the students \nAndré R. Benquerer with the number 24633 and \nDiogo A. Cardeira with the number 24877. In this project the following libraries and API were used, Sheety\'s API, RetroFit, Zxing, JBCrypt, Glide, these libraries were obtained from their respective websites or \n their GitHub repositories. \n All of the code present in this app was made purely for learning and education purposes.</string>
+    <string name="app_desc">This app was developed as a final project for the D.A.M class present in the bachelor\'s degree of computer engineering in IPT, it was made by the students André R. Benquerer with the number 24633 and Diogo A. Cardeira with the number 24877. In this project the following libraries and API were used, Sheety\'s API, RetroFit, Zxing, JBCrypt, Glide, these libraries were obtained from their respective websites or  their GitHub repositories. All of the code present in this app was made purely for learning and education purposes.</string>
     <string name="app_contact">Contact us through our e-mail: fakemail@powerpantry.com</string>
     <string name="Abt_Title">About the app</string>
     <string name="instagram">App\'s Instagram</string>
@@ -87,7 +87,7 @@
     <string name="submit_logged_productDescription">Description</string>
     <string name="submit_logged_productBarcode">Barcode</string>
     <string name="submit_logged_productPrice">Price</string>
-    <string name="submit_logged_productImage">Image URL</string>
+    <string name="submit_logged_productImage">Image URL (Optional)</string>
     <string name="submit_logged_submit">Submit</string>
 
     <!--    activity_test_check -->
