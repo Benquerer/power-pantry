@@ -87,7 +87,7 @@
     <string name="submit_logged_productDescription">Description</string>
     <string name="submit_logged_productBarcode">Barcode</string>
     <string name="submit_logged_productPrice">Price</string>
-    <string name="submit_logged_productImage">Image URL</string>
+    <string name="submit_logged_productImage">Image URL (Optional)</string>
     <string name="submit_logged_submit">Submit</string>
 
     <!--    activity_test_check -->

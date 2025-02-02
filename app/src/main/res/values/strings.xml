@@ -90,7 +90,7 @@
     <string name="submit_logged_productDescription">Descrição</string>
     <string name="submit_logged_productBarcode">Código de Barras</string>
     <string name="submit_logged_productPrice">Preço</string>
-    <string name="submit_logged_productImage">URL da Imagem</string>
+    <string name="submit_logged_productImage">URL da Imagem (Opcional)</string>
     <string name="submit_logged_submit">Submeter</string>
 
     <!--    activity_test_check -->
