@@ -108,8 +108,7 @@ class SubmitFragment : Fragment() {
                     "Por favor, preenche todos os campos",
                     Toast.LENGTH_SHORT
                 ).show()
-                //disable button for verifications
-                btnSubmit.isEnabled = false
+                btnSubmit.isEnabled = true
                 btnSubmit.setText(R.string.submit_logged_submit)
                 return@setOnClickListener
             }
@@ -121,7 +120,7 @@ class SubmitFragment : Fragment() {
                     "Preco invalido! O valor deve ser entre 0.01€ e 50,000.00€",
                     Toast.LENGTH_SHORT
                 ).show()
-                btnSubmit.isEnabled = false
+                btnSubmit.isEnabled = true
                 btnSubmit.setText(R.string.submit_logged_submit)
                 return@setOnClickListener
             }
@@ -129,7 +128,7 @@ class SubmitFragment : Fragment() {
             if (productImage.isNotEmpty() && !isUrlValid(productImage)) {
                 Toast.makeText(requireContext(), "URL da imagem inválido!", Toast.LENGTH_SHORT)
                     .show()
-                btnSubmit.isEnabled = false
+                btnSubmit.isEnabled = true
                 btnSubmit.setText(R.string.submit_logged_submit)
                 return@setOnClickListener
             }
@@ -163,10 +162,10 @@ class SubmitFragment : Fragment() {
                         R.id.etLoggedImage,
                         R.id.etLoggedDescription
                     ).forEach { id -> view.findViewById<EditText>(id).setText("") }
-                    btnSubmit.isEnabled = false
+                    btnSubmit.isEnabled = true
                     btnSubmit.setText(R.string.submit_logged_submit)
                 } else {
-                    btnSubmit.isEnabled = false
+                    btnSubmit.isEnabled = true
                     btnSubmit.setText(R.string.submit_logged_submit)
                     Toast.makeText(requireContext(), "Ocorreu um Erro! Tente mais tarde por favor!", Toast.LENGTH_SHORT).show()
                 }

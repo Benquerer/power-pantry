@@ -72,6 +72,8 @@ class LoginFragment : Fragment() {
                         }
                     },
                     onError = {errorMessage ->
+                        btnLogin.isEnabled = true
+                        btnLogin.setText(R.string.login_button_text)
                         Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 )

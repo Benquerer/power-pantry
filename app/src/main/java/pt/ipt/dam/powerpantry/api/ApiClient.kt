@@ -6,7 +6,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val BASE_URL = "https://api.sheety.co/a166ef8ad79ba4ee2287ca61fb851fb5/powerPantryApi/"
+    private const val BASE_URL = "https://api.sheety.co/933c1e54117bebf9492ad891fe3f0b73/powerPantryApi/"
 
 
     val instance: Api by lazy {
