@@ -54,6 +54,7 @@
         android:drawableStart="@drawable/ic_user_icon"
         android:drawableTint="@color/my_dark_grey"
         android:hint="@string/login_input_username"
+        android:inputType="textPersonName"
         android:padding="10dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/black"
@@ -77,6 +78,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            android:contentDescription="@string/app_logo_img"
             android:src="@mipmap/power_pantry_img_round" />
     </androidx.cardview.widget.CardView>
 

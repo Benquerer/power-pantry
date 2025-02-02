@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_constraintBottom_toBottomOf="parent"
@@ -27,6 +26,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/app_logo_img"
                 app:srcCompat="@drawable/powe2r" />
 
             <TextView
@@ -34,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
-                android:text="A sua dispensa de ginásio!"
+                android:text="@string/home_subtitle"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@color/primaryText"
@@ -89,7 +89,8 @@
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/marqueeText"
-                app:srcCompat="@drawable/iptlogo" />
+                app:srcCompat="@drawable/iptlogo"
+                android:contentDescription="@string/home_ipticon"/>
 
             <ImageView
                 android:id="@+id/sheetyLogo"
@@ -97,7 +98,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Sheety Website"
+                android:contentDescription="@string/home_sheetyicon"
                 android:clickable="true"
                 android:elevation="2dp"
                 android:focusable="true"
@@ -111,7 +112,7 @@
                 android:layout_height="50dp"
                 android:layout_marginEnd="32dp"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:contentDescription="Informática Website"
+                android:contentDescription="@string/home_informaticaicon"
                 android:clickable="true"
                 android:elevation="2dp"
                 android:focusable="true"

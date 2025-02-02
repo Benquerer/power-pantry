@@ -189,7 +189,7 @@ class GalleryFragment : Fragment() {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 setupScanButton()
             } else {
-                Toast.makeText(requireContext(), "Camera permission is required to scan barcodes.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Para fazer scan de código de barras é preciso a permissão da Câmera.", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -214,7 +214,7 @@ class GalleryFragment : Fragment() {
         productName.text = product.productName
         productBrand.text = product.productBrand
         productDescription.text = product.productDescription
-        productPrice.text = "$${product.productPrice}"
+        productPrice.text = "${product.productPrice}"
         productCategory.text = product.productCategory
         productCode.text = "${product.productCode}"
         //set image from url
@@ -259,9 +259,9 @@ class GalleryFragment : Fragment() {
             favIcon.setImageResource(R.drawable.ic_halfstar)
             favIcon.setOnClickListener{
                 val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Member's only action")
-                builder.setMessage("The \"Favorites\" is a member-only feature, please login or register to save your favorite products")
-                builder.setPositiveButton("Okay"){dialog,_ ->
+                builder.setTitle("Ação disponível só para membros.")
+                builder.setMessage("Os \"Favoritos\" são uma funcionalidade disponível só para membros, para acessares os teus produtos favoritos entra na tua conta ou regista-te na aplicação.")
+                builder.setPositiveButton("Ok"){dialog,_ ->
                     dialog.dismiss()
                 }
                 builder.create().show()
@@ -276,9 +276,9 @@ class GalleryFragment : Fragment() {
     //alert for product not found
     private fun productNotFound( message:String ){
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Product Not Found")
+        builder.setTitle("Produto não encontrado.")
         builder.setMessage(message)
-        builder.setPositiveButton("Okay") { dialog, _ ->
+        builder.setPositiveButton("Ok") { dialog, _ ->
             dialog.dismiss()
         }
         val dialog = builder.create()

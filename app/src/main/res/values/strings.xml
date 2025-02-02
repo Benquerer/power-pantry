@@ -21,7 +21,7 @@
     <string name="close_menu">Fechar menu de navegação</string>
 
     <!--    nav_header-->
-    <string name="navBar_WelcomeMsg">Bem-Vindo %s,</string>
+    <string name="navBar_WelcomeMsg">Bem-Vindo, %s!</string>
     <string name="navBar_GuestTitle">Visitante</string>
     <string name="navBar_GuestMsg">Autentica-te para acessar todas as funções da aplicação.</string>
     <string name="navBar_logout_button">Sair</string>
@@ -35,8 +35,10 @@
     <string name="navBar_About">Sobre a Aplicação</string>
 
     <!--    favorites_guest -->
-    <string name="favorites_title">Para veres os teus items favoritos, tens que te autenticar.</string>
-    <string name="favorites_subtitle">Para acessar a tua lista de favoritos, autentica-te.</string>
+    <string name="favorites_icon">Ícone dos Favoritos</string>
+    <string name="favorites_title">Favoritos</string>
+    <string name="favorites_subtitle">Autentica-te para salvares os teus produtos favoritos e acessa-los quando quiseres!</string>
+    <string name="favorites_button">Autentica-te!</string>
 
     <!--    favorites_logged_in -->
     <string name="favorites_login_title">Bem-vindo à tua página de favoritos!</string>
@@ -45,41 +47,51 @@
     <!--    gallery -->
     <string name="gallery_title">Galeria de Produtos</string>
     <string name="gallery_searchbar_text">Procurar Produtos</string>
+    <string name="gallery_barcodescanner_icon">Ícone do Scanner de Código de Barras</string>
 
     <!--    gallery_item -->
     <string name="gallery_item_brand">Marca</string>
     <string name="gallery_item_price">Preço</string>
     <string name="gallery_item_productcode">Código de Barras</string>
     <string name="gallery_item_productname">Nome do Produto</string>
+    <string name="gallery_item_image">Imagem do Produto</string>
+
+    <!--    item_slider -->
+    <string name="item_slider_icon">Ícone do Slider</string>
 
     <!--    home -->
     <string name="home_logo">Logo na Home</string>
     <string name="home_slidingtext">A sua galeria de todo o tipo de produtos de ginásio. Aqui podes encontrar os melhores suplementos de ginásio.</string>
-    <string name="home_subtitle">Regista-te para acessares as diversas funcionalidades da aplicação.</string>
+    <string name="home_subtitle">A sua dispensa de ginásio!</string>
+    <string name="home_ipticon">Ícone e Link do IPT</string>
+    <string name="home_informaticaicon">Ícone e Link do Curso de Informática</string>
+    <string name="home_sheetyicon">Ícone e Link do Sheety</string>
 
     <!--    login -->
     <string name="login_button_text">Entrar</string>
     <string name="login_input_password">Palavra-Passe</string>
     <string name="login_input_username">Nome do Utilizador</string>
     <string name="login_image">Login Imagem</string>
-    <string name="logging_in_text">Entrando...</string>
+    <string name="logging_in_text">Entrando…</string>
     <string name="logged_in_sucess">Entrou!</string>
 
     <!--    submit_guest -->
-    <string name="submit_title">Para submeteres novos produtos, tens que te autenticar.</string>
-    <string name="submit_subtitle">Autentica-te para poderes submeter novos produtos na Galeria.</string>
+    <string name="submit_title">Submete Novos Produtos</string>
+    <string name="submit_subtitle">Autentique-se para poder contribuir com \nnovos produtos e aumentar a galeria da \naplicação para si e para todos os utilizadores.</string>
+    <string name="submit_icon">Ícone de Submeter</string>
+    <string name="submit_button">Autentica-te!</string>
 
     <!--    submit_logged_in -->
-    <string name="submit_logged_title">submeter novo item</string>
-    <string name="submit_logged_thanksMsg">Obrigado por contribuir com nosso projeto! Aqui poderás submeter novos itens à nossa galeria.</string>
+    <string name="submit_logged_title">Submeter novo item</string>
+    <string name="submit_logged_thanksMsg">Obrigado por contribuires para o nosso projeto! Aqui poderás submeter novos produtos na nossa galeria.</string>
     <string name="submit_logged_productName">Nome do Produto</string>
     <string name="submit_logged_productBrand">Marca</string>
     <string name="submit_logged_productCategory">Categoria</string>
     <string name="submit_logged_productDescription">Descrição</string>
     <string name="submit_logged_productBarcode">Código de Barras</string>
     <string name="submit_logged_productPrice">Preço</string>
-    <string name="submit_logged_productImage">URL para imagem</string>
-    <string name="submit_logged_submit">submeter</string>
+    <string name="submit_logged_productImage">URL da Imagem</string>
+    <string name="submit_logged_submit">Submeter</string>
 
     <!--    activity_test_check -->
     <string name="activity_test_check">Fetching...</string>

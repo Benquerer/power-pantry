@@ -31,7 +31,7 @@ class SubmitFragment : Fragment() {
 
         //setup spinner and selection event
         val spinner = view.findViewById<Spinner>(R.id.spLoggedCategory)
-        val categories: List<String> = listOf("Proteina","Snack","Creatina","Pre-Treino","Outros")
+        val categories: List<String> = listOf("Proteína","Snack","Creatina","Pré-Treino","Outros")
         //adapter with custom colors
         val adapter = object : ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, categories) {
             override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -71,7 +71,7 @@ class SubmitFragment : Fragment() {
             val productImage = view.findViewById<EditText>(R.id.etLoggedImage)?.text.toString()
             //verify info
             if(selectedCategory.isNullOrEmpty() || productName.isNullOrEmpty() || productBrand.isNullOrEmpty() || productBarcode.isNullOrEmpty()  || productPrice.isNullOrEmpty()){
-                Toast.makeText(requireContext(), "Please fill all inputs", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Por favor, preenche todos os campos", Toast.LENGTH_SHORT).show()
             }else{
                 //build product
                 val newProduct = Product(
@@ -86,7 +86,7 @@ class SubmitFragment : Fragment() {
                 DataRepository.createProduct(newProduct){success ->
                     if(success){
                         //clear views
-                        Toast.makeText(requireContext(), "Success!! Thanks for contributing with the database!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Sucesso!! Obrigado por contribuires para a base de dados!", Toast.LENGTH_SHORT).show()
                         view.findViewById<EditText>(R.id.etLoggedName).setText("")
                         view.findViewById<EditText>(R.id.etLoggedBrand).setText("")
                         view.findViewById<EditText>(R.id.etLoggedBarcode).setText("")
@@ -94,7 +94,7 @@ class SubmitFragment : Fragment() {
                         view.findViewById<EditText>(R.id.etLoggedPrice).setText("")
                         view.findViewById<EditText>(R.id.etLoggedImage).setText("")
                     }else{
-                        Toast.makeText(requireContext(), "An error ocurred", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "Ocorreu um Erro!", Toast.LENGTH_SHORT).show()
                     }
 
                 }

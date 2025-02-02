@@ -2,7 +2,7 @@
 <resources>
 
     <!--    fragment_about-->
-    <string name="app_desc">This app was developed as a final project for the "D.A.M" class and it was made by the students André R. Benquerer and Diogo A. Cardeira. All of the code present in this app was made purely for learning and education purposes.</string>
+    <string name="app_desc">This app was developed as a final project\n for the D.A.M class present in the bachelor\'s degree of \ncomputer engineering in IPT, it was made by the students \nAndré R. Benquerer with the number 24633 and \nDiogo A. Cardeira with the number 24877. In this project the following libraries and API were used, Sheety\'s API, RetroFit, Zxing, JBCrypt, Glide, these libraries were obtained from their respective websites or \n their GitHub repositories. \n All of the code present in this app was made purely for learning and education purposes.</string>
     <string name="app_contact">Contact us through our e-mail: fakemail@powerpantry.com</string>
     <string name="Abt_Title">About the app</string>
     <string name="instagram">App\'s Instagram</string>
@@ -11,7 +11,7 @@
 
     <!--    GalleryViewModel/GalleryFragment-->
     <string name="default_scan_text">Click on the button to scan a barcode.</string>
-    <string name="no_barcode_detected">No corresponding code was found.</string>
+    <string name="no_barcode_detected">Incorrect Bar Code.</string>
 
     <!--    MainActivity -->
     <string name="open_menu">Open Navigation Menu</string>
@@ -21,7 +21,7 @@
     <string name="navBar_GuestTitle">Guest</string>
     <string name="navBar_GuestMsg">Login to access all of the app\'s functions.</string>
     <string name="navBar_logout_button">Logout</string>
-    <string name="navBar_WelcomeMsg">Welcome %s</string>
+    <string name="navBar_WelcomeMsg">Welcome, %s!</string>
 
     <!--    navbar_menu-->
     <string name="navBar_Login">Login</string>
@@ -32,8 +32,10 @@
     <string name="navBar_About">About the App</string>
 
     <!--    favorites_guest -->
-    <string name="favorites_title">To see your favorite products, you must be logged in.</string>
-    <string name="favorites_subtitle">To access your favorites list, you must login.</string>
+    <string name="favorites_icon">Favorites Icon</string>
+    <string name="favorites_title">Favorites</string>
+    <string name="favorites_subtitle">Authenticate your account to save your favorite products and access them whenever your need!</string>
+    <string name="favorites_button">Login!</string>
 
     <!--    favorites_logged_in -->
     <string name="favorites_login_title">Welcome to your favorites page!</string>
@@ -42,33 +44,43 @@
     <!--    gallery -->
     <string name="gallery_title">Product Gallery</string>
     <string name="gallery_searchbar_text">Search Products</string>
+    <string name="gallery_barcodescanner_icon">Barcode Scanner Icon</string>
 
     <!--    gallery_item -->
     <string name="gallery_item_brand">Brand</string>
     <string name="gallery_item_price">Price</string>
     <string name="gallery_item_productcode">Barcode</string>
     <string name="gallery_item_productname">Product Name</string>
+    <string name="gallery_item_image">Product Image</string>
+
+    <!--    item_slider -->
+    <string name="item_slider_icon">Slider Icon</string>
 
     <!--    home -->
     <string name="home_logo">Home Logo</string>
-    <string name="home_slidingtext">Welcome to Power Pantry! Where you can find the best gym supplements.</string>
-    <string name="home_subtitle">Your gym product gallery.</string>
+    <string name="home_slidingtext">Your gallery for every type of gym products. This is where you can find the best gym supplements.</string>
+    <string name="home_subtitle">Your gym pantry.</string>
+    <string name="home_ipticon">IPT Icon and Link</string>
+    <string name="home_informaticaicon">Bachelor\'s Icon and Link</string>
+    <string name="home_sheetyicon">Sheety Icon and Link</string>
 
     <!--    login -->
     <string name="login_button_text">Login</string>
     <string name="login_input_password">Password</string>
     <string name="login_input_username">Username</string>
     <string name="login_image">Login Image</string>
-    <string name="logging_in_text">Login in...</string>
+    <string name="logging_in_text">Login in…</string>
     <string name="logged_in_sucess">Logged in!</string>
 
     <!--    submit_guest -->
-    <string name="submit_title">To submit a new product, you need to be logged in.</string>
-    <string name="submit_subtitle">Login to submit new products to the gallery.</string>
+    <string name="submit_title">Submit New Products</string>
+    <string name="submit_subtitle">Authenticate your account to contribute with \nnew products, so that you and new users of the app \ncan find the products of your or their choice.</string>
+    <string name="submit_icon">Submit Icon</string>
+    <string name="submit_button">Login!</string>
 
     <!--    submit_logged_in -->
-    <string name="submit_logged_title">submit new item</string>
-    <string name="submit_logged_thanksMsg">Thanks for contributing with our project! Here you will be able to submit new items to our gallery</string>
+    <string name="submit_logged_title">Submit New Products</string>
+    <string name="submit_logged_thanksMsg">Thanks for contributing in our project! In here, you will be able to submit new products to our gallery</string>
     <string name="submit_logged_productName">Product Name</string>
     <string name="submit_logged_productBrand">Brand</string>
     <string name="submit_logged_productCategory">Category</string>
@@ -76,7 +88,7 @@
     <string name="submit_logged_productBarcode">Barcode</string>
     <string name="submit_logged_productPrice">Price</string>
     <string name="submit_logged_productImage">Image URL</string>
-    <string name="submit_logged_submit">submit</string>
+    <string name="submit_logged_submit">Submit</string>
 
     <!--    activity_test_check -->
     <string name="activity_test_check">Fetching...</string>
