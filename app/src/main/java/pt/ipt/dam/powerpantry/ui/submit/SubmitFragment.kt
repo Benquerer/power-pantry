@@ -120,6 +120,29 @@ class SubmitFragment : Fragment() {
                 btnSubmit.setText(R.string.submit_logged_submit)
                 return@setOnClickListener
             }
+            //check name (limit at 50 chars)
+            if (productName.length > 50) {
+                Toast.makeText(
+                    requireContext(),
+                    R.string.wrong_product_name,
+                    Toast.LENGTH_SHORT
+                ).show()
+                btnSubmit.isEnabled = true
+                btnSubmit.setText(R.string.submit_logged_submit)
+                return@setOnClickListener
+            }
+            //check brand (limit at 50 chars)
+            if (productBrand.length > 50) {
+                Toast.makeText(
+                    requireContext(),
+                    R.string.wrong_product_brand,
+                    Toast.LENGTH_SHORT
+                ).show()
+                btnSubmit.isEnabled = true
+                btnSubmit.setText(R.string.submit_logged_submit)
+                return@setOnClickListener
+            }
+
             //check price (limit at 50.000,00)
             val priceValue = productPrice.toDoubleOrNull()
             if (priceValue == null || priceValue <= 0 || priceValue > 50000.00) {
