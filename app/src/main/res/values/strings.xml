@@ -5,7 +5,7 @@
     <string name="app_name" translatable="false">Power Pantry</string>
     <string name="app_logo_img" translatable="false">Power Pantry</string>
     <string name="version_number" translatable="false">0.0.2</string>
-    <string name="app_desc">Esta aplicação foi desenvolvida como projeto final da disciplina de D.A.M de 24/25 do curso de Engenharia Informática no IPT, pelos alunos André R. Benquerer com o número 24633 e Diogo A. Cardeira com o número 24877. Foram usados para este trabalho as seguintes bilbliotecas e API, API do Sheety, RetroFit, Zxing, JBCrypt, Glide, estas bibliotecas foram obtidas através dos respetivos websites ou github de cada uma. Todo o código desta aplicação destina-se a fins educativos e de aprendizagem.</string>
+    <string name="app_desc">Esta aplicação foi desenvolvida como projeto final da disciplina de D.A.M de 24/25 do curso de Engenharia Informática no IPT, pelos alunos André R. Benquerer com o número 24633 e Diogo A. Cardeira com o número 24877. Foram usados para este trabalho as seguintes bilbliotecas e API: API do Sheety, RetroFit, Zxing, JBCrypt e Glide, estas bibliotecas foram obtidas através dos respetivos websites ou repositórios do Github de cada uma. Todo o código desta aplicação destina-se a fins educativos e de aprendizagem.</string>
     <string name="app_contact">Contacte-nos através de: \n fakemail@powerpantry.com</string>
     <string name="Abt_Title">Sobre a Aplicação</string>
     <string name="instagram">Instagram da App</string>
@@ -27,11 +27,11 @@
     <string name="navBar_logout_button">Sair</string>
 
     <!--    navbar_menu-->
-    <string name="navBar_Login">Entrar / Registro</string>
+    <string name="navBar_Login">Entrar / Registo</string>
     <string name="navBar_Home">Menu Principal</string>
     <string name="navBar_Gallery">Galeria de Produtos</string>
     <string name="navBar_Favorites">Favoritos</string>
-    <string name="navBar_Submit">Sugerir novos produtos</string>
+    <string name="navBar_Submit">Submeter Novos Produtos</string>
     <string name="navBar_About">Sobre a Aplicação</string>
 
     <!--    favorites_guest -->
@@ -41,13 +41,18 @@
     <string name="favorites_button">Autentica-te!</string>
 
     <!--    favorites_logged_in -->
-    <string name="favorites_login_title">Bem-vindo à tua página de favoritos!</string>
-    <string name="favorites_login_subtitle">Aqui podes ver os produtos aos quais deste favorito. </string>
+    <string name="members_only_title">Função para Membros</string>
+    <string name="members_only_text">A página de favoritos é uma funcionalidade para membros, por favor autentica-te para salvares os teus produtos favoritos.</string>
+    <string name="ok">Okay</string>
+    <string name="search_favorites">Procurar em favoritos</string>
+    <string name="your_favorites">Os seus favoritos!</string>
+
 
     <!--    gallery -->
     <string name="gallery_title">Galeria de Produtos</string>
     <string name="gallery_searchbar_text">Procurar Produtos</string>
     <string name="gallery_barcodescanner_icon">Ícone do Scanner de Código de Barras</string>
+    <string name="camera_permission">Para fazer scan do código de barras é preciso a permissão da Câmera.</string>
 
     <!--    gallery_item -->
     <string name="gallery_item_brand">Marca</string>
@@ -55,6 +60,7 @@
     <string name="gallery_item_productcode">Código de Barras</string>
     <string name="gallery_item_productname">Nome do Produto</string>
     <string name="gallery_item_image">Imagem do Produto</string>
+    <string name="product_not_found">Produto não encontrado.</string>
 
     <!--    item_slider -->
     <string name="item_slider_icon">Ícone do Slider</string>
@@ -62,7 +68,7 @@
     <!--    home -->
     <string name="home_logo">Logo na Home</string>
     <string name="home_slidingtext">A sua galeria de todo o tipo de produtos de ginásio. Aqui podes encontrar os melhores suplementos de ginásio.</string>
-    <string name="home_subtitle">A sua dispensa de ginásio!</string>
+    <string name="home_subtitle">Potencia os teus treinos com os melhores produtos!</string>
     <string name="home_ipticon">Ícone e Link do IPT</string>
     <string name="home_informaticaicon">Ícone e Link do Curso de Informática</string>
     <string name="home_sheetyicon">Ícone e Link do Sheety</string>
@@ -71,18 +77,26 @@
     <string name="login_button_text">Entrar</string>
     <string name="login_input_password">Palavra-Passe</string>
     <string name="login_input_username">Nome do Utilizador</string>
-    <string name="login_image">Login Imagem</string>
+    <string name="login_image">Imagem do Login</string>
     <string name="logging_in_text">Entrando…</string>
     <string name="logged_in_sucess">Entrou!</string>
+    <string name="login_done">LOGIN EFETUADO!</string>
+    <string name="filled_camps">Têm a certeza de que todos os campos estão preenchidos.</string>
+    <string name="wrong_password">Palavra-Passe Errada!</string>
+    <string name="no_equal_password">As Palavras-Passe não são iguais!</string>
+    <string name="register_complete">Registo Completo!</string>
+    <string name="error_account_created">"Erro na criação da conta!</string>
+    <string name="user_already_chosen">Nome do utilizador já foi escolhido! Por favor, insere outro nome!</string>
+
 
     <!--    submit_guest -->
     <string name="submit_title">Submete Novos Produtos</string>
-    <string name="submit_subtitle">Autentique-se para poder contribuir com \nnovos produtos e aumentar a galeria da \naplicação para si e para todos os utilizadores.</string>
+    <string name="submit_subtitle">Autentique-se para poder contribuir com novos produtos e aumentar a galeria da aplicação para si e para todos os utilizadores.</string>
     <string name="submit_icon">Ícone de Submeter</string>
     <string name="submit_button">Autentica-te!</string>
 
     <!--    submit_logged_in -->
-    <string name="submit_logged_title">Submeter novo item</string>
+    <string name="submit_logged_title">Submeter Novo Produto</string>
     <string name="submit_logged_thanksMsg">Obrigado por contribuires para o nosso projeto! Aqui poderás submeter novos produtos na nossa galeria.</string>
     <string name="submit_logged_productName">Nome do Produto</string>
     <string name="submit_logged_productBrand">Marca</string>
@@ -92,14 +106,16 @@
     <string name="submit_logged_productPrice">Preço</string>
     <string name="submit_logged_productImage">URL da Imagem (Opcional)</string>
     <string name="submit_logged_submit">Submeter</string>
-
-    <!--    activity_test_check -->
-    <string name="activity_test_check">Fetching...</string>
+    <string name="submitting">A submeter…</string>
+    <string name="wrong_price">Preço inválido! O valor deve ser entre 0.01€ e 50,000.00€.</string>
+    <string name="wrong_image">URL da imagem inválido!</string>
+    <string name="submit_sucess_message">Sucesso!! Obrigado por contribuires para o nosso projeto!</string>
+    <string name="submit_error">Ocorreu um Erro! Tente mais tarde por favor!</string>
 
     <!--   product_sheet -->
     <string name="product_name">Nome do Produto</string>
     <string name="product_brand">Marca</string>
-    <string name="product_description">"Descrição "</string>
+    <string name="product_description">Descrição</string>
     <string name="product_barcode">Código de Barras</string>
     <string name="product_category">Categoria</string>
     <string name="product_price">Preço</string>

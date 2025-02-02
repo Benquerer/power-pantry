@@ -24,8 +24,8 @@
 
                 <TextView
                     android:id="@+id/tvDetailedName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="285dp"
+                    android:layout_height="64dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/product_name"
                     android:textAllCaps="true"

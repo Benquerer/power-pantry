@@ -70,7 +70,7 @@ class SubmitFragment : Fragment() {
         }
         //set adapter on spinner
         spinner.adapter = adapter
-        //initialize selectecCategoru (starts as "Outros" in case of problems)
+        //initialize selectedCategoru (starts as "Outros" in case of problems)
         var selectedCategory = "Outros"
         //add listener to selection on dropdown
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -93,7 +93,7 @@ class SubmitFragment : Fragment() {
         btnSubmit.setOnClickListener {
             //disable button for verifications
             btnSubmit.isEnabled = false
-            btnSubmit.setText("A submeter...")
+            btnSubmit.setText(R.string.submitting)
 
             //get all information (already have category)
             val productName = view.findViewById<EditText>(R.id.etLoggedName)?.text.toString().trim()
@@ -112,7 +112,7 @@ class SubmitFragment : Fragment() {
             if (selectedCategory.isNullOrEmpty() || productName.isNullOrEmpty() || productBrand.isNullOrEmpty() || productBarcode.isNullOrEmpty() || productPrice.isNullOrEmpty() || productDescription.isNullOrEmpty()) {
                 Toast.makeText(
                     requireContext(),
-                    "Por favor, preenche todos os campos",
+                    R.string.filled_camps,
                     Toast.LENGTH_SHORT
                 ).show()
                 //restore button
@@ -125,7 +125,7 @@ class SubmitFragment : Fragment() {
             if (priceValue == null || priceValue <= 0 || priceValue > 50000.00) {
                 Toast.makeText(
                     requireContext(),
-                    "Preco invalido! O valor deve ser entre 0.01€ e 50,000.00€",
+                    R.string.wrong_price,
                     Toast.LENGTH_SHORT
                 ).show()
                 //restore button
@@ -135,7 +135,7 @@ class SubmitFragment : Fragment() {
             }
             //check url (allows no image)
             if (productImage.isNotEmpty() && !isUrlValid(productImage)) {
-                Toast.makeText(requireContext(), "URL da imagem inválido!", Toast.LENGTH_SHORT)
+                Toast.makeText(requireContext(), R.string.wrong_image, Toast.LENGTH_SHORT)
                     .show()
                 //restore button
                 btnSubmit.isEnabled = true
@@ -160,7 +160,7 @@ class SubmitFragment : Fragment() {
                 if (success) {
                     Toast.makeText(
                         requireContext(),
-                        "Sucesso!! Obrigado por contribuires para a base de dados!",
+                        R.string.submit_sucess_message,
                         Toast.LENGTH_SHORT
                     ).show()
                     //clear views
@@ -182,7 +182,7 @@ class SubmitFragment : Fragment() {
                     btnSubmit.setText(R.string.submit_logged_submit)
                     Toast.makeText(
                         requireContext(),
-                        "Ocorreu um Erro! Tente mais tarde por favor!",
+                        R.string.submit_error,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

@@ -17,16 +17,16 @@
 
         <TextView
             android:id="@+id/tvLoggedFavTitle"
-            android:layout_width="179dp"
-            android:layout_height="38dp"
+            android:layout_width="287dp"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:drawableStart="@drawable/ic_favorite_full"
-            android:drawableTint="@color/favStarColor"
             android:drawablePadding="5sp"
-            android:text="Seus Favoritos"
+            android:text="@string/your_favorites"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textColor="@color/primaryText"
+            app:drawableStartCompat="@drawable/ic_favorite_full"
+            app:drawableTint="@color/favStarColor"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,7 +39,7 @@
             android:background="@android:drawable/editbox_background"
             android:drawableStart="@drawable/ic_user_icon"
             android:drawableTint="@color/my_dark_grey"
-            android:hint="Procurar em favoritos"
+            android:hint="@string/search_favorites"
             android:inputType="text"
             android:paddingLeft="8sp"
             android:textColor="@color/black"
