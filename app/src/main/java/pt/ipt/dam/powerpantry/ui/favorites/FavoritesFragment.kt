@@ -262,9 +262,9 @@ class FavoritesFragment : Fragment() {
             favIcon.setOnClickListener{
                 //create alert dialog to inform user of member-only action
                 val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Member's only action")
-                builder.setMessage("The \"Favorites\" is a member-only feature, please login or register to save your favorite products")
-                builder.setPositiveButton("Okay"){dialog,_ ->
+                builder.setTitle(R.string.members_only_title)
+                builder.setMessage(R.string.members_only_text)
+                builder.setPositiveButton(R.string.ok){dialog,_ ->
                     dialog.dismiss()
                 }
                 builder.create().show()

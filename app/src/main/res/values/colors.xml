@@ -16,6 +16,7 @@
     <color name="my_light_grey">#ECEBEF</color>
     <color name="logoutRed">#950C0C</color>
     <color name="favStarColor">#F0AC16</color>
+    <color name="gitcolor">#C65DE6</color>
 
 
 </resources>

@@ -78,13 +78,13 @@ class LoginFragment : Fragment() {
                             }
                             parentFragmentManager.popBackStack()
                             //login done
-                            Toast.makeText(requireContext(), "LOGIN EFETUADO", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), R.string.login_done, Toast.LENGTH_SHORT).show()
                         }else{
                             //enable button back and change back text
                             btnLogin.isEnabled = true
                             btnLogin.setText(R.string.login_button_text)
                             //wrong password
-                            Toast.makeText(requireContext(), "Palavar-Passe errada", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), R.string.wrong_password, Toast.LENGTH_SHORT).show()
                         }
                     },
                     //handle error
@@ -98,7 +98,7 @@ class LoginFragment : Fragment() {
                 )
             }else{
                 //notify user to check inputs
-                Toast.makeText(requireContext(), "Tem a certeza de que todos os campos estão preenchidos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.filled_camps, Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -122,11 +122,11 @@ class LoginFragment : Fragment() {
 
                 //check fields
                 if(username.isNullOrEmpty() || email.isNullOrEmpty() || passwd.isNullOrEmpty() || passwdConfirm.isNullOrEmpty()){
-                    Toast.makeText(requireContext(), "Tem a certeza de que todos os campos estão preenchidos", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.filled_camps, Toast.LENGTH_SHORT).show()
                 }else{
                     //check pass match
                     if(!passwd.matches(passwdConfirm.toRegex())){
-                        Toast.makeText(requireContext(), "As Palavras-Passe não são iguais", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), R.string.no_equal_password, Toast.LENGTH_SHORT).show()
                     }else{
                         //disable button and change text
                         btnRegister.isEnabled = false
@@ -139,17 +139,17 @@ class LoginFragment : Fragment() {
                                     if(result){
                                         //close sheet and toast user
                                         registerSheet.dismiss()
-                                        Toast.makeText(requireContext(), "Registo completo", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(requireContext(), R.string.register_complete , Toast.LENGTH_LONG).show()
                                     }else{
                                         //toast user
                                         //restore button
                                         btnRegister.isEnabled = true
                                         btnRegister.setText(R.string.register_button)
-                                        Toast.makeText(requireContext(), "Erro na criação de conta", Toast.LENGTH_LONG).show()
+                                        Toast.makeText(requireContext(), R.string.error_account_created, Toast.LENGTH_LONG).show()
                                     }
                                 }
                             } else {
-                                Toast.makeText(requireContext(), "Nome do utilizador já foi escolhido! Por favor, insere outro nome.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), R.string.user_already_chosen , Toast.LENGTH_SHORT).show()
                                 //restore button
                                 btnRegister.isEnabled = true
                                 btnRegister.setText(R.string.register_button)

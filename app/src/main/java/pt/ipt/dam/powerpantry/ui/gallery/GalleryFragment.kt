@@ -264,7 +264,7 @@ class GalleryFragment : Fragment() {
                 setupScanButton()
             } else {
                 //if not granted, show toast
-                Toast.makeText(requireContext(), "Para fazer scan de código de barras é preciso a permissão da Câmera.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.camera_permission , Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -341,9 +341,9 @@ class GalleryFragment : Fragment() {
             //setup onclick to show alert of member-only feature
             favIcon.setOnClickListener{
                 val builder = AlertDialog.Builder(requireContext())
-                builder.setTitle("Ação disponível só para membros.")
-                builder.setMessage("Os \"Favoritos\" são uma funcionalidade disponível só para membros, para acessares os teus produtos favoritos entra na tua conta ou regista-te na aplicação.")
-                builder.setPositiveButton("Ok"){dialog,_ ->
+                builder.setTitle(R.string.members_only_title)
+                builder.setMessage(R.string.members_only_text)
+                builder.setPositiveButton(R.string.ok){dialog,_ ->
                     dialog.dismiss()
                 }
                 builder.create().show()
@@ -362,9 +362,9 @@ class GalleryFragment : Fragment() {
      */
     private fun productNotFound( message:String ){
         val builder = AlertDialog.Builder(requireContext())
-        builder.setTitle("Produto não encontrado.")
+        builder.setTitle(R.string.product_not_found)
         builder.setMessage(message)
-        builder.setPositiveButton("Ok") { dialog, _ ->
+        builder.setPositiveButton(R.string.ok) { dialog, _ ->
             dialog.dismiss()
         }
         val dialog = builder.create()
